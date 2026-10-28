@@ -1,0 +1,86 @@
+---
+import projects from "../data/projects.json";
+import { t, tr, type Lang } from "../i18n/utils";
+const { lang } = Astro.props as { lang: Lang };
+const fields = ["context", "problem", "solution", "result"] as const;
+---
+
+<dialog id="project-modal" aria-labelledby="modal-title" class="m-auto w-[min(42rem,92vw)] rounded-lg bg-white p-6 text-slate-900 backdrop:bg-black/60 dark:bg-slate-900 dark:text-slate-100">
+  <div class="flex items-start justify-between gap-4">
+    <h3 id="modal-title" class="text-2xl font-bold"></h3>
+    <button type="button" id="modal-close" class="rounded border border-slate-400 px-3 py-1 text-sm">{t(lang, "projects.close")}</button>
+  </div>
+  <div id="modal-body" class="mt-4 space-y-4"></div>
+</dialog>
+
+<script
+  is:inline
+  type="application/json"
+  id="projects-data"
+  set:html={JSON.stringify(
+    (projects as any[]).map((p) => ({
+      id: p.id,
+      title: tr(p.title, lang),
+      sections: fields.map((f) => ({ heading: t(lang, `projects.${f}`), text: tr(p[f], lang) })),
+      stackHeading: t(lang, "projects.stack"),
+      stack: p.stack,
+      linksHeading: t(lang, "projects.links"),
+      links: [
+        p.demo && { label: t(lang, "projects.demo"), href: p.demo },
+        p.repo && p.showRepoLink !== false && { label: t(lang, "projects.repo"), href: p.repo },
+      ].filter(Boolean),
+    })),
+  ).replace(/</g, "\\u003c")}
+/>
+
+<script>
+  const dialog = document.getElementById("project-modal") as HTMLDialogElement;
+  const data: any[] = JSON.parse(document.getElementById("projects-data")!.textContent!);
+  const title = document.getElementById("modal-title")!;
+  const body = document.getElementById("modal-body")!;
+  let opener: HTMLElement | null = null;
+
+  function el(tag: string, text?: string, cls?: string) {
+    const e = document.createElement(tag);
+    if (text) e.textContent = text;
+    if (cls) e.className = cls;
+    return e;
+  }
+
+  document.querySelectorAll<HTMLButtonElement>("[data-open-project]").forEach((btn) =>
+    btn.addEventListener("click", () => {
+      const p = data.find((d) => d.id === btn.dataset.openProject);
+      if (!p) return;
+      opener = btn;
+      title.textContent = p.title;
+      body.replaceChildren();
+      for (const s of p.sections) {
+        const d = el("div");
+        d.append(el("h4", s.heading, "font-semibold"), el("p", s.text, "text-slate-700 dark:text-slate-300"));
+        body.append(d);
+      }
+      const st = el("div");
+      st.append(el("h4", p.stackHeading, "font-semibold"));
+      const ul = el("ul", undefined, "mt-1 flex flex-wrap gap-1 text-xs");
+      p.stack.forEach((s: string) => ul.append(el("li", s, "rounded bg-indigo-100 px-2 py-0.5 text-indigo-900 dark:bg-indigo-900 dark:text-indigo-100")));
+      st.append(ul);
+      body.append(st);
+      if (p.links.length) {
+        const l = el("div");
+        l.append(el("h4", p.linksHeading, "font-semibold"));
+        for (const link of p.links) {
+          const a = el("a", link.label, "mr-4 text-indigo-700 underline dark:text-indigo-300") as HTMLAnchorElement;
+          a.href = link.href;
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+          l.append(a);
+        }
+        body.append(l);
+      }
+      dialog.showModal();
+    }),
+  );
+  document.getElementById("modal-close")!.addEventListener("click", () => dialog.close());
+  dialog.addEventListener("click", (e) => { if (e.target === dialog) dialog.close(); });
+  dialog.addEventListener("close", () => opener?.focus());
+</script>

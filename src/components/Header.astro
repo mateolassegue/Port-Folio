@@ -1,0 +1,24 @@
+---
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+import ThemeToggle from "./ThemeToggle.astro";
+import { t, localizedUrl, type Lang } from "../i18n/utils";
+const { lang } = Astro.props as { lang: Lang };
+const links = ["skills", "projects", "timeline", "contact"];
+---
+
+<header class="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur dark:border-slate-800 dark:bg-slate-950/90">
+  <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 px-4 py-3">
+    <a href={localizedUrl(lang)} class="font-bold">ML</a>
+    <nav aria-label={t(lang, "nav.menu")}>
+      <ul class="flex flex-wrap gap-4 text-sm">
+        {links.map((l) => (
+          <li><a class="hover:text-indigo-700 dark:hover:text-indigo-300" href={`#${l}`}>{t(lang, `nav.${l}`)}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <div class="flex items-center gap-2">
+      <LanguageSwitcher lang={lang} />
+      <ThemeToggle lang={lang} />
+    </div>
+  </div>
+</header>

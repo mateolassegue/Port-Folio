@@ -1,0 +1,27 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const fallback = `${base}/fr/`;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting…</title>
+    <meta http-equiv="refresh" content={`1; url=${fallback}`} />
+    <script is:inline define:vars={{ base }}>
+      var supported = ["fr", "en"];
+      var saved = localStorage.getItem("lang");
+      var lang = supported.indexOf(saved) >= 0 ? saved : null;
+      if (!lang) {
+        var prefs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language];
+        for (var i = 0; i < prefs.length && !lang; i++) {
+          var code = String(prefs[i]).slice(0, 2).toLowerCase();
+          if (supported.indexOf(code) >= 0) lang = code;
+        }
+      }
+      location.replace(base + "/" + (lang || "fr") + "/" + location.hash);
+    </script>
+  </head>
+  <body><a href={fallback}>Français</a> · <a href={`${base}/en/`}>English</a></body>
+</html>

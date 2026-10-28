@@ -1,0 +1,13 @@
+{
+  "meta": { "title": "Mateo Lassegue — Portfolio", "description": "Portfolio professionnel d'ingénieur" },
+  "nav": { "home": "Accueil", "skills": "Compétences", "projects": "Projets", "timeline": "Parcours", "contact": "Contact", "menu": "Navigation principale" },
+  "hero": { "greeting": "Bonjour, je suis", "cta": "Voir mes projets", "contact": "Me contacter" },
+  "skills": { "title": "Compétences", "intro": "Calculées automatiquement à partir des technologies de mes projets.", "chartLabel": "Poids de la technologie dans mes projets (%)", "toggleBar": "Barres", "toggleRadar": "Radar", "chartAria": "Graphique des compétences" },
+  "projects": { "title": "Projets", "all": "Tous", "filter": "Filtrer par technologie", "details": "Voir le détail", "context": "Contexte", "problem": "Problème", "solution": "Solution", "stack": "Technologies", "result": "Résultat", "links": "Liens", "demo": "Démo", "repo": "Code source", "close": "Fermer", "status": { "private": "Privé", "public": "Public", "wip": "En cours" }, "empty": "Aucun projet pour ce filtre." },
+  "timeline": { "title": "Parcours" },
+  "contact": { "title": "Contact", "text": "TODO : texte de contact à compléter.", "github": "GitHub", "linkedin": "LinkedIn", "email": "E-mail" },
+  "theme": { "toggle": "Changer de thème", "light": "Mode clair", "dark": "Mode sombre" },
+  "lang": { "label": "Langue", "fr": "Français", "en": "English" },
+  "footer": { "rights": "Tous droits réservés." },
+  "skip": "Aller au contenu"
+}
