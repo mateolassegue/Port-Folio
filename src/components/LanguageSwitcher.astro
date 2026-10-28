@@ -1,0 +1,44 @@
+---
+import { languages, t, url, type Lang } from "../i18n/utils";
+const { lang } = Astro.props as { lang: Lang };
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+---
+
+<nav aria-label={t(lang, "lang.label")} class="flex gap-1" data-lang-switcher data-base={base}>
+  {(Object.keys(languages) as Lang[]).map((l) => (
+    <a
+      href={url(`${l}/`)}
+      data-lang={l}
+      hreflang={l}
+      lang={l}
+      aria-current={l === lang ? "true" : undefined}
+      title={languages[l]}
+      class:list={["rounded px-2 py-1 text-sm font-semibold uppercase focus-visible:outline-2 focus-visible:outline-indigo-600", l === lang ? "bg-indigo-700 text-white" : "border border-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800"]}
+    >{l}</a>
+  ))}
+</nav>
+
+<script>
+  // Keep the current section (hash) when switching language and remember the choice.
+  const nav = document.querySelector<HTMLElement>("[data-lang-switcher]");
+  nav?.querySelectorAll<HTMLAnchorElement>("a[data-lang]").forEach((a) => {
+    const sync = () => { a.hash = location.hash; };
+    sync();
+    window.addEventListener("hashchange", sync);
+    a.addEventListener("click", () => {
+      sync();
+      localStorage.setItem("lang", a.dataset.lang!);
+    });
+  });
+  // Update hash as the user scrolls through sections.
+  const sections = document.querySelectorAll<HTMLElement>("main section[id]");
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        history.replaceState(null, "", `#${e.target.id}`);
+        nav?.querySelectorAll<HTMLAnchorElement>("a[data-lang]").forEach((a) => (a.hash = `#${e.target.id}`));
+      }
+    });
+  }, { rootMargin: "-40% 0px -55% 0px" });
+  sections.forEach((s) => spy.observe(s));
+</script>

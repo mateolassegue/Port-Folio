@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { transition: none !important; opacity: 1 !important; transform: none !important; }
+}
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: none; }

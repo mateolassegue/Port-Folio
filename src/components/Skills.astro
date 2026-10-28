@@ -1,0 +1,69 @@
+---
+import projects from "../data/projects.json";
+import { t, type Lang } from "../i18n/utils";
+const { lang } = Astro.props as { lang: Lang };
+
+// Skill score = average weight of a technology across projects (languages % when known, else full weight).
+const totals: Record<string, number> = {};
+for (const p of projects as any[]) {
+  for (const tech of p.stack) {
+    totals[tech] = (totals[tech] ?? 0) + (p.languages?.[tech] ?? 100);
+  }
+}
+const data = Object.entries(totals)
+  .map(([label, sum]) => ({ label, value: Math.round((sum / projects.length) * 10) / 10 }))
+  .sort((a, b) => b.value - a.value);
+---
+
+<section id="skills" class="mx-auto max-w-6xl px-4 py-16 reveal">
+  <h2 class="text-3xl font-bold">{t(lang, "skills.title")}</h2>
+  <p class="mt-2 text-slate-700 dark:text-slate-300">{t(lang, "skills.intro")}</p>
+  <div class="mt-4 flex gap-2" role="group" aria-label={t(lang, "skills.chartAria")}>
+    <button type="button" data-chart-type="bar" aria-pressed="true" class="rounded border border-slate-400 px-3 py-1 text-sm aria-pressed:bg-indigo-700 aria-pressed:text-white">{t(lang, "skills.toggleBar")}</button>
+    <button type="button" data-chart-type="radar" aria-pressed="false" class="rounded border border-slate-400 px-3 py-1 text-sm aria-pressed:bg-indigo-700 aria-pressed:text-white">{t(lang, "skills.toggleRadar")}</button>
+  </div>
+  <div class="relative mt-4 h-80 max-w-3xl">
+    <canvas id="skills-chart" role="img" aria-label={t(lang, "skills.chartAria")} data-skills={JSON.stringify(data)} data-label={t(lang, "skills.chartLabel")}></canvas>
+  </div>
+  <ul class="sr-only">{data.map((d) => <li>{d.label}: {d.value}%</li>)}</ul>
+</section>
+
+<script>
+  import { Chart, registerables } from "chart.js";
+  Chart.register(...registerables);
+  const canvas = document.getElementById("skills-chart") as HTMLCanvasElement;
+  const skills: { label: string; value: number }[] = JSON.parse(canvas.dataset.skills!);
+  let chart: Chart | null = null;
+  function render(type: "bar" | "radar") {
+    chart?.destroy();
+    const dark = document.documentElement.classList.contains("dark");
+    const color = dark ? "#e2e8f0" : "#0f172a";
+    const grid = dark ? "#334155" : "#cbd5e1";
+    chart = new Chart(canvas, {
+      type,
+      data: {
+        labels: skills.map((s) => s.label),
+        datasets: [{ label: canvas.dataset.label!, data: skills.map((s) => s.value), backgroundColor: "rgba(99,102,241,.5)", borderColor: "#6366f1", borderWidth: 2 }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        indexAxis: type === "bar" ? "y" : undefined,
+        plugins: { legend: { labels: { color } } },
+        scales: type === "bar"
+          ? { x: { min: 0, max: 100, ticks: { color }, grid: { color: grid } }, y: { ticks: { color }, grid: { color: grid } } }
+          : { r: { min: 0, max: 100, ticks: { color, backdropColor: "transparent" }, grid: { color: grid }, angleLines: { color: grid }, pointLabels: { color } } },
+      },
+    });
+  }
+  let current: "bar" | "radar" = "bar";
+  render(current);
+  document.querySelectorAll<HTMLButtonElement>("[data-chart-type]").forEach((b) =>
+    b.addEventListener("click", () => {
+      current = b.dataset.chartType as "bar" | "radar";
+      document.querySelectorAll("[data-chart-type]").forEach((o) => o.setAttribute("aria-pressed", String(o === b)));
+      render(current);
+    }),
+  );
+  new MutationObserver(() => render(current)).observe(document.documentElement, { attributeFilter: ["class"] });
+</script>

@@ -1,0 +1,34 @@
+[
+  {
+    "id": "litepro-studio",
+    "title": { "fr": "litepro-studio", "en": "litepro-studio" },
+    "description": { "fr": "TODO : description du projet.", "en": "TODO: project description." },
+    "context": { "fr": "TODO : contexte du projet.", "en": "TODO: project context." },
+    "problem": { "fr": "TODO : problème à résoudre.", "en": "TODO: problem to solve." },
+    "solution": { "fr": "TODO : solution apportée.", "en": "TODO: solution provided." },
+    "result": { "fr": "TODO : résultat obtenu.", "en": "TODO: outcome." },
+    "stack": ["TypeScript"],
+    "languages": { "TypeScript": 99.5 },
+    "image": "",
+    "demo": "",
+    "repo": "https://github.com/mateolassegue/litepro-studio",
+    "showRepoLink": false,
+    "status": "private"
+  },
+  {
+    "id": "nexus-workspace",
+    "title": { "fr": "Nexus-Workspace", "en": "Nexus-Workspace" },
+    "description": { "fr": "TODO : description du projet.", "en": "TODO: project description." },
+    "context": { "fr": "TODO : contexte du projet.", "en": "TODO: project context." },
+    "problem": { "fr": "TODO : problème à résoudre.", "en": "TODO: problem to solve." },
+    "solution": { "fr": "TODO : solution apportée.", "en": "TODO: solution provided." },
+    "result": { "fr": "TODO : résultat obtenu.", "en": "TODO: outcome." },
+    "stack": ["JavaScript", "TypeScript"],
+    "languages": { "JavaScript": 97.1, "TypeScript": 1.8 },
+    "image": "",
+    "demo": "",
+    "repo": "https://github.com/Sempra56/Nexus-Workspace",
+    "showRepoLink": false,
+    "status": "private"
+  }
+]

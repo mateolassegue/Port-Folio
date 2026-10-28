@@ -1,0 +1,17 @@
+---
+import profile from "../data/profile.json";
+import { t, type Lang } from "../i18n/utils";
+const { lang } = Astro.props as { lang: Lang };
+const { github, linkedin, email } = profile.links;
+---
+
+<section id="contact" class="mx-auto max-w-6xl px-4 py-16 reveal">
+  <h2 class="text-3xl font-bold">{t(lang, "contact.title")}</h2>
+  <p class="mt-2 text-slate-700 dark:text-slate-300">{t(lang, "contact.text")}</p>
+  <ul class="mt-4 flex flex-wrap gap-4">
+    {github && <li><a class="text-indigo-700 underline dark:text-indigo-300" href={github} rel="noopener noreferrer">{t(lang, "contact.github")}</a></li>}
+    {linkedin && <li><a class="text-indigo-700 underline dark:text-indigo-300" href={linkedin} rel="noopener noreferrer">{t(lang, "contact.linkedin")}</a></li>}
+    {email && <li><a class="text-indigo-700 underline dark:text-indigo-300" href={`mailto:${email}`}>{t(lang, "contact.email")}</a></li>}
+  </ul>
+  <p class="mt-12 text-sm text-slate-700 dark:text-slate-300">© {new Date().getFullYear()} {profile.name}. {t(lang, "footer.rights")}</p>
+</section>

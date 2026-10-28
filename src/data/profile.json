@@ -1,0 +1,17 @@
+{
+  "name": "Mateo Lassegue",
+  "title": { "fr": "TODO : titre professionnel (ingénieur)", "en": "TODO: professional title (engineer)" },
+  "bio": {
+    "fr": "TODO : courte biographie à compléter.",
+    "en": "TODO: short biography to complete."
+  },
+  "links": { "github": "https://github.com/mateolassegue", "linkedin": "", "email": "" },
+  "timeline": [
+    {
+      "period": "TODO",
+      "title": { "fr": "TODO : poste ou formation", "en": "TODO: role or education" },
+      "place": "TODO",
+      "description": { "fr": "TODO : description à compléter.", "en": "TODO: description to complete." }
+    }
+  ]
+}
