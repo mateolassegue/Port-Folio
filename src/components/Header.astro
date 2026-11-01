@@ -7,13 +7,13 @@ const { lang } = Astro.props as { lang: Lang };
 const links = ["skills", "projects", "timeline", "contact"];
 ---
 
-<header class="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur dark:border-slate-800 dark:bg-slate-950/90">
+<header class="sticky top-0 z-40 border-b border-slate-200 bg-white/90 shadow-sm backdrop-blur dark:border-slate-800 dark:bg-slate-950/90">
   <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 px-4 py-3">
-    <a href={localizedUrl(lang)} class="font-bold">ML · RR</a>
+    <a href={localizedUrl(lang)} class="text-lg font-bold tracking-tight">ML <span class="text-indigo-600 dark:text-indigo-400">·</span> RR</a>
     <nav aria-label={t(lang, "nav.menu")}>
-      <ul class="flex flex-wrap gap-4 text-sm">
+      <ul class="flex flex-wrap gap-1 text-sm">
         {links.map((l) => (
-          <li><a class="hover:text-indigo-700 dark:hover:text-indigo-300" href={`#${l}`}>{t(lang, `nav.${l}`)}</a></li>
+          <li><a class="rounded px-2 py-1 font-medium transition-colors hover:bg-slate-100 hover:text-indigo-700 dark:hover:bg-slate-800 dark:hover:text-indigo-300" href={`#${l}`}>{t(lang, `nav.${l}`)}</a></li>
         ))}
       </ul>
     </nav>

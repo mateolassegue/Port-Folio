@@ -10,29 +10,30 @@ const nameOf = (id: string) => people.find((p) => p.id === id)?.name.split(" ")[
 <section id="projects" class="mx-auto max-w-6xl px-4 py-16 reveal">
   <h2 class="text-3xl font-bold">{t(lang, "projects.title")}</h2>
   <div class="mt-4 flex flex-wrap gap-2" role="group" aria-label={t(lang, "projects.filter")}>
-    <button type="button" data-filter="all" aria-pressed="true" class="rounded-full border border-slate-400 px-3 py-1 text-sm aria-pressed:bg-indigo-700 aria-pressed:text-white">{t(lang, "projects.all")}</button>
+    <button type="button" data-filter="all" aria-pressed="true" class="rounded-full border border-slate-300 px-3 py-1 text-sm transition-colors hover:bg-slate-100 aria-pressed:border-indigo-700 aria-pressed:bg-indigo-700 aria-pressed:text-white dark:border-slate-700 dark:hover:bg-slate-800">{t(lang, "projects.all")}</button>
     {techs.map((tech) => (
-      <button type="button" data-filter={tech} aria-pressed="false" class="rounded-full border border-slate-400 px-3 py-1 text-sm aria-pressed:bg-indigo-700 aria-pressed:text-white">{tech}</button>
+      <button type="button" data-filter={tech} aria-pressed="false" class="rounded-full border border-slate-300 px-3 py-1 text-sm transition-colors hover:bg-slate-100 aria-pressed:border-indigo-700 aria-pressed:bg-indigo-700 aria-pressed:text-white dark:border-slate-700 dark:hover:bg-slate-800">{tech}</button>
     ))}
   </div>
   <ul class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" id="project-grid">
     {(projects as any[]).map((p) => (
-      <li data-stack={JSON.stringify(p.stack)} data-authors={p.authors.join(" ")} class="flex flex-col rounded-lg border border-slate-300 p-5 dark:border-slate-700">
+      <li data-stack={JSON.stringify(p.stack)} data-authors={p.authors.join(" ")} class="flex flex-col rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900">
         {p.image && (
-          <div class="mb-3 flex aspect-[4/3] items-center justify-center overflow-hidden rounded bg-slate-100 dark:bg-slate-800">
-            <img src={url(p.image)} alt="" loading="lazy" class="h-full w-full object-contain" />
+          <div class="relative mb-3 aspect-[4/3] overflow-hidden rounded-lg">
+            <img src={url(p.image)} aria-hidden="true" class="absolute inset-0 h-full w-full scale-125 object-cover opacity-50 blur-xl" />
+            <img src={url(p.image)} alt="" loading="lazy" class="relative h-full w-full object-contain" />
           </div>
         )}
         <div class="flex items-start justify-between gap-2">
           <h3 class="text-xl font-semibold">{tr(p.title, lang)}</h3>
-          <span class="rounded bg-slate-200 px-2 py-0.5 text-xs text-slate-900 dark:bg-slate-700 dark:text-slate-100">{t(lang, `projects.status.${p.status}`)}</span>
+          <span class="shrink-0 rounded bg-slate-200 px-2 py-0.5 text-xs font-medium text-slate-900 dark:bg-slate-700 dark:text-slate-100">{t(lang, `projects.status.${p.status}`)}</span>
         </div>
         <p class="mt-1 text-xs font-semibold text-indigo-700 dark:text-indigo-300">{p.authors.map(nameOf).join(" & ")}</p>
         <p class="mt-2 grow text-slate-700 dark:text-slate-300">{tr(p.description, lang)}</p>
         <ul class="mt-3 flex flex-wrap gap-1 text-xs" aria-label={t(lang, "projects.stack")}>
           {p.stack.map((s: string) => <li class="rounded bg-indigo-100 px-2 py-0.5 text-indigo-900 dark:bg-indigo-900 dark:text-indigo-100">{s}</li>)}
         </ul>
-        <a href={url(`${lang}/projects/${p.id}/`)} class="mt-4 self-start rounded bg-indigo-700 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-800">{t(lang, "projects.details")}</a>
+        <a href={url(`${lang}/projects/${p.id}/`)} class="mt-4 self-start rounded-lg bg-indigo-700 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-indigo-800 hover:shadow-md">{t(lang, "projects.details")}</a>
       </li>
     ))}
   </ul>
