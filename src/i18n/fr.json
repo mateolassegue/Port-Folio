@@ -1,7 +1,7 @@
 {
   "meta": { "title": "Mateo Lassegue & Rhizlène Russo — Portfolio", "description": "Portfolio professionnel d'ingénieurs" },
   "nav": { "home": "Accueil", "skills": "Compétences", "projects": "Projets", "timeline": "Parcours", "contact": "Contact", "menu": "Navigation principale" },
-  "hero": { "greeting": "Bonjour, je suis", "cta": "Voir mes projets", "contact": "Me contacter", "badge": "Disponibles pour un stage d'été 2027 au Royaume-Uni" },
+  "hero": { "greeting": "Bonjour, je suis", "cta": "Voir mes projets", "contact": "Me contacter" },
   "skills": { "title": "Compétences", "intro": "Poids des technologies dans nos projets, et compétences clés issues de nos CV.", "chartLabel": "Poids de la technologie dans nos projets (%)", "toggleBar": "Barres", "toggleRadar": "Radar", "chartAria": "Graphique des compétences", "core": "Compétences clés" },
   "projects": { "title": "Projets", "all": "Tous", "filter": "Filtrer par technologie", "details": "Voir le projet", "back": "Retour aux projets", "photosSoon": "Photos à venir", "context": "Contexte", "problem": "Problème", "solution": "Solution", "stack": "Technologies", "result": "Résultat", "contributions": "Qui a fait quoi", "links": "Liens", "demo": "Démo", "repo": "Code source", "close": "Fermer", "status": { "private": "Privé", "public": "Public", "wip": "En cours", "done": "Terminé" }, "empty": "Aucun projet pour ce filtre." },
   "person": { "label": "Afficher le travail de", "all": "Les deux" },

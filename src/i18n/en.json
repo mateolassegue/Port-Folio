@@ -1,7 +1,7 @@
 {
   "meta": { "title": "Mateo Lassegue & Rhizlène Russo — Portfolio", "description": "Professional engineers' portfolio" },
   "nav": { "home": "Home", "skills": "Skills", "projects": "Projects", "timeline": "Journey", "contact": "Contact", "menu": "Main navigation" },
-  "hero": { "greeting": "Hi, I'm", "cta": "See my projects", "contact": "Contact me", "badge": "Available for a UK Summer 2027 Internship" },
+  "hero": { "greeting": "Hi, I'm", "cta": "See my projects", "contact": "Contact me" },
   "skills": { "title": "Skills", "intro": "Technology weight across our projects, and our core skills from our résumés.", "chartLabel": "Technology weight across our projects (%)", "toggleBar": "Bars", "toggleRadar": "Radar", "chartAria": "Skills chart", "core": "Core skills" },
   "projects": { "title": "Projects", "all": "All", "filter": "Filter by technology", "details": "View project", "back": "Back to projects", "photosSoon": "Photos coming soon", "context": "Context", "problem": "Problem", "solution": "Solution", "stack": "Stack", "result": "Result", "contributions": "Who did what", "links": "Links", "demo": "Demo", "repo": "Source code", "close": "Close", "status": { "private": "Private", "public": "Public", "wip": "In progress", "done": "Done" }, "empty": "No project matches this filter." },
   "person": { "label": "Show work by", "all": "Both" },
