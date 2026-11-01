@@ -15,6 +15,9 @@ const personIds = (people as any[]).map((p) => p.id);
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{t(lang, "meta.title")}</title>
     <meta name="description" content={t(lang, "meta.description")} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lexend:wght@600;700;800&display=swap" rel="stylesheet" />
     <script is:inline define:vars={{ personIds }}>
       (function () {
         var s = localStorage.getItem("theme");
@@ -29,7 +32,7 @@ const personIds = (people as any[]).map((p) => p.id);
       })();
     </script>
   </head>
-  <body class="bg-grid-pattern bg-white text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+  <body class="bg-grid-pattern bg-white font-sans text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
     <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded focus:bg-indigo-700 focus:px-3 focus:py-2 focus:text-white">{t(lang, "skip")}</a>
     <Header lang={lang} />
     <main id="main"><slot /></main>
