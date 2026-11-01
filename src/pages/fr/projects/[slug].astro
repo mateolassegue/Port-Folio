@@ -1,0 +1,17 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import ProjectPage from "../../../components/ProjectPage.astro";
+import projects from "../../../data/projects.json";
+
+export function getStaticPaths() {
+  return (projects as any[]).map((p) => ({ params: { slug: p.id } }));
+}
+
+const { slug } = Astro.params;
+const project = (projects as any[]).find((p) => p.id === slug)!;
+const lang = "fr" as const;
+---
+
+<Layout lang={lang}>
+  <ProjectPage lang={lang} project={project} />
+</Layout>

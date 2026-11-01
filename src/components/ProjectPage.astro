@@ -1,0 +1,67 @@
+---
+import { t, tr, url, type Lang } from "../i18n/utils";
+import people from "../data/people.json";
+const { lang, project: p } = Astro.props as { lang: Lang; project: any };
+const fields = ["context", "problem", "solution", "result"] as const;
+const nameOf = (id: string) => people.find((pp) => pp.id === id)?.name ?? id;
+---
+
+<article class="mx-auto max-w-4xl px-4 py-16 reveal">
+  <a href={`${url(`${lang}/`)}#projects`} class="text-sm text-indigo-700 underline dark:text-indigo-300">← {t(lang, "projects.back")}</a>
+
+  <div class="mt-4 flex flex-wrap items-start justify-between gap-2">
+    <h1 class="text-3xl font-bold">{tr(p.title, lang)}</h1>
+    <span class="rounded bg-slate-200 px-2 py-0.5 text-xs text-slate-900 dark:bg-slate-700 dark:text-slate-100">{t(lang, `projects.status.${p.status}`)}</span>
+  </div>
+  <p class="mt-1 text-sm font-semibold text-indigo-700 dark:text-indigo-300">{p.authors.map(nameOf).join(" & ")}</p>
+
+  {p.image ? (
+    <img src={p.image} alt="" class="mt-6 w-full rounded-lg" />
+  ) : (
+    <div class="mt-6 flex h-56 items-center justify-center rounded-lg border border-dashed border-slate-400 text-slate-500 dark:border-slate-600 dark:text-slate-400">
+      {t(lang, "projects.photosSoon")}
+    </div>
+  )}
+
+  <p class="mt-6 text-lg text-slate-700 dark:text-slate-300">{tr(p.description, lang)}</p>
+
+  {p.contributions && (
+    <section class="mt-8">
+      <h2 class="text-xl font-semibold">{t(lang, "projects.contributions")}</h2>
+      <div class="mt-3 grid gap-4 sm:grid-cols-2">
+        {Object.entries(p.contributions).map(([personId, text]) => (
+          <div data-person={personId} class="rounded-lg border border-slate-300 p-4 dark:border-slate-700">
+            <h3 class="font-semibold text-indigo-700 dark:text-indigo-300">{nameOf(personId)}</h3>
+            <p class="mt-1 text-slate-700 dark:text-slate-300">{tr(text as any, lang)}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <div class="mt-8 space-y-6">
+    {fields.map((f) => (
+      <section>
+        <h2 class="text-xl font-semibold">{t(lang, `projects.${f}`)}</h2>
+        <p class="mt-2 text-slate-700 dark:text-slate-300">{tr(p[f], lang)}</p>
+      </section>
+    ))}
+  </div>
+
+  <section class="mt-8">
+    <h2 class="text-xl font-semibold">{t(lang, "projects.stack")}</h2>
+    <ul class="mt-2 flex flex-wrap gap-1 text-xs" aria-label={t(lang, "projects.stack")}>
+      {p.stack.map((s: string) => <li class="rounded bg-indigo-100 px-2 py-0.5 text-indigo-900 dark:bg-indigo-900 dark:text-indigo-100">{s}</li>)}
+    </ul>
+  </section>
+
+  {(p.demo || (p.repo && p.showRepoLink !== false)) && (
+    <section class="mt-8">
+      <h2 class="text-xl font-semibold">{t(lang, "projects.links")}</h2>
+      <div class="mt-2 flex gap-4">
+        {p.demo && <a href={p.demo} target="_blank" rel="noopener noreferrer" class="text-indigo-700 underline dark:text-indigo-300">{t(lang, "projects.demo")}</a>}
+        {p.repo && p.showRepoLink !== false && <a href={p.repo} target="_blank" rel="noopener noreferrer" class="text-indigo-700 underline dark:text-indigo-300">{t(lang, "projects.repo")}</a>}
+      </div>
+    </section>
+  )}
+</article>

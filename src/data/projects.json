@@ -81,22 +81,22 @@
       "en": "Custom MIDI controller and embedded software for Digital Audio Workstation (DAW) control."
     },
     "context": {
-      "fr": "MRS est un contrôleur MIDI sur mesure combinant commandes physiques et électronique à microcontrôleur, pour piloter un logiciel audio (DAW).",
-      "en": "MRS is a custom-built MIDI controller combining physical controls and microcontroller-based electronics to drive DAW software."
+      "fr": "MRS vise à concevoir une console numérique inspirée des M32 de Behringer, mais modulable et appuyée sur des logiciels DAW comme Ableton Live, capables de rivaliser avec les meilleures consoles du marché en matière de modulation des pistes (FX, Send, Automation).",
+      "en": "MRS aims to design a digital console inspired by Behringer's M32, but modular and built on DAW software like Ableton Live, capable of rivalling the best consoles on the market for track modulation (FX, Send, Automation)."
     },
     "problem": {
-      "fr": "Les contrôleurs MIDI du commerce ne correspondaient pas exactement aux besoins d'ergonomie et de réactivité souhaités pour un usage musical en temps réel.",
-      "en": "Off-the-shelf MIDI controllers didn't match the exact ergonomics and responsiveness needed for real-time musical use."
+      "fr": "Utiliser un PC comme console nécessite une interface Homme-Machine reproduisant les sensations d'une console physique ; les contrôleurs MIDI du marché ne s'adaptent généralement qu'à un seul usage (le studio).",
+      "en": "Using a PC as a console requires a human-machine interface that reproduces the feel of a physical console; off-the-shelf MIDI controllers are usually built for a single use case (the studio)."
     },
     "solution": {
-      "fr": "Conception du matériel (circuits électroniques, prototypage PCB, ergonomie du boîtier) et du firmware côté Mateo ; développement des pilotes MIDI, DLL et interfaces applicatives (C, C++, C#, XAML) et co-conception du matériel côté Rhizlène.",
-      "en": "Hardware design (electronic circuits, PCB prototyping, enclosure ergonomics) and firmware on Mateo's side; MIDI drivers, DLLs and application interfaces (C, C++, C#, XAML) plus hardware co-design on Rhizlène's side."
+      "fr": "Développement d'un driver et d'un contrôleur MIDI sur mesure avec Visual Studio (C, C++, C#, XAML), d'un site compagnon avec VS Code, et conception du boîtier/matériel sous FreeCAD (open-source). Organisation du projet avec Microsoft Loop, en binôme avec Rhizlène qui apporte la rigueur de suivi du projet.",
+      "en": "Developed a custom driver and MIDI controller with Visual Studio (C, C++, C#, XAML), a companion website with VS Code, and hardware/enclosure design in FreeCAD (open-source). Project organised with Microsoft Loop, working as a duo with Rhizlène, who brings rigorous project tracking."
     },
     "result": {
-      "fr": "TODO : résultat/retours à compléter.",
-      "en": "TODO: outcome/feedback to complete."
+      "fr": "Finalisation du driver en cours, avec des tests logiciels plus ou moins avancés ; premiers prototypes matériels réalisés.",
+      "en": "Driver finalisation in progress, with software tests at varying stages of completion; first hardware prototypes built."
     },
-    "stack": ["C", "C++", "C#", "XAML"],
+    "stack": ["C", "C++", "C#", "XAML", "FreeCAD"],
     "languages": {},
     "image": "",
     "demo": "",
@@ -114,5 +114,69 @@
         "en": "Led embedded software development: custom MIDI drivers, DLLs and application interfaces in C, C++, C# and XAML. Co-designed the hardware architecture (electronic circuits, PCB prototyping) and managed project organisation and cross-functional hardware/software troubleshooting."
       }
     }
+  },
+  {
+    "id": "e-marche",
+    "title": { "fr": "e-Marché — Livraison de produits locaux", "en": "e-Marché — Local Produce Delivery" },
+    "description": {
+      "fr": "Marché en ligne factice pour la vente et la livraison de produits frais et locaux.",
+      "en": "Mock online marketplace for selling and delivering fresh, local produce."
+    },
+    "context": {
+      "fr": "Projet d'entraînement pour se confronter à la création de valeur et à la gestion d'un projet professionnel sur un thème exotique par rapport à mes connaissances initiales.",
+      "en": "A training project to practise creating value and running a professional-style project on a theme far from my initial skill set."
+    },
+    "problem": {
+      "fr": "Permettre aux clients d'accéder à des produits frais et locaux 24h/24, en prenant en compte les producteurs du coin et en organisant une livraison groupée sur un même jour.",
+      "en": "Give customers 24/7 access to fresh, local produce, accounting for local farmers and organising grouped deliveries on a single day."
+    },
+    "solution": {
+      "fr": "Conception d'un site web en HTML/CSS/JavaScript avec une charte graphique dédiée, une liste de courses pré-enregistrée et une base de données factice (mais fonctionnelle) des utilisateurs et des fermiers.",
+      "en": "Built a website in HTML/CSS/JavaScript with a dedicated visual identity, a pre-saved shopping list, and a mock but functional database of users and farmers."
+    },
+    "result": {
+      "fr": "TODO : les captures d'écran du site ont été perdues ; photos et détails supplémentaires à venir.",
+      "en": "TODO: screenshots of the site were lost; photos and extra details to come."
+    },
+    "stack": ["HTML", "CSS", "JavaScript"],
+    "languages": {},
+    "image": "",
+    "demo": "",
+    "repo": "",
+    "showRepoLink": false,
+    "status": "private",
+    "authors": ["mateo"]
+  },
+  {
+    "id": "power-automate",
+    "title": { "fr": "Power Automate — Automatisation de vidéos IA", "en": "Power Automate — AI Video Automation" },
+    "description": {
+      "fr": "Automatisation de la création de vidéos d'actualité à l'aide de l'IA, avec Power Automate.",
+      "en": "AI-assisted news video creation automated with Power Automate."
+    },
+    "context": {
+      "fr": "Projet expérimental mené avec Rhizlène pendant la période d'essai gratuite de Power Automate, pour tester la création automatisée de vidéos basées sur l'actualité (initialement Wikipédia, d'où le nom de la chaîne de test WikiWhiz News).",
+      "en": "Experimental project run with Rhizlène during Power Automate's free trial, testing automated news-based video creation (initially from Wikipedia, hence the test channel name WikiWhiz News)."
+    },
+    "problem": {
+      "fr": "Produire des vidéos d'actualité de façon autonome et à faible coût, sans moyens pour un serveur dédié à l'analyse et à la génération en continu.",
+      "en": "Produce news videos autonomously and cheaply, without the budget for a dedicated server for continuous analysis and generation."
+    },
+    "solution": {
+      "fr": "Mise en place de flux d'automatisation avec Power Automate pour générer des vidéos à partir de sources d'actualité, publiées en test sur une chaîne YouTube et TikTok (WikiWhiz News).",
+      "en": "Set up automation flows with Power Automate to generate videos from news sources, published as tests on a YouTube and TikTok channel (WikiWhiz News)."
+    },
+    "result": {
+      "fr": "Quelques vidéos publiées avec succès avant l'expiration de la période d'essai gratuite ; faute de budget pour un serveur dédié, le projet n'a pas été poussé plus loin, mais l'expérience a été enrichissante.",
+      "en": "A few videos were successfully published before the free trial expired; without budget for a dedicated server the project wasn't taken further, but it was a valuable experience."
+    },
+    "stack": ["Power Automate"],
+    "languages": {},
+    "image": "",
+    "demo": "",
+    "repo": "",
+    "showRepoLink": false,
+    "status": "private",
+    "authors": ["mateo", "rhizlene"]
   }
 ]

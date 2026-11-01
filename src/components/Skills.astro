@@ -1,18 +1,27 @@
 ---
 import projects from "../data/projects.json";
-import { t, type Lang } from "../i18n/utils";
+import people from "../data/people.json";
+import { t, tr, type Lang } from "../i18n/utils";
 const { lang } = Astro.props as { lang: Lang };
 
-// Skill score = average weight of a technology across projects (languages % when known, else full weight).
-const totals: Record<string, number> = {};
-for (const p of projects as any[]) {
-  for (const tech of p.stack) {
-    totals[tech] = (totals[tech] ?? 0) + (p.languages?.[tech] ?? 100);
+// Skill score = share of a person's projects using each technology (ties to the Mateo/Rhizlène filter).
+function computeFor(personId: string | "all") {
+  const scoped = (projects as any[]).filter((p) => personId === "all" || p.authors.includes(personId));
+  const totals: Record<string, number> = {};
+  for (const p of scoped) {
+    const share = 100 / p.stack.length;
+    for (const tech of p.stack) totals[tech] = (totals[tech] ?? 0) + share;
   }
+  const n = scoped.length || 1;
+  return Object.entries(totals)
+    .map(([label, sum]) => ({ label, value: Math.round((sum / n) * 10) / 10 }))
+    .sort((a, b) => b.value - a.value);
 }
-const data = Object.entries(totals)
-  .map(([label, sum]) => ({ label, value: Math.round((sum / projects.length) * 10) / 10 }))
-  .sort((a, b) => b.value - a.value);
+
+const chartByPerson: Record<string, { label: string; value: number }[]> = {
+  all: computeFor("all"),
+  ...Object.fromEntries((people as any[]).map((p) => [p.id, computeFor(p.id)])),
+};
 ---
 
 <section id="skills" class="mx-auto max-w-6xl px-4 py-16 reveal">
@@ -23,18 +32,53 @@ const data = Object.entries(totals)
     <button type="button" data-chart-type="radar" aria-pressed="false" class="rounded border border-slate-400 px-3 py-1 text-sm aria-pressed:bg-indigo-700 aria-pressed:text-white">{t(lang, "skills.toggleRadar")}</button>
   </div>
   <div class="relative mt-4 h-80 max-w-3xl">
-    <canvas id="skills-chart" role="img" aria-label={t(lang, "skills.chartAria")} data-skills={JSON.stringify(data)} data-label={t(lang, "skills.chartLabel")}></canvas>
+    <canvas id="skills-chart" role="img" aria-label={t(lang, "skills.chartAria")} data-skills={JSON.stringify(chartByPerson)} data-label={t(lang, "skills.chartLabel")}></canvas>
   </div>
-  <ul class="sr-only">{data.map((d) => <li>{d.label}: {d.value}%</li>)}</ul>
+  <ul class="sr-only" id="skills-sr"></ul>
+
+  <h3 class="mt-10 text-xl font-semibold">{t(lang, "skills.core")}</h3>
+  <div class="mt-4 grid gap-6 sm:grid-cols-2">
+    {(people as any[]).map((p) => (
+      <div data-person={p.id}>
+        <p class="text-sm font-semibold text-indigo-700 dark:text-indigo-300">{p.name}</p>
+        <div class="mt-2 space-y-3">
+          {p.skills.map((group: any) => (
+            <div>
+              <p class="text-xs font-semibold tracking-wide text-slate-500 uppercase dark:text-slate-400">{tr(group.category, lang)}</p>
+              <ul class="mt-1 flex flex-wrap gap-1 text-xs">
+                {group.items.map((item: string) => <li class="rounded bg-indigo-100 px-2 py-0.5 text-indigo-900 dark:bg-indigo-900 dark:text-indigo-100">{item}</li>)}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
 </section>
 
 <script>
   import { Chart, registerables } from "chart.js";
   Chart.register(...registerables);
   const canvas = document.getElementById("skills-chart") as HTMLCanvasElement;
-  const skills: { label: string; value: number }[] = JSON.parse(canvas.dataset.skills!);
+  const byPerson: Record<string, { label: string; value: number }[]> = JSON.parse(canvas.dataset.skills!);
+  const srList = document.getElementById("skills-sr")!;
   let chart: Chart | null = null;
+
+  function currentPerson() {
+    return document.documentElement.dataset.person || "all";
+  }
+
+  function currentSkills() {
+    return byPerson[currentPerson()] ?? byPerson.all;
+  }
+
   function render(type: "bar" | "radar") {
+    const skills = currentSkills();
+    srList.replaceChildren(...skills.map((d) => {
+      const li = document.createElement("li");
+      li.textContent = `${d.label}: ${d.value}%`;
+      return li;
+    }));
     chart?.destroy();
     const dark = document.documentElement.classList.contains("dark");
     const color = dark ? "#e2e8f0" : "#0f172a";
@@ -65,5 +109,6 @@ const data = Object.entries(totals)
       render(current);
     }),
   );
+  document.addEventListener("person:change", () => render(current));
   new MutationObserver(() => render(current)).observe(document.documentElement, { attributeFilter: ["class"] });
 </script>

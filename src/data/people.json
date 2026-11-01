@@ -15,6 +15,20 @@
       "linkedin": "",
       "email": "mateo.lassegue@gmail.com"
     },
+    "skills": [
+      {
+        "category": { "fr": "CAO & Fabrication", "en": "CAD & Manufacturing" },
+        "items": ["SolidWorks", "FreeCAD", "FDM 3D Printing", "OrcaSlicer", "PrusaSlicer"]
+      },
+      {
+        "category": { "fr": "Systèmes embarqués", "en": "Embedded & Software" },
+        "items": ["C/C++", "Python", "Linux (Ubuntu)", "Control Systems"]
+      },
+      {
+        "category": { "fr": "Outils & DevOps", "en": "Tools & DevOps" },
+        "items": ["Docker", "Tailscale", "Git"]
+      }
+    ],
     "timeline": [
       {
         "period": "09/2024 – 04/2026",
@@ -24,8 +38,8 @@
         },
         "place": "IUT de Lorient",
         "description": {
-          "fr": "Maintenance industrielle, systèmes électriques et automatisation ; diagnostic de pannes, capteurs et maintenance prédictive.",
-          "en": "Industrial maintenance, electrical systems and automation; fault diagnosis, sensors and predictive maintenance."
+          "fr": "Maintenance industrielle, systèmes électriques et automatisation : reconnaissance des systèmes mécaniques et de leurs pièces (Maintenir), conception de pièces mécaniques sur SolidWorks et sur papier avec cotation (Améliorer), installation de tableaux électriques (Installer).",
+          "en": "Industrial maintenance, electrical systems and automation: identifying mechanical systems and their parts (Maintain), designing mechanical parts on SolidWorks and on paper with dimensioning (Improve), wiring electrical panels (Install)."
         }
       },
       {
@@ -82,6 +96,24 @@
       "linkedin": "https://www.linkedin.com/in/rhizlène-russo",
       "email": "rhizlenerusso@gmail.com"
     },
+    "skills": [
+      {
+        "category": { "fr": "Programmation", "en": "Programming" },
+        "items": ["Python", "C", "C++", "C#", "XAML"]
+      },
+      {
+        "category": { "fr": "Outils de développement", "en": "Development Tools" },
+        "items": ["VS Code", "Visual Studio", "Arduino IDE", "Git"]
+      },
+      {
+        "category": { "fr": "IA & Prompt Engineering", "en": "AI & Prompt Engineering" },
+        "items": ["Prompt Engineering", "Gemini AI Studio", "GitHub Copilot", "Claude"]
+      },
+      {
+        "category": { "fr": "Systèmes d'exploitation", "en": "Operating Systems" },
+        "items": ["Linux (Kubuntu)", "Windows 11"]
+      }
+    ],
     "timeline": [
       {
         "period": "09/2021 – 07/2024",
