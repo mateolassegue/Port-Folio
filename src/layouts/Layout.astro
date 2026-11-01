@@ -1,9 +1,11 @@
 ---
 import "../styles/global.css";
 import Header from "../components/Header.astro";
+import people from "../data/people.json";
 import { t, type Lang } from "../i18n/utils";
 interface Props { lang: Lang }
 const { lang } = Astro.props;
+const personIds = (people as any[]).map((p) => p.id);
 ---
 
 <!doctype html>
@@ -13,12 +15,17 @@ const { lang } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{t(lang, "meta.title")}</title>
     <meta name="description" content={t(lang, "meta.description")} />
-    <script is:inline>
+    <script is:inline define:vars={{ personIds }}>
       (function () {
         var s = localStorage.getItem("theme");
         var dark = s ? s === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
         document.documentElement.classList.toggle("dark", dark);
-        document.documentElement.dataset.person = localStorage.getItem("person") || "all";
+        // Allow deep-linking a CV straight to one person's filtered view, e.g. ?person=mateo#projects.
+        var urlPerson = new URLSearchParams(location.search).get("person");
+        var validUrlPerson = urlPerson === "all" || personIds.indexOf(urlPerson) !== -1;
+        var person = validUrlPerson ? urlPerson : localStorage.getItem("person") || "all";
+        document.documentElement.dataset.person = person;
+        if (validUrlPerson) localStorage.setItem("person", person);
       })();
     </script>
   </head>

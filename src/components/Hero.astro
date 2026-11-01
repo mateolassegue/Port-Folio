@@ -7,7 +7,8 @@ const initials = (name: string) => name.split(" ").map((w) => w[0]).join("").sli
 
 <section id="home" class="reveal bg-gradient-to-b from-indigo-50 via-white to-white py-20 dark:from-slate-900 dark:via-slate-950 dark:to-slate-950">
   <div class="mx-auto max-w-6xl px-4">
-    <p class="text-indigo-700 dark:text-indigo-300">{t(lang, "hero.greeting")}</p>
+    <p class="max-w-2xl text-sm text-slate-600 dark:text-slate-400">{t(lang, "hero.duoNote")}</p>
+    <p class="mt-4 text-indigo-700 dark:text-indigo-300">{t(lang, "hero.greeting")}</p>
     <div class="mt-2 grid gap-6 sm:grid-cols-2">
       {people.map((p) => (
         <div data-person={p.id} class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">

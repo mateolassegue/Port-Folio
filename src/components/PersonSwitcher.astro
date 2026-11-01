@@ -32,6 +32,10 @@ const { lang } = Astro.props as { lang: Lang };
     document.documentElement.dataset.person = value;
     localStorage.setItem(KEY, value);
     applyStyles(value);
+    const url = new URL(location.href);
+    if (value === "all") url.searchParams.delete("person");
+    else url.searchParams.set("person", value);
+    history.replaceState(null, "", url);
     document.dispatchEvent(new CustomEvent("person:change", { detail: value }));
   }
 
