@@ -11,7 +11,7 @@ const { lang } = Astro.props as { lang: Lang };
       <div data-person={p.id}>
         <h3 class="text-lg font-semibold text-indigo-700 dark:text-indigo-300">{p.name}</h3>
         <ol class="mt-4 border-l-2 border-indigo-600 pl-6">
-          {p.timeline.map((e) => (
+          {[...p.timeline].reverse().map((e) => (
             <li class="relative mb-8">
               <span class="absolute -left-[33px] top-1.5 h-3 w-3 rounded-full bg-indigo-600" aria-hidden="true"></span>
               <p class="text-sm text-slate-700 dark:text-slate-300">{e.period} · {e.place}</p>
