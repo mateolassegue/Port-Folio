@@ -83,11 +83,19 @@ const chartByPerson: Record<string, { label: string; value: number }[]> = {
     const dark = document.documentElement.classList.contains("dark");
     const color = dark ? "#e2e8f0" : "#0f172a";
     const grid = dark ? "#334155" : "#cbd5e1";
+    const palette = ["#6366f1", "#ec4899", "#f59e0b", "#10b981", "#06b6d4", "#8b5cf6", "#ef4444", "#14b8a6", "#f97316", "#3b82f6"];
+    const colors = skills.map((_, i) => palette[i % palette.length]);
     chart = new Chart(canvas, {
       type,
       data: {
         labels: skills.map((s) => s.label),
-        datasets: [{ label: canvas.dataset.label!, data: skills.map((s) => s.value), backgroundColor: "rgba(99,102,241,.5)", borderColor: "#6366f1", borderWidth: 2 }],
+        datasets: [{
+          label: canvas.dataset.label!,
+          data: skills.map((s) => s.value),
+          backgroundColor: type === "bar" ? colors.map((c) => `${c}80`) : "rgba(99,102,241,.5)",
+          borderColor: type === "bar" ? colors : "#6366f1",
+          borderWidth: 2,
+        }],
       },
       options: {
         responsive: true,
