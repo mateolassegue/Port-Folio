@@ -27,8 +27,13 @@
       {
         "category": { "fr": "Outils & DevOps", "en": "Tools & DevOps" },
         "items": ["Docker", "Tailscale", "Git"]
+      },
+      {
+        "category": { "fr": "Management & Travail d'équipe", "en": "Management & Teamwork" },
+        "items": ["Travail d'équipe", "Gestion de projet", "Autonomie"]
       }
     ],
+    "qualities": { "cad": 5, "embedded": 4, "programming": 3, "ai": 2, "tools": 4, "management": 3 },
     "highlights": [
       {
         "fr": "Apprenti ingénieur mécatronique chez CMP Composites et à l'ENSIBS",
@@ -126,8 +131,13 @@
       {
         "category": { "fr": "Systèmes d'exploitation", "en": "Operating Systems" },
         "items": ["Linux (Kubuntu)", "Windows 11"]
+      },
+      {
+        "category": { "fr": "Management & Travail d'équipe", "en": "Management & Teamwork" },
+        "items": ["Leadership", "Gestion d'équipe", "Communication", "Gestion de projet"]
       }
     ],
+    "qualities": { "cad": 2, "embedded": 4, "programming": 5, "ai": 5, "tools": 4, "management": 5 },
     "highlights": [
       {
         "fr": "Vice-présidente du Club Robotique ENSIBS, coordination d'une équipe d'environ 22 membres",

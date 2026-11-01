@@ -1,30 +1,13 @@
 ---
-import projects from "../data/projects.json";
 import people from "../data/people.json";
 import { t, tr, type Lang } from "../i18n/utils";
 const { lang } = Astro.props as { lang: Lang };
 
-// Skill score = share of a person's projects using each technology (ties to the Mateo/Rhizlène filter).
-// When a project documents which stack items each person actually worked on (stackByPerson), use that
-// subset instead of the full stack so the per-person chart reflects real, documented contributions.
-function computeFor(personId: string | "all") {
-  const scoped = (projects as any[]).filter((p) => personId === "all" || p.authors.includes(personId));
-  const totals: Record<string, number> = {};
-  for (const p of scoped) {
-    const stackForPerson = personId !== "all" && p.stackByPerson?.[personId] ? p.stackByPerson[personId] : p.stack;
-    const share = 100 / p.stack.length;
-    for (const tech of stackForPerson) totals[tech] = (totals[tech] ?? 0) + share;
-  }
-  const n = scoped.length || 1;
-  return Object.entries(totals)
-    .map(([label, sum]) => ({ label, value: Math.round((sum / n) * 10) / 10 }))
-    .sort((a, b) => b.value - a.value);
-}
-
-const chartByPerson: Record<string, { label: string; value: number }[]> = {
-  all: computeFor("all"),
-  ...Object.fromEntries((people as any[]).map((p) => [p.id, computeFor(p.id)])),
-};
+// Competency profile: a hand-curated 0-5 mastery score per broad category (not a project-usage
+// percentage), designed to visually contrast each person's complementary strengths at a glance.
+const QUALITY_AXES = ["cad", "embedded", "programming", "ai", "tools", "management"] as const;
+const qualityLabels = Object.fromEntries(QUALITY_AXES.map((a) => [a, t(lang, `skills.axis${a[0].toUpperCase()}${a.slice(1)}`)]));
+const qualitiesByPerson = Object.fromEntries((people as any[]).map((p) => [p.id, QUALITY_AXES.map((a) => p.qualities?.[a] ?? 0)]));
 ---
 
 <section id="skills" class="reveal bg-slate-50 py-16 dark:bg-slate-900/40">
@@ -79,127 +62,91 @@ const chartByPerson: Record<string, { label: string; value: number }[]> = {
   </div>
 
   <div class="mt-12 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
-    <div class="flex flex-wrap items-center justify-between gap-4">
-      <h3 class="text-xl font-semibold">{t(lang, "skills.distribution")}</h3>
-      <div class="flex gap-2" role="group" aria-label={t(lang, "skills.chartAria")}>
-        <button type="button" data-chart-type="bar" aria-pressed="true" class="rounded border border-slate-300 px-3 py-1 text-sm transition-colors hover:bg-slate-100 aria-pressed:border-indigo-700 aria-pressed:bg-indigo-700 aria-pressed:text-white dark:border-slate-700 dark:hover:bg-slate-800">{t(lang, "skills.toggleBar")}</button>
-        <button type="button" data-chart-type="radar" aria-pressed="false" class="rounded border border-slate-300 px-3 py-1 text-sm transition-colors hover:bg-slate-100 aria-pressed:border-indigo-700 aria-pressed:bg-indigo-700 aria-pressed:text-white dark:border-slate-700 dark:hover:bg-slate-800">{t(lang, "skills.toggleRadar")}</button>
-      </div>
-    </div>
+    <h3 class="text-xl font-semibold">{t(lang, "skills.profileTitle")}</h3>
+    <p class="mt-1 max-w-2xl text-sm text-slate-600 dark:text-slate-400">{t(lang, "skills.profileIntro")}</p>
     <div class="relative mt-4 w-full max-w-3xl">
-      <canvas id="skills-chart" role="img" aria-label={t(lang, "skills.chartAria")} data-skills={JSON.stringify(chartByPerson)} data-label={t(lang, "skills.chartLabel")} data-people={JSON.stringify(Object.fromEntries((people as any[]).map((p) => [p.id, p.name.split(" ")[0]])))}></canvas>
+      <canvas
+        id="skills-quality-chart"
+        role="img"
+        aria-label={t(lang, "skills.profileAria")}
+        data-qualities={JSON.stringify(qualitiesByPerson)}
+        data-axes={JSON.stringify(qualityLabels)}
+        data-level-label={t(lang, "skills.level")}
+        data-people={JSON.stringify(Object.fromEntries((people as any[]).map((p) => [p.id, p.name.split(" ")[0]])))}
+      ></canvas>
     </div>
-    <ul class="sr-only" id="skills-sr"></ul>
+    <ul class="sr-only" id="skills-quality-sr"></ul>
   </div>
   </div>
 </section>
 
 <script>
+  // Competency profile: a 0-5 radar comparing both people across broad, hand-curated category axes
+  // (complementary to the raw technology-usage chart above, which only measures project frequency).
   import { Chart, registerables } from "chart.js";
   Chart.register(...registerables);
-  const canvas = document.getElementById("skills-chart") as HTMLCanvasElement;
-  const container = canvas.parentElement as HTMLElement;
-  container.style.height = "22rem";
-  const byPerson: Record<string, { label: string; value: number }[]> = JSON.parse(canvas.dataset.skills!);
-  const peopleNames: Record<string, string> = JSON.parse(canvas.dataset.people!);
-  const personColors: Record<string, string> = { mateo: "#6366f1", rhizlene: "#ec4899" };
-  const srList = document.getElementById("skills-sr")!;
-  const MAX_SKILLS = 8;
-  let chart: Chart | null = null;
+  const qCanvas = document.getElementById("skills-quality-chart") as HTMLCanvasElement;
+  const qContainer = qCanvas.parentElement as HTMLElement;
+  qContainer.style.height = "26rem";
+  const qualitiesByPerson: Record<string, number[]> = JSON.parse(qCanvas.dataset.qualities!);
+  const axisLabels: Record<string, string> = JSON.parse(qCanvas.dataset.axes!);
+  const qPeopleNames: Record<string, string> = JSON.parse(qCanvas.dataset.people!);
+  const levelLabel = qCanvas.dataset.levelLabel!;
+  const qPersonColors: Record<string, string> = { mateo: "#6366f1", rhizlene: "#ec4899" };
+  const qSrList = document.getElementById("skills-quality-sr")!;
+  let qChart: Chart | null = null;
 
-  function currentPerson() {
+  function qCurrentPerson() {
     return document.documentElement.dataset.person || "all";
   }
 
-  function render(type: "bar" | "radar") {
-    chart?.destroy();
+  function renderQuality() {
+    qChart?.destroy();
     const dark = document.documentElement.classList.contains("dark");
     const color = dark ? "#e2e8f0" : "#0f172a";
     const grid = dark ? "#334155" : "#e2e8f0";
-    const person = currentPerson();
+    const person = qCurrentPerson();
+    const ids = person === "all" ? Object.keys(qPeopleNames) : [person];
+    const labels = Object.values(axisLabels);
 
-    let labels: string[];
-    let datasets: { label: string; data: number[]; backgroundColor: string | string[]; borderColor: string | string[]; borderWidth: number; borderRadius?: number }[];
+    const datasets = ids.map((id) => {
+      const c = qPersonColors[id] ?? "#6366f1";
+      return {
+        label: qPeopleNames[id] ?? id,
+        data: qualitiesByPerson[id] ?? labels.map(() => 0),
+        backgroundColor: `${c}33`,
+        borderColor: c,
+        borderWidth: 2,
+        pointBackgroundColor: c,
+        pointRadius: 3,
+      };
+    });
 
-    if (person === "all") {
-      const peopleIds = Object.keys(peopleNames);
-      const byLabel = new Map<string, Record<string, number>>();
-      for (const id of peopleIds) {
-        for (const s of byPerson[id] ?? []) {
-          if (!byLabel.has(s.label)) byLabel.set(s.label, {});
-          byLabel.get(s.label)![id] = s.value;
-        }
-      }
-      labels = [...byLabel.keys()]
-        .sort((a, b) => {
-          const sum = (l: string) => peopleIds.reduce((acc, id) => acc + (byLabel.get(l)?.[id] ?? 0), 0);
-          return sum(b) - sum(a);
-        })
-        .slice(0, MAX_SKILLS);
-      datasets = peopleIds.map((id) => {
-        const c = personColors[id] ?? "#6366f1";
-        return {
-          label: peopleNames[id],
-          data: labels.map((l) => byLabel.get(l)?.[id] ?? 0),
-          backgroundColor: `${c}cc`,
-          borderColor: c,
-          borderWidth: 1,
-          borderRadius: 6,
-        };
-      });
-    } else {
-      const skills = (byPerson[person] ?? []).slice(0, MAX_SKILLS);
-      labels = skills.map((s) => s.label);
-      const c = personColors[person] ?? "#6366f1";
-      datasets = [{ label: peopleNames[person] ?? canvas.dataset.label!, data: skills.map((s) => s.value), backgroundColor: `${c}cc`, borderColor: c, borderWidth: 1, borderRadius: 6 }];
-    }
-
-    srList.replaceChildren(...datasets.flatMap((d) =>
+    qSrList.replaceChildren(...datasets.flatMap((d) =>
       d.data.map((v, i) => {
         const li = document.createElement("li");
-        li.textContent = `${d.label} — ${labels[i]}: ${v}%`;
+        li.textContent = `${d.label} — ${labels[i]}: ${levelLabel} ${v}/5`;
         return li;
       }),
     ));
 
-    if (type === "bar") {
-      container.style.height = `${Math.max(280, labels.length * 42 + 70)}px`;
-    } else {
-      container.style.height = "26rem";
-    }
-
-    chart = new Chart(canvas, {
-      type,
+    qChart = new Chart(qCanvas, {
+      type: "radar",
       data: { labels, datasets },
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        indexAxis: type === "bar" ? "y" : undefined,
-        layout: { padding: type === "bar" ? { right: 12 } : 0 },
         plugins: {
           legend: { display: datasets.length > 1, labels: { color, usePointStyle: true, boxWidth: 8 } },
-          tooltip: { callbacks: { label: (ctx) => ` ${ctx.dataset.label}: ${ctx.parsed[type === "bar" ? "x" : "r"]}%` } },
+          tooltip: { callbacks: { label: (ctx) => ` ${ctx.dataset.label}: ${levelLabel} ${ctx.parsed.r}/5` } },
         },
-        scales: type === "bar"
-          ? {
-              x: { min: 0, max: 100, ticks: { color, callback: (v) => `${v}%` }, grid: { color: grid } },
-              y: { ticks: { color, font: { size: 13, weight: 500 } }, grid: { display: false } },
-            }
-          : {
-              r: { min: 0, max: 100, ticks: { color, backdropColor: "transparent", stepSize: 25 }, grid: { color: grid }, angleLines: { color: grid }, pointLabels: { color, font: { size: 12 } } },
-            },
+        scales: {
+          r: { min: 0, max: 5, ticks: { color, backdropColor: "transparent", stepSize: 1 }, grid: { color: grid }, angleLines: { color: grid }, pointLabels: { color, font: { size: 12, weight: 600 } } },
+        },
       },
     });
   }
-  let current: "bar" | "radar" = "bar";
-  render(current);
-  document.querySelectorAll<HTMLButtonElement>("[data-chart-type]").forEach((b) =>
-    b.addEventListener("click", () => {
-      current = b.dataset.chartType as "bar" | "radar";
-      document.querySelectorAll("[data-chart-type]").forEach((o) => o.setAttribute("aria-pressed", String(o === b)));
-      render(current);
-    }),
-  );
-  document.addEventListener("person:change", () => render(current));
-  new MutationObserver(() => render(current)).observe(document.documentElement, { attributeFilter: ["class"] });
+  renderQuality();
+  document.addEventListener("person:change", renderQuality);
+  new MutationObserver(renderQuality).observe(document.documentElement, { attributeFilter: ["class"] });
 </script>
