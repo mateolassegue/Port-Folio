@@ -11,14 +11,14 @@ const initials = (name: string) => name.split(" ").map((w) => w[0]).join("").sli
   <div class="relative mx-auto max-w-6xl px-4">
     <p class="max-w-2xl text-sm text-slate-600 dark:text-slate-400">{t(lang, "hero.duoNote")}</p>
     <p class="mt-4 text-indigo-800 dark:text-indigo-300">{t(lang, "hero.greeting")}</p>
-    <div class="mt-4 grid gap-6">
+    <div class="mt-4 grid gap-6 lg:grid-cols-2">
       {people.map((p, i) => {
         const accent = p.id === "mateo" ? "indigo" : "pink";
         return (
-        <div data-person={p.id} class={`hero-in relative overflow-hidden rounded-2xl border bg-white/90 shadow-sm backdrop-blur-sm transition-shadow hover:shadow-md dark:bg-slate-900/90 ${accent === "indigo" ? "border-indigo-100 dark:border-indigo-900/60" : "border-rose-100 dark:border-rose-900/60"}`} style={`animation-delay:${i * 150}ms`}>
+        <div data-person={p.id} class={`hero-in relative flex flex-col overflow-hidden rounded-2xl border bg-white/90 shadow-sm backdrop-blur-sm transition-shadow hover:shadow-md dark:bg-slate-900/90 ${accent === "indigo" ? "border-indigo-100 dark:border-indigo-900/60" : "border-rose-100 dark:border-rose-900/60"}`} style={`animation-delay:${i * 150}ms`}>
           <div class={`h-1.5 w-full ${accent === "indigo" ? "bg-indigo-800" : "bg-rose-900"}`} aria-hidden="true"></div>
-          <div class="flex flex-col gap-6 p-6 md:flex-row md:items-center">
-            <div class="flex shrink-0 items-center gap-4 md:w-72">
+          <div class="flex flex-1 flex-col gap-6 p-6">
+            <div class="flex items-center gap-4">
               <div class={`avatar-pulse relative inline-block h-16 w-16 shrink-0 ${accent === "indigo" ? "text-indigo-700" : "text-rose-800"}`} aria-hidden="true">
                 <span class={`absolute inset-0 z-10 flex items-center justify-center rounded-full text-xl font-bold text-white ${accent === "indigo" ? "bg-indigo-800" : "bg-rose-900"}`}>{initials(p.name)}</span>
               </div>
@@ -27,7 +27,7 @@ const initials = (name: string) => name.split(" ").map((w) => w[0]).join("").sli
                 <p class={`mt-1 text-sm font-medium ${accent === "indigo" ? "text-indigo-800 dark:text-indigo-300" : "text-rose-900 dark:text-rose-300"}`}>{tr(p.title, lang)}</p>
               </div>
             </div>
-            <div class="flex-1 md:border-l md:border-slate-100 md:pl-6 dark:md:border-slate-800">
+            <div class="flex-1 border-t border-slate-100 pt-5 dark:border-slate-800">
               <p class="text-slate-700 dark:text-slate-300">{tr(p.bio, lang)}</p>
               <div class="mt-4 flex flex-wrap gap-3">
                 <a href="#projects" class={`rounded-lg px-5 py-2 font-semibold text-white shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md ${accent === "indigo" ? "bg-indigo-800 hover:bg-indigo-900" : "bg-rose-900 hover:bg-rose-950"}`}>{t(lang, "hero.cta")}</a>

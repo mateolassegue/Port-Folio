@@ -70,6 +70,11 @@ html[data-person="rhizlene"] [data-person="mateo"] { display: none; }
 html[data-person="mateo"] [data-authors]:not([data-authors~="mateo"]) { display: none; }
 html[data-person="rhizlene"] [data-authors]:not([data-authors~="rhizlene"]) { display: none; }
 
+/* When the Hero's side-by-side cards are filtered down to a single person, let that remaining
+   card span the full grid width instead of leaving half the row empty. */
+html[data-person="mateo"] #home [data-person="mateo"],
+html[data-person="rhizlene"] #home [data-person="rhizlene"] { grid-column: 1 / -1; }
+
 /* Subtle engineering blueprint grid used as a page-wide backdrop. */
 .bg-grid-pattern {
   background-image:
