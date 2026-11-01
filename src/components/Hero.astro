@@ -8,26 +8,27 @@ const { lang } = Astro.props as { lang: Lang };
   <div class="pointer-events-none absolute -top-24 -left-24 h-96 w-96 rounded-full bg-indigo-400/20 blur-3xl dark:bg-indigo-800/20" aria-hidden="true"></div>
   <div class="pointer-events-none absolute top-0 right-0 h-80 w-80 rounded-full bg-rose-800/10 blur-3xl dark:bg-rose-900/20" aria-hidden="true"></div>
 
-  <!-- Large "mission briefing" holograms flanking the hero on wide screens only: each person
-       appears as a sci-fi hologram with a comic-style speech bubble explaining why this is a
-       joint portfolio. Hidden below 2xl (not enough width to avoid crowding the cards) — the
-       cards alone carry the full content on smaller screens. Decorative chrome (ring/brackets/
-       scanline) is aria-hidden; the spoken line stays in the accessibility tree via the paired
-       .sr-only span. -->
+  <!-- Each person "briefs" the visitor like a mission-giving hologram in a sci-fi game: a
+       free-standing full-body holographic figure (not a cropped portrait) projected above a
+       glowing base ring, with a clean data/transmission panel above it carrying the spoken line
+       (typed out letter by letter) — the game-HUD look the user asked for, replacing the earlier
+       comic speech bubble. Desktop-only (2xl) — narrower screens show the plain cards below with
+       no avatar/panel, there isn't enough width to avoid crowding the hero cards. Decorative
+       chrome (ring/brackets/scanline) is aria-hidden; the spoken line stays in the accessibility
+       tree via the paired .sr-only span. -->
   {people.map((p) => {
     const side = p.id === "mateo" ? "left" : "right";
     return (
-    <div class={`absolute top-16 hidden w-56 flex-col 2xl:flex ${side === "left" ? "left-6 items-start" : "right-6 items-end"} ${side === "left" ? "text-indigo-400" : "text-rose-400"}`}>
-      <div class={`comic-bubble comic-bubble--${side} text-sm font-medium text-slate-800 dark:text-slate-100`}>
+    <div class={`absolute top-6 hidden w-52 flex-col items-center gap-3 2xl:flex ${side === "left" ? "left-4" : "right-4"} ${side === "left" ? "text-indigo-400" : "text-rose-400"}`}>
+      <div class="brief-panel w-full text-sm font-medium text-slate-800 dark:text-slate-100">
+        <p class="brief-panel-label"><span class="brief-panel-dot" aria-hidden="true"></span>{p.name}</p>
         <span class="sr-only">{tr(p.brief, lang)}</span>
         <span class="hud-typed" aria-hidden="true" data-brief={tr(p.brief, lang)}></span><span class="hud-cursor" aria-hidden="true">▌</span>
       </div>
-      <div class="avatar-pulse relative mt-4 h-36 w-36" aria-hidden="true">
-        <div class="hologram-ring"></div>
-        <div class="hologram-pad relative z-10 h-full w-full overflow-hidden rounded-full">
-          <img src={url(`images/avatars/${p.id}.png`)} alt="" class="hologram-img relative z-10 h-full w-full object-contain object-bottom p-2" loading="eager" width="144" height="144" />
-          <div class="hologram-scanline"></div>
-        </div>
+      <div class="hologram-figure relative w-36" aria-hidden="true">
+        <img src={url(`images/avatars/${p.id}.png`)} alt="" class="hologram-img relative z-10 w-full" loading="eager" width="480" height="720" />
+        <div class="hologram-scanline"></div>
+        <div class="hologram-base-ring"></div>
         <span class="hologram-bracket hologram-bracket--tl"></span>
         <span class="hologram-bracket hologram-bracket--tr"></span>
         <span class="hologram-bracket hologram-bracket--bl"></span>
