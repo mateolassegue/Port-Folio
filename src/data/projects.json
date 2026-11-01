@@ -28,8 +28,8 @@
     "demo": "",
     "repo": "https://github.com/mateolassegue/litepro-studio",
     "showRepoLink": false,
-    "status": "private",
-    "authors": ["mateo"]
+    "status": "wip",
+    "authors": ["mateo", "rhizlene"]
   },
   {
     "id": "nexus-workspace",
