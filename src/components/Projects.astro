@@ -18,7 +18,11 @@ const nameOf = (id: string) => people.find((p) => p.id === id)?.name.split(" ")[
   <ul class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" id="project-grid">
     {(projects as any[]).map((p) => (
       <li data-stack={JSON.stringify(p.stack)} data-authors={p.authors.join(" ")} class="flex flex-col rounded-lg border border-slate-300 p-5 dark:border-slate-700">
-        {p.image && <img src={url(p.image)} alt="" loading="lazy" class="mb-3 rounded" />}
+        {p.image && (
+          <div class="mb-3 flex aspect-[4/3] items-center justify-center overflow-hidden rounded bg-slate-100 dark:bg-slate-800">
+            <img src={url(p.image)} alt="" loading="lazy" class="h-full w-full object-contain" />
+          </div>
+        )}
         <div class="flex items-start justify-between gap-2">
           <h3 class="text-xl font-semibold">{tr(p.title, lang)}</h3>
           <span class="rounded bg-slate-200 px-2 py-0.5 text-xs text-slate-900 dark:bg-slate-700 dark:text-slate-100">{t(lang, `projects.status.${p.status}`)}</span>
