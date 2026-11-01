@@ -1,0 +1,40 @@
+---
+import people from "../data/people.json";
+import { t, type Lang } from "../i18n/utils";
+const { lang } = Astro.props as { lang: Lang };
+---
+
+<nav aria-label={t(lang, "person.label")} class="flex gap-1" data-person-switcher>
+  <button type="button" data-person-option="all" class="rounded px-2 py-1 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-indigo-600">{t(lang, "person.all")}</button>
+  {people.map((p) => (
+    <button type="button" data-person-option={p.id} class="rounded px-2 py-1 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-indigo-600">{p.name.split(" ")[0]}</button>
+  ))}
+</nav>
+
+<script>
+  const KEY = "person";
+  const buttons = document.querySelectorAll<HTMLButtonElement>("[data-person-option]");
+
+  function applyStyles(value: string) {
+    buttons.forEach((b) => {
+      const active = b.dataset.personOption === value;
+      b.setAttribute("aria-pressed", String(active));
+      b.classList.toggle("bg-indigo-700", active);
+      b.classList.toggle("text-white", active);
+      b.classList.toggle("border", !active);
+      b.classList.toggle("border-slate-400", !active);
+      b.classList.toggle("hover:bg-slate-100", !active);
+      b.classList.toggle("dark:hover:bg-slate-800", !active);
+    });
+  }
+
+  function setPerson(value: string) {
+    document.documentElement.dataset.person = value;
+    localStorage.setItem(KEY, value);
+    applyStyles(value);
+    document.dispatchEvent(new CustomEvent("person:change", { detail: value }));
+  }
+
+  applyStyles(document.documentElement.dataset.person || "all");
+  buttons.forEach((b) => b.addEventListener("click", () => setPerson(b.dataset.personOption!)));
+</script>

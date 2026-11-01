@@ -18,6 +18,7 @@ const { lang } = Astro.props;
         var s = localStorage.getItem("theme");
         var dark = s ? s === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
         document.documentElement.classList.toggle("dark", dark);
+        document.documentElement.dataset.person = localStorage.getItem("person") || "all";
       })();
     </script>
   </head>

@@ -1,8 +1,10 @@
 ---
 import projects from "../data/projects.json";
+import people from "../data/people.json";
 import { t, tr, type Lang } from "../i18n/utils";
 const { lang } = Astro.props as { lang: Lang };
 const fields = ["context", "problem", "solution", "result"] as const;
+const nameOf = (id: string) => people.find((p) => p.id === id)?.name ?? id;
 ---
 
 <dialog id="project-modal" aria-labelledby="modal-title" class="m-auto w-[min(42rem,92vw)] rounded-lg bg-white p-6 text-slate-900 backdrop:bg-black/60 dark:bg-slate-900 dark:text-slate-100">
@@ -22,6 +24,10 @@ const fields = ["context", "problem", "solution", "result"] as const;
       id: p.id,
       title: tr(p.title, lang),
       sections: fields.map((f) => ({ heading: t(lang, `projects.${f}`), text: tr(p[f], lang) })),
+      contributionsHeading: t(lang, "projects.contributions"),
+      contributions: p.contributions
+        ? Object.entries(p.contributions).map(([personId, text]) => ({ personId, name: nameOf(personId), text: tr(text as any, lang) }))
+        : [],
       stackHeading: t(lang, "projects.stack"),
       stack: p.stack,
       linksHeading: t(lang, "projects.links"),
@@ -54,6 +60,17 @@ const fields = ["context", "problem", "solution", "result"] as const;
       opener = btn;
       title.textContent = p.title;
       body.replaceChildren();
+      if (p.contributions.length) {
+        const c = el("div");
+        c.append(el("h4", p.contributionsHeading, "font-semibold"));
+        for (const contrib of p.contributions) {
+          const block = el("div", undefined, "mt-2");
+          block.dataset.person = contrib.personId;
+          block.append(el("h5", contrib.name, "font-semibold text-indigo-700 dark:text-indigo-300"), el("p", contrib.text, "text-slate-700 dark:text-slate-300"));
+          c.append(block);
+        }
+        body.append(c);
+      }
       for (const s of p.sections) {
         const d = el("div");
         d.append(el("h4", s.heading, "font-semibold"), el("p", s.text, "text-slate-700 dark:text-slate-300"));

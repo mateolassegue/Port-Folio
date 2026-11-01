@@ -1,5 +1,6 @@
 ---
 import LanguageSwitcher from "./LanguageSwitcher.astro";
+import PersonSwitcher from "./PersonSwitcher.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 import { t, localizedUrl, type Lang } from "../i18n/utils";
 const { lang } = Astro.props as { lang: Lang };
@@ -17,6 +18,7 @@ const links = ["skills", "projects", "timeline", "contact"];
       </ul>
     </nav>
     <div class="flex items-center gap-2">
+      <PersonSwitcher lang={lang} />
       <LanguageSwitcher lang={lang} />
       <ThemeToggle lang={lang} />
     </div>

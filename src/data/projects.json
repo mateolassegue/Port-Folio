@@ -13,7 +13,8 @@
     "demo": "",
     "repo": "https://github.com/mateolassegue/litepro-studio",
     "showRepoLink": false,
-    "status": "private"
+    "status": "private",
+    "authors": ["mateo"]
   },
   {
     "id": "nexus-workspace",
@@ -29,6 +30,44 @@
     "demo": "",
     "repo": "https://github.com/Sempra56/Nexus-Workspace",
     "showRepoLink": false,
-    "status": "private"
+    "status": "private",
+    "authors": ["mateo", "rhizlene"],
+    "contributions": {
+      "mateo": {
+        "fr": "TODO : raconte ta partie sur Nexus-Workspace (ce que tu as développé, les choix techniques, les difficultés rencontrées).",
+        "en": "TODO: tell your part on Nexus-Workspace (what you built, technical choices, challenges faced)."
+      },
+      "rhizlene": {
+        "fr": "TODO : raconte la partie de Rhizlène sur Nexus-Workspace.",
+        "en": "TODO: tell Rhizlène's part on Nexus-Workspace."
+      }
+    }
+  },
+  {
+    "id": "mrs",
+    "title": { "fr": "MRS", "en": "MRS" },
+    "description": { "fr": "TODO : description du projet.", "en": "TODO: project description." },
+    "context": { "fr": "TODO : contexte du projet.", "en": "TODO: project context." },
+    "problem": { "fr": "TODO : problème à résoudre.", "en": "TODO: problem to solve." },
+    "solution": { "fr": "TODO : solution apportée.", "en": "TODO: solution provided." },
+    "result": { "fr": "TODO : résultat obtenu.", "en": "TODO: outcome." },
+    "stack": ["TODO"],
+    "languages": {},
+    "image": "",
+    "demo": "",
+    "repo": "",
+    "showRepoLink": false,
+    "status": "wip",
+    "authors": ["mateo", "rhizlene"],
+    "contributions": {
+      "mateo": {
+        "fr": "TODO : raconte ta partie hardware sur MRS (électronique, câblage, prototypage...).",
+        "en": "TODO: tell your hardware part on MRS (electronics, wiring, prototyping...)."
+      },
+      "rhizlene": {
+        "fr": "TODO : raconte la partie logicielle de Rhizlène sur MRS (driver, software, contrôle...).",
+        "en": "TODO: tell Rhizlène's software part on MRS (driver, software, control...)."
+      }
+    }
   }
 ]

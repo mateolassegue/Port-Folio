@@ -8,3 +8,9 @@ html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
 }
 .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
 .reveal.visible { opacity: 1; transform: none; }
+
+/* Person filter: hide the other person's blocks, and projects they didn't contribute to. */
+html[data-person="mateo"] [data-person="rhizlene"] { display: none; }
+html[data-person="rhizlene"] [data-person="mateo"] { display: none; }
+html[data-person="mateo"] [data-authors]:not([data-authors~="mateo"]) { display: none; }
+html[data-person="rhizlene"] [data-authors]:not([data-authors~="rhizlene"]) { display: none; }
