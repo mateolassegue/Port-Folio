@@ -7,6 +7,35 @@ const { lang } = Astro.props as { lang: Lang };
 <section id="home" class="reveal relative overflow-hidden bg-gradient-to-b from-indigo-50 via-indigo-50/40 to-transparent py-20 dark:from-slate-900 dark:via-slate-900/50 dark:to-transparent">
   <div class="pointer-events-none absolute -top-24 -left-24 h-96 w-96 rounded-full bg-indigo-400/20 blur-3xl dark:bg-indigo-800/20" aria-hidden="true"></div>
   <div class="pointer-events-none absolute top-0 right-0 h-80 w-80 rounded-full bg-rose-800/10 blur-3xl dark:bg-rose-900/20" aria-hidden="true"></div>
+
+  <!-- Large "mission briefing" holograms flanking the hero on wide screens only: each person
+       appears as a sci-fi hologram with a comic-style speech bubble, like a superior giving
+       mission objectives in a space game. Hidden below 2xl (not enough width to avoid crowding
+       the cards) — the cards alone carry the full content on smaller screens. Decorative chrome
+       (ring/brackets/scanline) is aria-hidden; the spoken line stays in the accessibility tree
+       via the paired .sr-only span. -->
+  {people.map((p) => {
+    const side = p.id === "mateo" ? "left" : "right";
+    return (
+    <div class={`absolute top-16 hidden w-52 flex-col 2xl:flex ${side === "left" ? "left-6 items-start text-indigo-400" : "right-6 items-end text-rose-400"}`}>
+      <div class={`comic-bubble comic-bubble--${side} text-sm font-medium text-slate-800 dark:text-slate-100`}>
+        <span class="sr-only">{tr(p.brief, lang)}</span>
+        <span class="hud-typed" aria-hidden="true" data-brief={tr(p.brief, lang)}></span><span class="hud-cursor" aria-hidden="true">▌</span>
+      </div>
+      <div class="avatar-pulse relative mt-4 inline-block h-36 w-36" aria-hidden="true">
+        <div class="hologram-ring"></div>
+        <div class="hologram-pad relative z-10 h-full w-full overflow-hidden rounded-full">
+          <img src={url(`images/avatars/${p.id}.png`)} alt="" class="hologram-img relative z-10 h-full w-full object-contain object-bottom p-2" loading="eager" width="144" height="144" />
+          <div class="hologram-scanline"></div>
+        </div>
+        <span class="hologram-bracket hologram-bracket--tl"></span>
+        <span class="hologram-bracket hologram-bracket--tr"></span>
+        <span class="hologram-bracket hologram-bracket--bl"></span>
+        <span class="hologram-bracket hologram-bracket--br"></span>
+      </div>
+    </div>
+  )})}
+
   <div class="relative mx-auto max-w-6xl px-4">
     <p class="max-w-2xl text-sm text-slate-600 dark:text-slate-400">{t(lang, "hero.duoNote")}</p>
     <p class="mt-4 text-indigo-800 dark:text-indigo-300">{t(lang, "hero.greeting")}</p>
@@ -17,29 +46,9 @@ const { lang } = Astro.props as { lang: Lang };
         <div data-person={p.id} class={`hero-in relative flex flex-col overflow-hidden rounded-2xl border bg-white/90 shadow-sm backdrop-blur-sm transition-shadow hover:shadow-md dark:bg-slate-900/90 ${accent === "indigo" ? "border-indigo-100 dark:border-indigo-900/60" : "border-rose-100 dark:border-rose-900/60"}`} style={`animation-delay:${i * 150}ms`}>
           <div class={`h-1.5 w-full ${accent === "indigo" ? "bg-indigo-800" : "bg-rose-900"}`} aria-hidden="true"></div>
           <div class="flex flex-1 flex-col gap-6 p-6">
-            <div class="flex items-center gap-4">
-              <div class={`avatar-pulse relative inline-block h-24 w-24 shrink-0 sm:h-28 sm:w-28 ${accent === "indigo" ? "text-indigo-400" : "text-rose-400"}`} aria-hidden="true">
-                <div class="hologram-ring"></div>
-                <div class="hologram-pad relative z-10 h-full w-full overflow-hidden rounded-full">
-                  <img src={url(`images/avatars/${p.id}.png`)} alt="" class="hologram-img relative z-10 h-full w-full object-contain object-bottom p-1.5" loading="eager" width="112" height="112" />
-                  <div class="hologram-scanline"></div>
-                </div>
-                <span class="hologram-bracket hologram-bracket--tl"></span>
-                <span class="hologram-bracket hologram-bracket--tr"></span>
-                <span class="hologram-bracket hologram-bracket--bl"></span>
-                <span class="hologram-bracket hologram-bracket--br"></span>
-              </div>
-              <div>
-                <h1 class="text-xl font-bold sm:text-2xl">{p.name}</h1>
-                <p class={`mt-1 text-sm font-medium ${accent === "indigo" ? "text-indigo-800 dark:text-indigo-300" : "text-rose-900 dark:text-rose-300"}`}>{tr(p.title, lang)}</p>
-              </div>
-            </div>
-            <div class={`hud-panel flex items-start gap-2 rounded-lg border px-3 py-2 font-mono text-xs ${accent === "indigo" ? "border-indigo-200 text-indigo-800 dark:border-indigo-900/60 dark:text-indigo-300" : "border-rose-200 text-rose-900 dark:border-rose-900/60 dark:text-rose-300"}`}>
-              <span class="hud-dot mt-1 shrink-0" aria-hidden="true"></span>
-              <p class="leading-relaxed">
-                <span class="sr-only">{tr(p.brief, lang)}</span>
-                <span class="hud-typed" aria-hidden="true" data-brief={tr(p.brief, lang)}></span><span class="hud-cursor" aria-hidden="true">▌</span>
-              </p>
+            <div>
+              <h1 class="text-xl font-bold sm:text-2xl">{p.name}</h1>
+              <p class={`mt-1 text-sm font-medium ${accent === "indigo" ? "text-indigo-800 dark:text-indigo-300" : "text-rose-900 dark:text-rose-300"}`}>{tr(p.title, lang)}</p>
             </div>
             <div class="flex-1 border-t border-slate-100 pt-5 dark:border-slate-800">
               <p class="text-slate-700 dark:text-slate-300">{tr(p.bio, lang)}</p>

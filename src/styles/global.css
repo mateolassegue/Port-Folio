@@ -109,18 +109,34 @@ html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
   .hologram-ring { animation: none !important; }
 }
 
-/* Mission-briefing transmission panel: a terminal-style readout under each avatar where the
-   "message from command" types itself out letter by letter. The full sentence always exists as
-   normal (non-hidden-from-AT) text for assistive tech via the paired .sr-only node; the animated
-   `.typed` span is purely decorative (aria-hidden) and instantly shows the full text when
-   reduced motion is preferred (handled in the Hero script). */
-.hud-panel { background: rgba(15, 23, 42, .04); }
-html.dark .hud-panel { background: rgba(15, 23, 42, .5); }
+/* Classic comic-style speech bubble for the flanking "mission briefing" holograms: a bold
+   outline, a drop shadow and a bordered triangular tail pointing down toward the character's
+   head — built from two stacked CSS triangles (outline colour behind, fill colour on top). The
+   message itself types out letter by letter (see .hud-typed below), while the full sentence
+   stays in the accessibility tree via the paired .sr-only node, unaffected by the animation. */
+.comic-bubble {
+  position: relative; background: #fff; border: 2px solid #1e293b; border-radius: 1rem;
+  padding: .75rem 1rem; box-shadow: 3px 3px 0 rgba(15, 23, 42, .15); min-height: 2.5em;
+}
+html.dark .comic-bubble { background: #0f172a; border-color: #e2e8f0; }
+.comic-bubble::before, .comic-bubble::after {
+  content: ""; position: absolute; top: 100%; width: 0; height: 0; border-style: solid;
+}
+.comic-bubble--left::before { left: 28px; border-width: 14px 10px 0 0; border-color: #1e293b transparent transparent transparent; }
+.comic-bubble--left::after { left: 30px; top: calc(100% - 3px); border-width: 11px 8px 0 0; border-color: #fff transparent transparent transparent; }
+.comic-bubble--right::before { right: 28px; border-width: 14px 0 0 10px; border-color: #1e293b transparent transparent transparent; }
+.comic-bubble--right::after { right: 30px; top: calc(100% - 3px); border-width: 11px 0 0 8px; border-color: #fff transparent transparent transparent; }
+html.dark .comic-bubble--left::before, html.dark .comic-bubble--right::before { border-color: #e2e8f0 transparent transparent transparent; }
+html.dark .comic-bubble--left::after, html.dark .comic-bubble--right::after { border-color: #0f172a transparent transparent transparent; }
+
+/* Mission-briefing typed message inside the comic bubble: types itself out letter by letter. The
+   full sentence always exists as normal (non-hidden-from-AT) text for assistive tech via the
+   paired .sr-only node; the animated `.hud-typed` span is purely decorative (aria-hidden) and
+   instantly shows the full text when reduced motion is preferred (handled in the Hero script). */
 @keyframes hud-blink { 50% { opacity: 0; } }
-.hud-dot { display: inline-block; width: 6px; height: 6px; border-radius: 9999px; background: currentColor; animation: hud-blink 1.2s step-end infinite; }
 .hud-cursor { animation: hud-blink 1s step-end infinite; }
 @media (prefers-reduced-motion: reduce) {
-  .hud-dot, .hud-cursor { animation: none !important; }
+  .hud-cursor { animation: none !important; }
 }
 
 /* Site-wide accent colour: tracks the active person filter so buttons, links and highlights
