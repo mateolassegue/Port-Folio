@@ -32,101 +32,16 @@ html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
   .scroll-cue { animation: none !important; }
 }
 
-/* Holographic figure: each person's full-body illustration is a free-standing projection (not a
-   cropped portrait) — gentle vertical float, a subtle brightness/opacity flicker and a sweeping
-   scanline. All motion is decorative only (the image itself still conveys who the person is at a
-   glance) and fully disabled under reduced motion, where the hologram simply sits still and
-   fully lit. */
-@keyframes hologram-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-@keyframes hologram-flicker {
-  0%, 100% { opacity: 1; filter: brightness(1) saturate(1.1); }
-  42% { opacity: 1; filter: brightness(1) saturate(1.1); }
-  43% { opacity: .78; filter: brightness(1.3) saturate(1.3); }
-  44% { opacity: 1; filter: brightness(1) saturate(1.1); }
-  71% { opacity: 1; filter: brightness(1) saturate(1.1); }
-  72% { opacity: .85; filter: brightness(1.2) saturate(1.2); }
-  74% { opacity: 1; filter: brightness(1) saturate(1.1); }
+/* Silent "look here" cue around each person's avatar: a soft expanding ring that plays a few
+   times on load, then settles — purely visual, no sound, decorative (aria-hidden) so it never
+   affects screen-reader users and always degrades gracefully with reduced motion. */
+@keyframes avatar-pulse { 0% { transform: scale(1); opacity: .55; } 100% { transform: scale(1.55); opacity: 0; } }
+.avatar-pulse::after {
+  content: ""; position: absolute; inset: 0; border-radius: 9999px;
+  background: currentColor; animation: avatar-pulse 1.8s cubic-bezier(0,0,.2,1) 3;
 }
-@keyframes hologram-scan { 0% { transform: translateY(-100%); } 100% { transform: translateY(100%); } }
-.hologram-scanline {
-  position: absolute; inset: 0; overflow: hidden; pointer-events: none;
-}
-.hologram-scanline::after {
-  content: ""; position: absolute; left: 0; right: 0; height: 40%;
-  background: linear-gradient(to bottom, transparent, currentColor, transparent);
-  opacity: .18; animation: hologram-scan 3.2s linear infinite;
-}
-
-/* Sci-fi "mission briefing" HUD chrome around the hologram figure: an ambient glow behind it, a
-   glowing projector ring at its feet (like it's standing on a holo-pad), and four corner brackets
-   framing the whole figure like a targeting reticle — all drawn with CSS (gradients/borders), not
-   baked into the PNG, so the whole thing reads as a live projection rather than a static picture.
-   Purely decorative (aria-hidden). */
-.hologram-figure::before {
-  content: ""; position: absolute; inset: -12% -30%; z-index: -1; pointer-events: none;
-  background: radial-gradient(ellipse at 50% 38%, color-mix(in srgb, currentColor 22%, transparent) 0%, transparent 70%);
-}
-@keyframes hologram-base-pulse { 0%, 100% { opacity: .55; transform: translateX(-50%) scaleX(1); } 50% { opacity: 1; transform: translateX(-50%) scaleX(1.1); } }
-.hologram-base-ring {
-  position: absolute; left: 50%; bottom: 3%; width: 68%; height: 10px; transform: translateX(-50%);
-  border-radius: 9999px; pointer-events: none;
-  background: radial-gradient(ellipse at center, color-mix(in srgb, currentColor 75%, transparent) 0%, transparent 75%);
-  box-shadow: 0 0 14px 2px color-mix(in srgb, currentColor 55%, transparent);
-  animation: hologram-base-pulse 2.6s ease-in-out infinite;
-}
-.hologram-bracket {
-  position: absolute; width: 16px; height: 16px; border-color: currentColor; pointer-events: none;
-}
-.hologram-bracket--tl { top: -8px; left: -8px; border-top: 2.5px solid; border-left: 2.5px solid; border-top-left-radius: 6px; }
-.hologram-bracket--tr { top: -8px; right: -8px; border-top: 2.5px solid; border-right: 2.5px solid; border-top-right-radius: 6px; }
-.hologram-bracket--bl { bottom: -8px; left: -8px; border-bottom: 2.5px solid; border-left: 2.5px solid; border-bottom-left-radius: 6px; }
-.hologram-bracket--br { bottom: -8px; right: -8px; border-bottom: 2.5px solid; border-right: 2.5px solid; border-bottom-right-radius: 6px; }
-
-/* "Materialise" entrance: the figure boots up like a projector switching on (squashed + blurred +
-   transparent, then it snaps into shape) instead of simply fading in, playing once on load. */
-@keyframes hologram-materialise {
-  0% { opacity: 0; transform: scaleY(.15) scaleX(1.4); filter: blur(10px) brightness(2); }
-  55% { opacity: 1; transform: scaleY(1.08) scaleX(.96); filter: blur(1px) brightness(1.4); }
-  75% { transform: scaleY(.96) scaleX(1.02); filter: blur(0) brightness(1); }
-  100% { opacity: 1; transform: none; filter: blur(0) brightness(1); }
-}
-.hologram-img { animation: hologram-materialise .9s ease-out both, hologram-float 4.5s ease-in-out .9s infinite, hologram-flicker 5s linear .9s infinite; }
-
 @media (prefers-reduced-motion: reduce) {
-  .hologram-img { animation: none !important; }
-  .hologram-scanline::after { animation: none !important; display: none; }
-  .hologram-base-ring { animation: none !important; opacity: .75; }
-}
-
-/* Clean "transmission panel" for the flanking holograms — a data-readout card (thin accent bar,
-   small uppercase label with a glowing dot, then the spoken line) instead of a cartoon speech
-   bubble, closer to a sci-fi game's mission-briefing HUD. The message itself types out letter by
-   letter (see .hud-typed below), while the full sentence stays in the accessibility tree via the
-   paired .sr-only node, unaffected by the animation. */
-.brief-panel {
-  position: relative; border-radius: .75rem; padding: .85rem 1rem .9rem;
-  background: rgba(255, 255, 255, .9); border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
-  box-shadow: 0 10px 28px -14px rgba(15, 23, 42, .4); backdrop-filter: blur(8px); min-height: 4.5em;
-}
-html.dark .brief-panel { background: rgba(15, 23, 42, .82); }
-.brief-panel::before {
-  content: ""; position: absolute; top: 0; left: .9rem; right: .9rem; height: 2px;
-  background: currentColor; border-radius: 9999px; opacity: .8;
-}
-.brief-panel-label {
-  display: flex; align-items: center; gap: .4rem; margin-bottom: .4rem;
-  font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; opacity: .75;
-}
-.brief-panel-dot { width: 6px; height: 6px; border-radius: 9999px; background: currentColor; box-shadow: 0 0 6px currentColor; }
-
-/* Mission-briefing typed message inside the comic bubble: types itself out letter by letter. The
-   full sentence always exists as normal (non-hidden-from-AT) text for assistive tech via the
-   paired .sr-only node; the animated `.hud-typed` span is purely decorative (aria-hidden) and
-   instantly shows the full text when reduced motion is preferred (handled in the Hero script). */
-@keyframes hud-blink { 50% { opacity: 0; } }
-.hud-cursor { animation: hud-blink 1s step-end infinite; }
-@media (prefers-reduced-motion: reduce) {
-  .hud-cursor { animation: none !important; }
+  .avatar-pulse::after { animation: none !important; display: none; }
 }
 
 /* Site-wide accent colour: tracks the active person filter so buttons, links and highlights

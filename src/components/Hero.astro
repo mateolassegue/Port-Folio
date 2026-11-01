@@ -1,44 +1,16 @@
 ---
 import people from "../data/people.json";
-import { t, tr, url, type Lang } from "../i18n/utils";
+import { t, tr, type Lang } from "../i18n/utils";
 const { lang } = Astro.props as { lang: Lang };
+const initials = (name: string) => name.split(" ").map((w) => w[0]).join("").slice(0, 2);
 ---
 
 <section id="home" class="reveal relative overflow-hidden bg-gradient-to-b from-indigo-50 via-indigo-50/40 to-transparent py-20 dark:from-slate-900 dark:via-slate-900/50 dark:to-transparent">
   <div class="pointer-events-none absolute -top-24 -left-24 h-96 w-96 rounded-full bg-indigo-400/20 blur-3xl dark:bg-indigo-800/20" aria-hidden="true"></div>
   <div class="pointer-events-none absolute top-0 right-0 h-80 w-80 rounded-full bg-rose-800/10 blur-3xl dark:bg-rose-900/20" aria-hidden="true"></div>
-
-  <!-- Each person "briefs" the visitor like a mission-giving hologram in a sci-fi game: a
-       free-standing full-body holographic figure (not a cropped portrait) projected above a
-       glowing base ring, with a clean data/transmission panel above it carrying the spoken line
-       (typed out letter by letter) — the game-HUD look the user asked for, replacing the earlier
-       comic speech bubble. Desktop-only (2xl) — narrower screens show the plain cards below with
-       no avatar/panel, there isn't enough width to avoid crowding the hero cards. Decorative
-       chrome (ring/brackets/scanline) is aria-hidden; the spoken line stays in the accessibility
-       tree via the paired .sr-only span. -->
-  {people.map((p) => {
-    const side = p.id === "mateo" ? "left" : "right";
-    return (
-    <div data-person={p.id} class={`absolute top-6 hidden w-52 flex-col items-center gap-3 2xl:flex ${side === "left" ? "left-4" : "right-4"} ${side === "left" ? "text-indigo-400" : "text-rose-400"}`}>
-      <div class="brief-panel w-full text-sm font-medium text-slate-800 dark:text-slate-100">
-        <p class="brief-panel-label"><span class="brief-panel-dot" aria-hidden="true"></span>{p.name}</p>
-        <span class="sr-only">{tr(p.brief, lang)}</span>
-        <span class="hud-typed" aria-hidden="true" data-brief={tr(p.brief, lang)}></span><span class="hud-cursor" aria-hidden="true">▌</span>
-      </div>
-      <div class="hologram-figure relative w-36" aria-hidden="true">
-        <img src={url(`images/avatars/${p.id}.png`)} alt="" class="hologram-img relative z-10 w-full" loading="eager" width="480" height="720" />
-        <div class="hologram-scanline"></div>
-        <div class="hologram-base-ring"></div>
-        <span class="hologram-bracket hologram-bracket--tl"></span>
-        <span class="hologram-bracket hologram-bracket--tr"></span>
-        <span class="hologram-bracket hologram-bracket--bl"></span>
-        <span class="hologram-bracket hologram-bracket--br"></span>
-      </div>
-    </div>
-  )})}
-
   <div class="relative mx-auto max-w-6xl px-4">
-    <p class="text-indigo-800 dark:text-indigo-300">{t(lang, "hero.greeting")}</p>
+    <p class="max-w-2xl text-sm text-slate-600 dark:text-slate-400">{t(lang, "hero.duoNote")}</p>
+    <p class="mt-4 text-indigo-800 dark:text-indigo-300">{t(lang, "hero.greeting")}</p>
     <div class="mt-4 grid gap-6 lg:grid-cols-2">
       {people.map((p, i) => {
         const accent = p.id === "mateo" ? "indigo" : "pink";
@@ -46,9 +18,14 @@ const { lang } = Astro.props as { lang: Lang };
         <div data-person={p.id} class={`hero-in relative flex flex-col overflow-hidden rounded-2xl border bg-white/90 shadow-sm backdrop-blur-sm transition-shadow hover:shadow-md dark:bg-slate-900/90 ${accent === "indigo" ? "border-indigo-100 dark:border-indigo-900/60" : "border-rose-100 dark:border-rose-900/60"}`} style={`animation-delay:${i * 150}ms`}>
           <div class={`h-1.5 w-full ${accent === "indigo" ? "bg-indigo-800" : "bg-rose-900"}`} aria-hidden="true"></div>
           <div class="flex flex-1 flex-col gap-6 p-6">
-            <div>
-              <h1 class="text-xl font-bold sm:text-2xl">{p.name}</h1>
-              <p class={`mt-1 text-sm font-medium ${accent === "indigo" ? "text-indigo-800 dark:text-indigo-300" : "text-rose-900 dark:text-rose-300"}`}>{tr(p.title, lang)}</p>
+            <div class="flex items-center gap-4">
+              <div class={`avatar-pulse relative inline-block h-16 w-16 shrink-0 ${accent === "indigo" ? "text-indigo-700" : "text-rose-800"}`} aria-hidden="true">
+                <span class={`absolute inset-0 z-10 flex items-center justify-center rounded-full text-xl font-bold text-white ${accent === "indigo" ? "bg-indigo-800" : "bg-rose-900"}`}>{initials(p.name)}</span>
+              </div>
+              <div>
+                <h1 class="text-xl font-bold sm:text-2xl">{p.name}</h1>
+                <p class={`mt-1 text-sm font-medium ${accent === "indigo" ? "text-indigo-800 dark:text-indigo-300" : "text-rose-900 dark:text-rose-300"}`}>{tr(p.title, lang)}</p>
+              </div>
             </div>
             <div class="flex-1 border-t border-slate-100 pt-5 dark:border-slate-800">
               <p class="text-slate-700 dark:text-slate-300">{tr(p.bio, lang)}</p>
@@ -68,26 +45,3 @@ const { lang } = Astro.props as { lang: Lang };
     </div>
   </div>
 </section>
-
-<script>
-  // Mission-briefing typewriter: types out each person's ".hud-typed" message a few hundred ms
-  // after its card materialises. The full sentence is always present for assistive tech via the
-  // sibling ".sr-only" span, so this is purely a decorative visual effect — when the visitor
-  // prefers reduced motion, the full text is shown instantly instead of being typed out.
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  document.querySelectorAll<HTMLElement>(".hud-typed").forEach((el, i) => {
-    const text = el.dataset.brief ?? "";
-    if (reduceMotion) {
-      el.textContent = text;
-      return;
-    }
-    let pos = 0;
-    const start = 700 + i * 900;
-    const tick = () => {
-      el.textContent = text.slice(0, pos);
-      pos++;
-      if (pos <= text.length) setTimeout(tick, 28);
-    };
-    setTimeout(tick, start);
-  });
-</script>
