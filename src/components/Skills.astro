@@ -35,7 +35,7 @@ const chartByPerson: Record<string, { label: string; value: number }[]> = {
     <button type="button" data-chart-type="bar" aria-pressed="true" class="rounded border border-slate-300 px-3 py-1 text-sm transition-colors hover:bg-slate-100 aria-pressed:border-indigo-700 aria-pressed:bg-indigo-700 aria-pressed:text-white dark:border-slate-700 dark:hover:bg-slate-800">{t(lang, "skills.toggleBar")}</button>
     <button type="button" data-chart-type="radar" aria-pressed="false" class="rounded border border-slate-300 px-3 py-1 text-sm transition-colors hover:bg-slate-100 aria-pressed:border-indigo-700 aria-pressed:bg-indigo-700 aria-pressed:text-white dark:border-slate-700 dark:hover:bg-slate-800">{t(lang, "skills.toggleRadar")}</button>
   </div>
-  <div class="relative mt-4 h-80 max-w-3xl rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+  <div class="relative mt-4 w-full max-w-3xl rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
     <canvas id="skills-chart" role="img" aria-label={t(lang, "skills.chartAria")} data-skills={JSON.stringify(chartByPerson)} data-label={t(lang, "skills.chartLabel")} data-people={JSON.stringify(Object.fromEntries((people as any[]).map((p) => [p.id, p.name.split(" ")[0]])))}></canvas>
   </div>
   <ul class="sr-only" id="skills-sr"></ul>
@@ -65,10 +65,13 @@ const chartByPerson: Record<string, { label: string; value: number }[]> = {
   import { Chart, registerables } from "chart.js";
   Chart.register(...registerables);
   const canvas = document.getElementById("skills-chart") as HTMLCanvasElement;
+  const container = canvas.parentElement as HTMLElement;
+  container.style.height = "22rem";
   const byPerson: Record<string, { label: string; value: number }[]> = JSON.parse(canvas.dataset.skills!);
   const peopleNames: Record<string, string> = JSON.parse(canvas.dataset.people!);
   const personColors: Record<string, string> = { mateo: "#6366f1", rhizlene: "#ec4899" };
   const srList = document.getElementById("skills-sr")!;
+  const MAX_SKILLS = 8;
   let chart: Chart | null = null;
 
   function currentPerson() {
@@ -79,11 +82,11 @@ const chartByPerson: Record<string, { label: string; value: number }[]> = {
     chart?.destroy();
     const dark = document.documentElement.classList.contains("dark");
     const color = dark ? "#e2e8f0" : "#0f172a";
-    const grid = dark ? "#334155" : "#cbd5e1";
+    const grid = dark ? "#334155" : "#e2e8f0";
     const person = currentPerson();
 
     let labels: string[];
-    let datasets: { label: string; data: number[]; backgroundColor: string | string[]; borderColor: string | string[]; borderWidth: number }[];
+    let datasets: { label: string; data: number[]; backgroundColor: string | string[]; borderColor: string | string[]; borderWidth: number; borderRadius?: number }[];
 
     if (person === "all") {
       const peopleIds = Object.keys(peopleNames);
@@ -94,25 +97,28 @@ const chartByPerson: Record<string, { label: string; value: number }[]> = {
           byLabel.get(s.label)![id] = s.value;
         }
       }
-      labels = [...byLabel.keys()].sort((a, b) => {
-        const sum = (l: string) => peopleIds.reduce((acc, id) => acc + (byLabel.get(l)?.[id] ?? 0), 0);
-        return sum(b) - sum(a);
-      });
+      labels = [...byLabel.keys()]
+        .sort((a, b) => {
+          const sum = (l: string) => peopleIds.reduce((acc, id) => acc + (byLabel.get(l)?.[id] ?? 0), 0);
+          return sum(b) - sum(a);
+        })
+        .slice(0, MAX_SKILLS);
       datasets = peopleIds.map((id) => {
         const c = personColors[id] ?? "#6366f1";
         return {
           label: peopleNames[id],
           data: labels.map((l) => byLabel.get(l)?.[id] ?? 0),
-          backgroundColor: `${c}80`,
+          backgroundColor: `${c}cc`,
           borderColor: c,
-          borderWidth: 2,
+          borderWidth: 1,
+          borderRadius: 6,
         };
       });
     } else {
-      const skills = byPerson[person] ?? [];
+      const skills = (byPerson[person] ?? []).slice(0, MAX_SKILLS);
       labels = skills.map((s) => s.label);
       const c = personColors[person] ?? "#6366f1";
-      datasets = [{ label: peopleNames[person] ?? canvas.dataset.label!, data: skills.map((s) => s.value), backgroundColor: `${c}80`, borderColor: c, borderWidth: 2 }];
+      datasets = [{ label: peopleNames[person] ?? canvas.dataset.label!, data: skills.map((s) => s.value), backgroundColor: `${c}cc`, borderColor: c, borderWidth: 1, borderRadius: 6 }];
     }
 
     srList.replaceChildren(...datasets.flatMap((d) =>
@@ -123,6 +129,12 @@ const chartByPerson: Record<string, { label: string; value: number }[]> = {
       }),
     ));
 
+    if (type === "bar") {
+      container.style.height = `${Math.max(280, labels.length * 42 + 70)}px`;
+    } else {
+      container.style.height = "26rem";
+    }
+
     chart = new Chart(canvas, {
       type,
       data: { labels, datasets },
@@ -130,10 +142,19 @@ const chartByPerson: Record<string, { label: string; value: number }[]> = {
         responsive: true,
         maintainAspectRatio: false,
         indexAxis: type === "bar" ? "y" : undefined,
-        plugins: { legend: { labels: { color } } },
+        layout: { padding: type === "bar" ? { right: 12 } : 0 },
+        plugins: {
+          legend: { display: datasets.length > 1, labels: { color, usePointStyle: true, boxWidth: 8 } },
+          tooltip: { callbacks: { label: (ctx) => ` ${ctx.dataset.label}: ${ctx.parsed[type === "bar" ? "x" : "r"]}%` } },
+        },
         scales: type === "bar"
-          ? { x: { min: 0, max: 100, ticks: { color }, grid: { color: grid } }, y: { ticks: { color }, grid: { color: grid } } }
-          : { r: { min: 0, max: 100, ticks: { color, backdropColor: "transparent" }, grid: { color: grid }, angleLines: { color: grid }, pointLabels: { color } } },
+          ? {
+              x: { min: 0, max: 100, ticks: { color, callback: (v) => `${v}%` }, grid: { color: grid } },
+              y: { ticks: { color, font: { size: 13, weight: 500 } }, grid: { display: false } },
+            }
+          : {
+              r: { min: 0, max: 100, ticks: { color, backdropColor: "transparent", stepSize: 25 }, grid: { color: grid }, angleLines: { color: grid }, pointLabels: { color, font: { size: 12 } } },
+            },
       },
     });
   }

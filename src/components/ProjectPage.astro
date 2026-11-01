@@ -4,6 +4,8 @@ import people from "../data/people.json";
 const { lang, project: p } = Astro.props as { lang: Lang; project: any };
 const fields = ["context", "problem", "solution", "result"] as const;
 const nameOf = (id: string) => people.find((pp) => pp.id === id)?.name ?? id;
+const initialsOf = (title: string) =>
+  title.split(/[\s—-]+/).filter(Boolean).slice(0, 2).map((w: string) => w[0]).join("").toUpperCase();
 ---
 
 <article class="mx-auto max-w-4xl px-4 py-16 reveal">
@@ -21,8 +23,9 @@ const nameOf = (id: string) => people.find((pp) => pp.id === id)?.name ?? id;
       <img src={url(p.image)} alt="" class="relative h-full w-full object-contain" />
     </div>
   ) : (
-    <div class="mt-6 flex h-56 items-center justify-center rounded-lg border border-dashed border-slate-400 text-slate-500 dark:border-slate-600 dark:text-slate-400">
-      {t(lang, "projects.photosSoon")}
+    <div class="bg-grid-pattern mt-6 flex h-56 flex-col items-center justify-center gap-2 rounded-lg bg-gradient-to-br from-indigo-600 to-indigo-900">
+      <span class="text-5xl font-bold text-white/90">{initialsOf(tr(p.title, lang))}</span>
+      <span class="text-xs font-medium text-indigo-100/80">{t(lang, "projects.photosSoon")}</span>
     </div>
   )}
 
