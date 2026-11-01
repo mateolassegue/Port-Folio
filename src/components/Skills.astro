@@ -5,12 +5,15 @@ import { t, tr, type Lang } from "../i18n/utils";
 const { lang } = Astro.props as { lang: Lang };
 
 // Skill score = share of a person's projects using each technology (ties to the Mateo/Rhizlène filter).
+// When a project documents which stack items each person actually worked on (stackByPerson), use that
+// subset instead of the full stack so the per-person chart reflects real, documented contributions.
 function computeFor(personId: string | "all") {
   const scoped = (projects as any[]).filter((p) => personId === "all" || p.authors.includes(personId));
   const totals: Record<string, number> = {};
   for (const p of scoped) {
+    const stackForPerson = personId !== "all" && p.stackByPerson?.[personId] ? p.stackByPerson[personId] : p.stack;
     const share = 100 / p.stack.length;
-    for (const tech of p.stack) totals[tech] = (totals[tech] ?? 0) + share;
+    for (const tech of stackForPerson) totals[tech] = (totals[tech] ?? 0) + share;
   }
   const n = scoped.length || 1;
   return Object.entries(totals)
@@ -32,7 +35,7 @@ const chartByPerson: Record<string, { label: string; value: number }[]> = {
     <button type="button" data-chart-type="radar" aria-pressed="false" class="rounded border border-slate-400 px-3 py-1 text-sm aria-pressed:bg-indigo-700 aria-pressed:text-white">{t(lang, "skills.toggleRadar")}</button>
   </div>
   <div class="relative mt-4 h-80 max-w-3xl">
-    <canvas id="skills-chart" role="img" aria-label={t(lang, "skills.chartAria")} data-skills={JSON.stringify(chartByPerson)} data-label={t(lang, "skills.chartLabel")}></canvas>
+    <canvas id="skills-chart" role="img" aria-label={t(lang, "skills.chartAria")} data-skills={JSON.stringify(chartByPerson)} data-label={t(lang, "skills.chartLabel")} data-people={JSON.stringify(Object.fromEntries((people as any[]).map((p) => [p.id, p.name.split(" ")[0]])))}></canvas>
   </div>
   <ul class="sr-only" id="skills-sr"></ul>
 
@@ -61,6 +64,8 @@ const chartByPerson: Record<string, { label: string; value: number }[]> = {
   Chart.register(...registerables);
   const canvas = document.getElementById("skills-chart") as HTMLCanvasElement;
   const byPerson: Record<string, { label: string; value: number }[]> = JSON.parse(canvas.dataset.skills!);
+  const peopleNames: Record<string, string> = JSON.parse(canvas.dataset.people!);
+  const personColors: Record<string, string> = { mateo: "#6366f1", rhizlene: "#ec4899" };
   const srList = document.getElementById("skills-sr")!;
   let chart: Chart | null = null;
 
@@ -68,35 +73,57 @@ const chartByPerson: Record<string, { label: string; value: number }[]> = {
     return document.documentElement.dataset.person || "all";
   }
 
-  function currentSkills() {
-    return byPerson[currentPerson()] ?? byPerson.all;
-  }
-
   function render(type: "bar" | "radar") {
-    const skills = currentSkills();
-    srList.replaceChildren(...skills.map((d) => {
-      const li = document.createElement("li");
-      li.textContent = `${d.label}: ${d.value}%`;
-      return li;
-    }));
     chart?.destroy();
     const dark = document.documentElement.classList.contains("dark");
     const color = dark ? "#e2e8f0" : "#0f172a";
     const grid = dark ? "#334155" : "#cbd5e1";
-    const palette = ["#6366f1", "#ec4899", "#f59e0b", "#10b981", "#06b6d4", "#8b5cf6", "#ef4444", "#14b8a6", "#f97316", "#3b82f6"];
-    const colors = skills.map((_, i) => palette[i % palette.length]);
+    const person = currentPerson();
+
+    let labels: string[];
+    let datasets: { label: string; data: number[]; backgroundColor: string | string[]; borderColor: string | string[]; borderWidth: number }[];
+
+    if (person === "all") {
+      const peopleIds = Object.keys(peopleNames);
+      const byLabel = new Map<string, Record<string, number>>();
+      for (const id of peopleIds) {
+        for (const s of byPerson[id] ?? []) {
+          if (!byLabel.has(s.label)) byLabel.set(s.label, {});
+          byLabel.get(s.label)![id] = s.value;
+        }
+      }
+      labels = [...byLabel.keys()].sort((a, b) => {
+        const sum = (l: string) => peopleIds.reduce((acc, id) => acc + (byLabel.get(l)?.[id] ?? 0), 0);
+        return sum(b) - sum(a);
+      });
+      datasets = peopleIds.map((id) => {
+        const c = personColors[id] ?? "#6366f1";
+        return {
+          label: peopleNames[id],
+          data: labels.map((l) => byLabel.get(l)?.[id] ?? 0),
+          backgroundColor: `${c}80`,
+          borderColor: c,
+          borderWidth: 2,
+        };
+      });
+    } else {
+      const skills = byPerson[person] ?? [];
+      labels = skills.map((s) => s.label);
+      const c = personColors[person] ?? "#6366f1";
+      datasets = [{ label: peopleNames[person] ?? canvas.dataset.label!, data: skills.map((s) => s.value), backgroundColor: `${c}80`, borderColor: c, borderWidth: 2 }];
+    }
+
+    srList.replaceChildren(...datasets.flatMap((d) =>
+      d.data.map((v, i) => {
+        const li = document.createElement("li");
+        li.textContent = `${d.label} — ${labels[i]}: ${v}%`;
+        return li;
+      }),
+    ));
+
     chart = new Chart(canvas, {
       type,
-      data: {
-        labels: skills.map((s) => s.label),
-        datasets: [{
-          label: canvas.dataset.label!,
-          data: skills.map((s) => s.value),
-          backgroundColor: type === "bar" ? colors.map((c) => `${c}80`) : "rgba(99,102,241,.5)",
-          borderColor: type === "bar" ? colors : "#6366f1",
-          borderWidth: 2,
-        }],
-      },
+      data: { labels, datasets },
       options: {
         responsive: true,
         maintainAspectRatio: false,

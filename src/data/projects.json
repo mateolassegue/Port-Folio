@@ -97,6 +97,10 @@
       "en": "Driver finalisation in progress, with software tests at varying stages of completion; first hardware prototypes built."
     },
     "stack": ["C", "C++", "C#", "XAML", "FreeCAD"],
+    "stackByPerson": {
+      "mateo": ["C", "C++", "FreeCAD"],
+      "rhizlene": ["C", "C++", "C#", "XAML"]
+    },
     "languages": {},
     "image": "",
     "demo": "",
@@ -123,8 +127,8 @@
       "en": "Mock online marketplace for selling and delivering fresh, local produce."
     },
     "context": {
-      "fr": "Projet d'entraînement pour se confronter à la création de valeur et à la gestion d'un projet professionnel sur un thème exotique par rapport à mes connaissances initiales.",
-      "en": "A training project to practise creating value and running a professional-style project on a theme far from my initial skill set."
+      "fr": "Projet d'entraînement mené avec Rhizlène pour se confronter à la création de valeur et à la gestion d'un projet professionnel sur un thème exotique par rapport à nos connaissances initiales.",
+      "en": "A training project run with Rhizlène to practise creating value and running a professional-style project on a theme far from our initial skill set."
     },
     "problem": {
       "fr": "Permettre aux clients d'accéder à des produits frais et locaux 24h/24, en prenant en compte les producteurs du coin et en organisant une livraison groupée sur un même jour.",
@@ -144,8 +148,8 @@
     "demo": "",
     "repo": "",
     "showRepoLink": false,
-    "status": "private",
-    "authors": ["mateo"]
+    "status": "done",
+    "authors": ["mateo", "rhizlene"]
   },
   {
     "id": "power-automate",
@@ -176,7 +180,7 @@
     "demo": "",
     "repo": "",
     "showRepoLink": false,
-    "status": "private",
+    "status": "done",
     "authors": ["mateo", "rhizlene"]
   }
 ]
