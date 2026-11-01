@@ -6,7 +6,7 @@
   "projects": { "title": "Projets", "all": "Tous", "filter": "Filtrer par technologie", "details": "Voir le projet", "back": "Retour aux projets", "photosSoon": "Photos à venir", "context": "Contexte", "problem": "Problème", "solution": "Solution", "stack": "Technologies", "result": "Résultat", "contributions": "Qui a fait quoi", "links": "Liens", "demo": "Démo", "repo": "Code source", "close": "Fermer", "status": { "private": "Privé", "public": "Public", "wip": "En cours", "done": "Terminé" }, "empty": "Aucun projet pour ce filtre." },
   "person": { "label": "Afficher le travail de", "all": "Les deux" },
   "timeline": { "title": "Parcours" },
-  "contact": { "title": "Contact", "text": "TODO : texte de contact à compléter.", "github": "GitHub", "linkedin": "LinkedIn", "email": "E-mail" },
+  "contact": { "title": "Contact", "text": "Nous recherchons un stage d'été au Royaume-Uni (mai à juillet 2027, 10 à 12 semaines) en robotique, systèmes embarqués ou ingénierie mécatronique. N'hésitez pas à nous écrire.", "github": "GitHub", "linkedin": "LinkedIn", "email": "E-mail" },
   "theme": { "toggle": "Changer de thème", "light": "Mode clair", "dark": "Mode sombre" },
   "lang": { "label": "Langue", "fr": "Français", "en": "English" },
   "footer": { "rights": "Tous droits réservés." },

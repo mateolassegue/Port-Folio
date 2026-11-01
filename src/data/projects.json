@@ -152,6 +152,48 @@
     "authors": ["mateo", "rhizlene"]
   },
   {
+    "id": "crubs",
+    "title": { "fr": "CRUBS — Coupe de France de robotique 2027", "en": "CRUBS — French Robotics Cup 2027" },
+    "description": {
+      "fr": "Robot autonome avec bras robotique pour la Coupe de France de robotique 2027, à Lorient.",
+      "en": "Autonomous robot with a robotic arm for the French Robotics Cup 2027, in Lorient."
+    },
+    "context": {
+      "fr": "Projet mené en équipe avec Rhizlène dans le cadre de la Coupe de France de robotique 2027, visant à concevoir un robot autonome capable de réaliser les épreuves imposées par le règlement de la compétition.",
+      "en": "A team project with Rhizlène for the French Robotics Cup 2027, aiming to build an autonomous robot able to complete the challenges set by the competition's rules."
+    },
+    "problem": {
+      "fr": "Concevoir un robot fiable et autonome, incluant un bras robotique pour la manipulation d'objets, capable de naviguer et d'agir sans intervention humaine pendant les manches de la compétition.",
+      "en": "Design a reliable, autonomous robot, including a robotic arm for manipulating objects, able to navigate and act without human intervention during competition rounds."
+    },
+    "solution": {
+      "fr": "Développement du robot autonome et de son bras robotique : prototypage rapide, résolution de problèmes mécaniques/électroniques, intégration système et contrôle de trajectoire, en binôme avec Rhizlène.",
+      "en": "Developed the autonomous robot and its robotic arm: rapid prototyping, mechanical/electronic troubleshooting, system integration and trajectory control, working as a duo with Rhizlène."
+    },
+    "result": {
+      "fr": "TODO : résultat/classement à compléter une fois la compétition passée.",
+      "en": "TODO: outcome/ranking to complete once the competition has taken place."
+    },
+    "stack": [],
+    "languages": {},
+    "image": "",
+    "demo": "",
+    "repo": "",
+    "showRepoLink": false,
+    "status": "wip",
+    "authors": ["mateo", "rhizlene"],
+    "contributions": {
+      "mateo": {
+        "fr": "Responsable de la partie hardware : conception mécanique du robot et du bras robotique, électronique et assemblage.",
+        "en": "Leads the hardware side: mechanical design of the robot and the robotic arm, electronics and assembly."
+      },
+      "rhizlene": {
+        "fr": "Responsable de la partie software/IA : logique de navigation autonome et intelligence embarquée du robot.",
+        "en": "Leads the software/AI side: autonomous navigation logic and the robot's embedded intelligence."
+      }
+    }
+  },
+  {
     "id": "power-automate",
     "title": { "fr": "Power Automate — Automatisation de vidéos IA", "en": "Power Automate — AI Video Automation" },
     "description": {

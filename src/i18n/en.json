@@ -6,7 +6,7 @@
   "projects": { "title": "Projects", "all": "All", "filter": "Filter by technology", "details": "View project", "back": "Back to projects", "photosSoon": "Photos coming soon", "context": "Context", "problem": "Problem", "solution": "Solution", "stack": "Stack", "result": "Result", "contributions": "Who did what", "links": "Links", "demo": "Demo", "repo": "Source code", "close": "Close", "status": { "private": "Private", "public": "Public", "wip": "In progress", "done": "Done" }, "empty": "No project matches this filter." },
   "person": { "label": "Show work by", "all": "Both" },
   "timeline": { "title": "Journey" },
-  "contact": { "title": "Contact", "text": "TODO: contact text to complete.", "github": "GitHub", "linkedin": "LinkedIn", "email": "Email" },
+  "contact": { "title": "Contact", "text": "We're looking for a summer internship in the UK (May to July 2027, 10-12 weeks) in robotics, embedded systems or mechatronics engineering. Feel free to reach out.", "github": "GitHub", "linkedin": "LinkedIn", "email": "Email" },
   "theme": { "toggle": "Toggle theme", "light": "Light mode", "dark": "Dark mode" },
   "lang": { "label": "Language", "fr": "Français", "en": "English" },
   "footer": { "rights": "All rights reserved." },
