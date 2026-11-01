@@ -1,5 +1,5 @@
 {
-  "meta": { "title": "Mateo Lassegue — Portfolio", "description": "Professional engineer portfolio" },
+  "meta": { "title": "Mateo Lassegue & Rhizlène Russo — Portfolio", "description": "Professional engineers' portfolio" },
   "nav": { "home": "Home", "skills": "Skills", "projects": "Projects", "timeline": "Journey", "contact": "Contact", "menu": "Main navigation" },
   "hero": { "greeting": "Hi, I'm", "cta": "See my projects", "contact": "Contact me" },
   "skills": { "title": "Skills", "intro": "Technology weight across our projects, and our core skills from our résumés.", "chartLabel": "Technology weight across our projects (%)", "toggleBar": "Bars", "toggleRadar": "Radar", "chartAria": "Skills chart", "core": "Core skills" },

@@ -1,5 +1,5 @@
 {
-  "meta": { "title": "Mateo Lassegue — Portfolio", "description": "Portfolio professionnel d'ingénieur" },
+  "meta": { "title": "Mateo Lassegue & Rhizlène Russo — Portfolio", "description": "Portfolio professionnel d'ingénieurs" },
   "nav": { "home": "Accueil", "skills": "Compétences", "projects": "Projets", "timeline": "Parcours", "contact": "Contact", "menu": "Navigation principale" },
   "hero": { "greeting": "Bonjour, je suis", "cta": "Voir mes projets", "contact": "Me contacter" },
   "skills": { "title": "Compétences", "intro": "Poids des technologies dans nos projets, et compétences clés issues de nos CV.", "chartLabel": "Poids de la technologie dans nos projets (%)", "toggleBar": "Barres", "toggleRadar": "Radar", "chartAria": "Graphique des compétences", "core": "Compétences clés" },
