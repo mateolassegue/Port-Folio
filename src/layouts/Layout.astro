@@ -30,10 +30,8 @@ const personNames = Object.fromEntries((people as any[]).map((p) => [p.id, p.nam
         var person = validUrlPerson ? urlPerson : localStorage.getItem("person") || "all";
         document.documentElement.dataset.person = person;
         if (validUrlPerson) localStorage.setItem("person", person);
-        // Remember the page's default title so the switcher can restore it when back on "all".
-        window.__baseTitle = document.title;
         window.__personNames = personNames;
-        if (person !== "all") document.title = "Port-Folio " + (personNames[person] || "");
+        document.title = person === "all" ? "Port-Folio ML.RR" : "Port-Folio " + (personNames[person] || "");
       })();
     </script>
   </head>
