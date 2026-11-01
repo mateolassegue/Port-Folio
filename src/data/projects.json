@@ -2,11 +2,26 @@
   {
     "id": "litepro-studio",
     "title": { "fr": "litepro-studio", "en": "litepro-studio" },
-    "description": { "fr": "TODO : description du projet.", "en": "TODO: project description." },
-    "context": { "fr": "TODO : contexte du projet.", "en": "TODO: project context." },
-    "problem": { "fr": "TODO : problème à résoudre.", "en": "TODO: problem to solve." },
-    "solution": { "fr": "TODO : solution apportée.", "en": "TODO: solution provided." },
-    "result": { "fr": "TODO : résultat obtenu.", "en": "TODO: outcome." },
+    "description": {
+      "fr": "Plateforme interactive de team building avec éditeur de scénarios no-code.",
+      "en": "Interactive team-building platform with a no-code scenario editor."
+    },
+    "context": {
+      "fr": "LitePro est une plateforme interactive destinée à l'organisation d'évènements de team building, pensée pour être prise en main par des utilisateurs non techniques.",
+      "en": "LitePro is an interactive platform for running team-building events, designed to be usable by non-technical organisers."
+    },
+    "problem": {
+      "fr": "Les animateurs d'évènements avaient besoin de créer et personnaliser des scénarios interactifs sans dépendre d'une équipe technique à chaque évolution.",
+      "en": "Event facilitators needed to create and customise interactive scenarios without depending on a technical team for every change."
+    },
+    "solution": {
+      "fr": "Co-direction technique de la plateforme : conception et développement d'un éditeur de scénarios no-code permettant de créer et personnaliser des déroulés d'évènements interactifs, et maintenance de l'infrastructure cœur de la plateforme.",
+      "en": "Co-led the technical development of the platform: designed and built a no-code scenario editor to create and customise interactive event flows, and maintain the platform's core infrastructure."
+    },
+    "result": {
+      "fr": "TODO : résultat/metrics à compléter (nombre d'évènements, retours clients, etc.).",
+      "en": "TODO: outcome/metrics to complete (number of events run, client feedback, etc.)."
+    },
     "stack": ["TypeScript"],
     "languages": { "TypeScript": 99.5 },
     "image": "",
@@ -19,11 +34,26 @@
   {
     "id": "nexus-workspace",
     "title": { "fr": "Nexus-Workspace", "en": "Nexus-Workspace" },
-    "description": { "fr": "TODO : description du projet.", "en": "TODO: project description." },
-    "context": { "fr": "TODO : contexte du projet.", "en": "TODO: project context." },
-    "problem": { "fr": "TODO : problème à résoudre.", "en": "TODO: problem to solve." },
-    "solution": { "fr": "TODO : solution apportée.", "en": "TODO: solution provided." },
-    "result": { "fr": "TODO : résultat obtenu.", "en": "TODO: outcome." },
+    "description": {
+      "fr": "Extension VS Code agentique pour l'orchestration d'un cluster d'IA locale.",
+      "en": "Agentic AI VS Code extension for local AI cluster orchestration."
+    },
+    "context": {
+      "fr": "Nexus Workspace est une extension Visual Studio Code pensée pour piloter un cluster d'IA locale directement depuis l'éditeur.",
+      "en": "Nexus Workspace is a Visual Studio Code extension built to drive a local AI cluster directly from the editor."
+    },
+    "problem": {
+      "fr": "Le concept initial, pensé comme une application autonome, ne permettait pas une intégration fluide dans le flux de travail des développeurs.",
+      "en": "The initial concept, built as a standalone app, didn't integrate smoothly into developers' workflows."
+    },
+    "solution": {
+      "fr": "Pivot vers une extension VS Code dédiée : conception de l'architecture complète (frontend et backend) assurant une intégration UI fluide et la communication avec le cluster local, en équipe de deux personnes.",
+      "en": "Pivoted to a dedicated VS Code extension: engineered the full-stack codebase (frontend and backend) for seamless UI integration and local cluster communication, as a two-person team."
+    },
+    "result": {
+      "fr": "TODO : résultat/retours à compléter.",
+      "en": "TODO: outcome/feedback to complete."
+    },
     "stack": ["JavaScript", "TypeScript"],
     "languages": { "JavaScript": 97.1, "TypeScript": 1.8 },
     "image": "",
@@ -34,24 +64,39 @@
     "authors": ["mateo", "rhizlene"],
     "contributions": {
       "mateo": {
-        "fr": "TODO : raconte ta partie sur Nexus-Workspace (ce que tu as développé, les choix techniques, les difficultés rencontrées).",
-        "en": "TODO: tell your part on Nexus-Workspace (what you built, technical choices, challenges faced)."
+        "fr": "TODO : décris ta contribution sur Nexus Workspace (ex. partie backend, communication cluster, intégration spécifique).",
+        "en": "TODO: describe your contribution to Nexus Workspace (e.g. backend side, cluster communication, specific integration)."
       },
       "rhizlene": {
-        "fr": "TODO : raconte la partie de Rhizlène sur Nexus-Workspace.",
-        "en": "TODO: tell Rhizlène's part on Nexus-Workspace."
+        "fr": "Initiatrice du projet et de son architecture, j'ai fait pivoter une application autonome vers une extension VS Code dédiée. J'ai développé l'ensemble du code de l'extension (frontend et backend) pour une intégration UI fluide et la communication avec le cluster local, en co-gérant la répartition des tâches avec Mateo.",
+        "en": "Initiated the project and its architecture, pivoting an initial standalone application into a dedicated VS Code extension. Engineered the full-stack extension codebase (frontend & backend) for seamless UI integration and local cluster communication, co-managing task delegation with Mateo."
       }
     }
   },
   {
     "id": "mrs",
     "title": { "fr": "MRS", "en": "MRS" },
-    "description": { "fr": "TODO : description du projet.", "en": "TODO: project description." },
-    "context": { "fr": "TODO : contexte du projet.", "en": "TODO: project context." },
-    "problem": { "fr": "TODO : problème à résoudre.", "en": "TODO: problem to solve." },
-    "solution": { "fr": "TODO : solution apportée.", "en": "TODO: solution provided." },
-    "result": { "fr": "TODO : résultat obtenu.", "en": "TODO: outcome." },
-    "stack": ["TODO"],
+    "description": {
+      "fr": "Contrôleur MIDI personnalisé et logiciel embarqué pour le pilotage d'un DAW (Digital Audio Workstation).",
+      "en": "Custom MIDI controller and embedded software for Digital Audio Workstation (DAW) control."
+    },
+    "context": {
+      "fr": "MRS est un contrôleur MIDI sur mesure combinant commandes physiques et électronique à microcontrôleur, pour piloter un logiciel audio (DAW).",
+      "en": "MRS is a custom-built MIDI controller combining physical controls and microcontroller-based electronics to drive DAW software."
+    },
+    "problem": {
+      "fr": "Les contrôleurs MIDI du commerce ne correspondaient pas exactement aux besoins d'ergonomie et de réactivité souhaités pour un usage musical en temps réel.",
+      "en": "Off-the-shelf MIDI controllers didn't match the exact ergonomics and responsiveness needed for real-time musical use."
+    },
+    "solution": {
+      "fr": "Conception du matériel (circuits électroniques, prototypage PCB, ergonomie du boîtier) et du firmware côté Mateo ; développement des pilotes MIDI, DLL et interfaces applicatives (C, C++, C#, XAML) et co-conception du matériel côté Rhizlène.",
+      "en": "Hardware design (electronic circuits, PCB prototyping, enclosure ergonomics) and firmware on Mateo's side; MIDI drivers, DLLs and application interfaces (C, C++, C#, XAML) plus hardware co-design on Rhizlène's side."
+    },
+    "result": {
+      "fr": "TODO : résultat/retours à compléter.",
+      "en": "TODO: outcome/feedback to complete."
+    },
+    "stack": ["C", "C++", "C#", "XAML"],
     "languages": {},
     "image": "",
     "demo": "",
@@ -61,12 +106,12 @@
     "authors": ["mateo", "rhizlene"],
     "contributions": {
       "mateo": {
-        "fr": "TODO : raconte ta partie hardware sur MRS (électronique, câblage, prototypage...).",
-        "en": "TODO: tell your hardware part on MRS (electronics, wiring, prototyping...)."
+        "fr": "Conception d'un contrôleur MIDI sur mesure pour le pilotage d'un DAW, combinant commandes physiques et électronique à microcontrôleur. Développement des architectures matérielle et firmware pour une interaction réactive à faible latence, en explorant l'ergonomie du boîtier, le choix des composants et la validation des prototypes PCB.",
+        "en": "Designed a custom MIDI controller for DAW control, combining physical controls and microcontroller-based electronics. Developed hardware and firmware architectures focused on responsive, low-latency interaction, exploring enclosure ergonomics, component sourcing and PCB prototype validation."
       },
       "rhizlene": {
-        "fr": "TODO : raconte la partie logicielle de Rhizlène sur MRS (driver, software, contrôle...).",
-        "en": "TODO: tell Rhizlène's software part on MRS (driver, software, control...)."
+        "fr": "Direction du développement logiciel embarqué : pilotes MIDI, DLL et interfaces applicatives sur mesure en C, C++, C# et XAML. Co-conception de l'architecture matérielle (circuits électroniques, prototypage PCB) et gestion de l'organisation du projet et de la résolution de problèmes transverses matériel/logiciel.",
+        "en": "Led embedded software development: custom MIDI drivers, DLLs and application interfaces in C, C++, C# and XAML. Co-designed the hardware architecture (electronic circuits, PCB prototyping) and managed project organisation and cross-functional hardware/software troubleshooting."
       }
     }
   }

@@ -2,36 +2,134 @@
   {
     "id": "mateo",
     "name": "Mateo Lassegue",
-    "title": { "fr": "TODO : titre professionnel (ingénieur)", "en": "TODO: professional title (engineer)" },
-    "bio": {
-      "fr": "TODO : courte biographie à compléter.",
-      "en": "TODO: short biography to complete."
+    "title": {
+      "fr": "Étudiant ingénieur en mécatronique (apprenti) | Robotique & systèmes",
+      "en": "Mechatronics Engineering Apprentice | Robotics & Systems"
     },
-    "links": { "github": "https://github.com/mateolassegue", "linkedin": "", "email": "" },
+    "bio": {
+      "fr": "Étudiant ingénieur en mécatronique en apprentissage chez CMP Composites, avec une expérience concrète en robotique, systèmes embarqués, CAO et prototypage rapide. À l'aise en C/C++, SolidWorks, ESP32 et impression 3D FDM, je recherche un stage d'été de 10 semaines au Royaume-Uni en robotique, systèmes embarqués ou ingénierie R&D.",
+      "en": "Mechatronics engineering apprentice at CMP Composites with hands-on experience in robotics, embedded systems, CAD and rapid prototyping. Skilled in C/C++, SolidWorks, ESP32 and FDM 3D printing, I'm seeking a 10-week summer internship in the UK in robotics, embedded systems or R&D engineering."
+    },
+    "links": {
+      "github": "https://github.com/mateolassegue",
+      "linkedin": "",
+      "email": "mateo.lassegue@gmail.com"
+    },
     "timeline": [
       {
-        "period": "TODO",
-        "title": { "fr": "TODO : poste ou formation", "en": "TODO: role or education" },
-        "place": "TODO",
-        "description": { "fr": "TODO : description à compléter.", "en": "TODO: description to complete." }
+        "period": "09/2024 – 04/2026",
+        "title": {
+          "fr": "DUT Génie Industriel et Maintenance",
+          "en": "Higher National Diploma — Industrial Engineering & Maintenance"
+        },
+        "place": "IUT de Lorient",
+        "description": {
+          "fr": "Maintenance industrielle, systèmes électriques et automatisation ; diagnostic de pannes, capteurs et maintenance prédictive.",
+          "en": "Industrial maintenance, electrical systems and automation; fault diagnosis, sensors and predictive maintenance."
+        }
+      },
+      {
+        "period": "02/2026 – 05/2026",
+        "title": {
+          "fr": "Stage ingénieur mécatronique & R&D",
+          "en": "Mechatronics & R&D Engineering Intern"
+        },
+        "place": "CMP Composites, Lorient",
+        "description": {
+          "fr": "Conception d'un système d'acquisition de données (DAQ) modulaire pour essais thermomécaniques sur structures composites, avec jauges de déformation et thermocouples. Programmation de deux ESP32 en C/C++ (ESP-NOW, multiplexage SPI/I²C) et interface tactile LVGL. Conception d'un traceur CNC 2D CoreXY et d'une application C++ de conversion DXF vers G-code.",
+          "en": "Designed a modular data acquisition (DAQ) system for thermomechanical testing of composite structures, with strain gauges and thermocouples. Programmed dual ESP32 microcontrollers in C/C++ (ESP-NOW, SPI/I²C multiplexing) with an LVGL touchscreen interface. Designed a 2D CoreXY CNC plotter and a C++ app converting DXF files to G-code."
+        }
+      },
+      {
+        "period": "09/2026 – présent",
+        "title": {
+          "fr": "Ingénieur en mécatronique (apprentissage)",
+          "en": "Mechatronics Engineering (Degree Apprenticeship)"
+        },
+        "place": "ENSIBS, Lorient",
+        "description": {
+          "fr": "Master d'ingénierie en mécatronique : systèmes embarqués, robotique, CAO et automatisation, intégration matériel/logiciel et prototypage rapide.",
+          "en": "Master of Engineering in Mechatronics: embedded systems, robotics, CAD and automation, hardware/software integration and rapid prototyping."
+        }
+      },
+      {
+        "period": "09/2026 – présent",
+        "title": {
+          "fr": "Apprenti ingénieur mécatronique",
+          "en": "Apprentice Mechatronics Engineer"
+        },
+        "place": "CMP Composites, Lorient",
+        "description": {
+          "fr": "Conception et modélisation de pièces mécaniques et d'outillages sur SolidWorks, workflows de fabrication FDM (ABS/ASA) optimisés sous OrcaSlicer, et support aux projets R&D en conception mécanique et intégration matériel/logiciel.",
+          "en": "Designing and modelling mechanical components and tooling on SolidWorks, developing FDM manufacturing workflows (ABS/ASA) optimised in OrcaSlicer, and supporting R&D projects through mechanical design and hardware/software integration."
+        }
       }
     ]
   },
   {
     "id": "rhizlene",
     "name": "Rhizlène Russo",
-    "title": { "fr": "TODO : titre professionnel (ingénieure)", "en": "TODO: professional title (engineer)" },
-    "bio": {
-      "fr": "TODO : courte biographie à compléter.",
-      "en": "TODO: short biography to complete."
+    "title": {
+      "fr": "Étudiante ingénieure en mécatronique | IA & logiciel embarqué",
+      "en": "Mechatronics Engineering Student | AI & Embedded Software"
     },
-    "links": { "github": "https://github.com/Sempra56", "linkedin": "", "email": "rhizlenerusso@gmail.com" },
+    "bio": {
+      "fr": "Étudiante en 3e année d'ingénierie mécatronique à l'ENSIBS, passionnée par la transformation de concepts en prototypes physiques à l'interface du logiciel embarqué, de la CAO et de l'IA. Combine une expertise en C/C++, Python et C# avec des méthodes d'IA générative pour accélérer l'intégration matériel/logiciel. Recherche un stage d'été de 10 à 12 semaines au Royaume-Uni en mécatronique.",
+      "en": "3rd-year Mechatronics Engineering student at ENSIBS, passionate about turning concepts into physical prototypes by bridging embedded software, CAD design and AI-assisted workflows. Combines expertise in C/C++, Python and C# with generative AI methods to accelerate hardware-software integration. Seeking a 10 to 12-week Mechatronics Summer Internship in the UK."
+    },
+    "links": {
+      "github": "https://github.com/Sempra56",
+      "linkedin": "https://www.linkedin.com/in/rhizlène-russo",
+      "email": "rhizlenerusso@gmail.com"
+    },
     "timeline": [
       {
-        "period": "TODO",
-        "title": { "fr": "TODO : poste ou formation", "en": "TODO: role or education" },
-        "place": "TODO",
-        "description": { "fr": "TODO : description à compléter.", "en": "TODO: description to complete." }
+        "period": "09/2021 – 07/2024",
+        "title": {
+          "fr": "Baccalauréat Mathématiques & Physique-Chimie (Mention Bien)",
+          "en": "French Baccalaureate — Mathematics & Physics-Chemistry (Honours)"
+        },
+        "place": "Lycée Saint-Louis, Lorient",
+        "description": {
+          "fr": "Spécialités mathématiques et physique-chimie, obtenues avec mention Bien.",
+          "en": "Mathematics and Physics-Chemistry specialities, awarded with Honours."
+        }
+      },
+      {
+        "period": "09/2024 – 06/2026",
+        "title": {
+          "fr": "Licence de physique (parcours renforcé)",
+          "en": "Bachelor's Degree in Physics (Enhanced Track)"
+        },
+        "place": "Faculté des sciences (UBS) & ENSIBS, Lorient",
+        "description": {
+          "fr": "Optique, mécanique analytique, mécanique des solides, électricité, mathématiques générales et avancées, thermodynamique. Ambassadrice étudiante (programme éducatif BRIO).",
+          "en": "Optics, analytical mechanics, solid mechanics, electricity, general & advanced mathematics, thermodynamics. Student Ambassador (BRIO Educational Program)."
+        }
+      },
+      {
+        "period": "09/2026 – présent",
+        "title": {
+          "fr": "Ingénierie en mécatronique",
+          "en": "Mechatronics Engineering"
+        },
+        "place": "ENSIBS, Lorient",
+        "description": {
+          "fr": "Master d'ingénierie en mécatronique : électronique, programmation embarquée, traitement du signal, capteurs/actionneurs et conception mécanique.",
+          "en": "Master of Engineering in Mechatronics: electronics, embedded programming, signal processing, sensors & actuators and mechanical design."
+        }
+      },
+      {
+        "period": "09/2026 – présent",
+        "title": {
+          "fr": "Vice-présidente — Club Robotique ENSIBS",
+          "en": "Vice President — ENSIBS Robotics Club"
+        },
+        "place": "ENSIBS Robotics Club, Lorient",
+        "description": {
+          "fr": "Pilotage d'un projet robotique de bout en bout (CAO, électronique, programmation embarquée) et coordination d'une équipe d'environ 22 membres actifs aux côtés du président.",
+          "en": "Leading an end-to-end robotics project (CAD, electronics, embedded programming) and coordinating a team of around 22 active members alongside the President."
+        }
       }
     ]
   }
