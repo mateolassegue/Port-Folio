@@ -29,6 +29,20 @@
         "items": ["Docker", "Tailscale", "Git"]
       }
     ],
+    "highlights": [
+      {
+        "fr": "Apprenti ingénieur mécatronique chez CMP Composites et à l'ENSIBS",
+        "en": "Mechatronics engineering apprentice at CMP Composites and ENSIBS"
+      },
+      {
+        "fr": "Stage R&D : conception d'un système DAQ modulaire (ESP32, interface tactile LVGL)",
+        "en": "R&D internship: designed a modular DAQ system (ESP32, LVGL touchscreen interface)"
+      },
+      {
+        "fr": "Partie hardware du robot CRUBS : conception mécanique et bras robotique",
+        "en": "Hardware lead on the CRUBS robot: mechanical design and robotic arm"
+      }
+    ],
     "timeline": [
       {
         "period": "09/2024 – 04/2026",
@@ -112,6 +126,20 @@
       {
         "category": { "fr": "Systèmes d'exploitation", "en": "Operating Systems" },
         "items": ["Linux (Kubuntu)", "Windows 11"]
+      }
+    ],
+    "highlights": [
+      {
+        "fr": "Vice-présidente du Club Robotique ENSIBS, coordination d'une équipe d'environ 22 membres",
+        "en": "Vice President of the ENSIBS Robotics Club, coordinating a team of around 22 members"
+      },
+      {
+        "fr": "Ambassadrice étudiante du programme éducatif BRIO",
+        "en": "Student Ambassador for the BRIO educational program"
+      },
+      {
+        "fr": "Partie software & IA du robot CRUBS : programmation embarquée et contrôle de trajectoire",
+        "en": "Software & AI lead on the CRUBS robot: embedded programming and trajectory control"
       }
     ],
     "timeline": [
