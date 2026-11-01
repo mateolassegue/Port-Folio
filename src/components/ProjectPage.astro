@@ -16,10 +16,16 @@ const nameOf = (id: string) => people.find((pp) => pp.id === id)?.name ?? id;
   <p class="mt-1 text-sm font-semibold text-indigo-700 dark:text-indigo-300">{p.authors.map(nameOf).join(" & ")}</p>
 
   {p.image ? (
-    <img src={p.image} alt="" class="mt-6 w-full rounded-lg" />
+    <img src={url(p.image)} alt="" class="mt-6 w-full rounded-lg" />
   ) : (
     <div class="mt-6 flex h-56 items-center justify-center rounded-lg border border-dashed border-slate-400 text-slate-500 dark:border-slate-600 dark:text-slate-400">
       {t(lang, "projects.photosSoon")}
+    </div>
+  )}
+
+  {p.gallery && p.gallery.length > 0 && (
+    <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
+      {p.gallery.map((src: string) => <img src={url(src)} alt="" loading="lazy" class="aspect-video w-full rounded-lg object-cover" />)}
     </div>
   )}
 

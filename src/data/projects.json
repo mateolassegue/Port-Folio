@@ -102,7 +102,8 @@
       "rhizlene": ["C", "C++", "C#", "XAML"]
     },
     "languages": {},
-    "image": "",
+    "image": "images/mrs/console-faders.jpg",
+    "gallery": ["images/mrs/console-angle.jpg", "images/mrs/console-screens.jpg"],
     "demo": "",
     "repo": "",
     "showRepoLink": false,
@@ -174,7 +175,11 @@
       "fr": "TODO : résultat/classement à compléter une fois la compétition passée.",
       "en": "TODO: outcome/ranking to complete once the competition has taken place."
     },
-    "stack": [],
+    "stack": ["SolidWorks", "C/C++", "Python", "Control Systems"],
+    "stackByPerson": {
+      "mateo": ["SolidWorks", "C/C++"],
+      "rhizlene": ["Python", "Control Systems", "C/C++"]
+    },
     "languages": {},
     "image": "",
     "demo": "",
@@ -218,11 +223,56 @@
     },
     "stack": ["Power Automate"],
     "languages": {},
-    "image": "",
+    "image": "images/power-automate/wikiwhiz-news-channel.jpg",
     "demo": "",
     "repo": "",
     "showRepoLink": false,
     "status": "done",
     "authors": ["mateo", "rhizlene"]
+  },
+  {
+    "id": "cmp-composites",
+    "title": { "fr": "CMP Composites — Banc d'essai & plotter CNC", "en": "CMP Composites — Test Rig & CNC Plotter" },
+    "description": {
+      "fr": "Système d'acquisition de données thermo-mécanique et plotter CNC CoreXY pour un fabricant de pièces composites.",
+      "en": "Thermo-mechanical data acquisition system and CoreXY CNC plotter for a composite parts manufacturer."
+    },
+    "context": {
+      "fr": "Stage technique chez CMP Composites (fév.–mai 2026) : développement d'un banc de mesure pour la caractérisation d'éprouvettes composites et d'une machine de traçage automatisée pour le fibre-kitting (découpe/traçage de renforts avant drapage).",
+      "en": "Technical internship at CMP Composites (Feb–May 2026): developed a measurement rig for characterising composite test coupons and an automated tracing machine for fibre-kitting (tracing reinforcement shapes before lay-up)."
+    },
+    "problem": {
+      "fr": "L'entreprise avait besoin d'un système fiable pour mesurer des grandeurs thermo-mécaniques (jauges de contrainte, thermocouples) sur des éprouvettes, et d'automatiser le traçage de formes de renfort sur tissu, jusqu'alors fait manuellement à partir de fichiers DXF.",
+      "en": "The company needed a reliable system to measure thermo-mechanical quantities (strain gauges, thermocouples) on test coupons, and to automate tracing reinforcement shapes onto fabric, previously done by hand from DXF files."
+    },
+    "solution": {
+      "fr": "Conception d'un système d'acquisition double ESP32 en C/C++ avec liaison sans fil ESP-NOW et multiplexage SPI/I²C pour les capteurs, piloté par une interface tactile LVGL. Conception et assemblage d'un plotter CNC CoreXY à partir de pièces d'imprimante 3D réutilisées, et développement d'une application C++ convertissant des fichiers DXF en G-code pour automatiser le traçage des renforts.",
+      "en": "Designed a dual-ESP32 acquisition system in C/C++ with ESP-NOW wireless links and SPI/I²C sensor multiplexing, driven by an LVGL touchscreen interface. Designed and assembled a CoreXY CNC plotter from repurposed 3D-printer parts, and built a C++ application converting DXF files to G-code to automate reinforcement tracing."
+    },
+    "result": {
+      "fr": "Banc de mesure et plotter CNC fonctionnels, utilisés pour la caractérisation d'éprouvettes et l'automatisation du traçage de renforts en fin de stage.",
+      "en": "Working measurement rig and CNC plotter, used for coupon characterisation and automated reinforcement tracing by the end of the internship."
+    },
+    "stack": ["ESP32", "C/C++", "ESP-NOW", "LVGL", "SolidWorks"],
+    "languages": {},
+    "image": "images/cmp-composites/load-cell-disc.jpg",
+    "gallery": [
+      "images/cmp-composites/daq-rig-touchscreen.jpg",
+      "images/cmp-composites/daq-ui-electronics.jpg",
+      "images/cmp-composites/esp32-s3-board.jpg",
+      "images/cmp-composites/strain-gauge-board.jpg",
+      "images/cmp-composites/strain-gauge-triple.jpg",
+      "images/cmp-composites/corexy-frame.jpg",
+      "images/cmp-composites/corexy-assembled.jpg",
+      "images/cmp-composites/plotter-tracing.jpg",
+      "images/cmp-composites/workbench-overview.jpg",
+      "images/cmp-composites/fdm-coupons-printing.jpg",
+      "images/cmp-composites/isel-cnc-machine.jpg"
+    ],
+    "demo": "",
+    "repo": "",
+    "showRepoLink": false,
+    "status": "done",
+    "authors": ["mateo"]
   }
 ]
