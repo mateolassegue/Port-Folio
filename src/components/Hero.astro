@@ -5,25 +5,36 @@ const { lang } = Astro.props as { lang: Lang };
 const initials = (name: string) => name.split(" ").map((w) => w[0]).join("").slice(0, 2);
 ---
 
-<section id="home" class="reveal bg-gradient-to-b from-indigo-50 via-white to-white py-20 dark:from-slate-900 dark:via-slate-950 dark:to-slate-950">
-  <div class="mx-auto max-w-6xl px-4">
+<section id="home" class="reveal relative overflow-hidden bg-gradient-to-b from-indigo-50 via-indigo-50/40 to-transparent py-20 dark:from-slate-900 dark:via-slate-900/50 dark:to-transparent">
+  <div class="pointer-events-none absolute -top-24 -left-24 h-96 w-96 rounded-full bg-indigo-300/30 blur-3xl dark:bg-indigo-700/20" aria-hidden="true"></div>
+  <div class="pointer-events-none absolute top-0 right-0 h-80 w-80 rounded-full bg-pink-300/25 blur-3xl dark:bg-pink-700/20" aria-hidden="true"></div>
+  <div class="relative mx-auto max-w-6xl px-4">
     <p class="max-w-2xl text-sm text-slate-600 dark:text-slate-400">{t(lang, "hero.duoNote")}</p>
     <p class="mt-4 text-indigo-700 dark:text-indigo-300">{t(lang, "hero.greeting")}</p>
-    <div class="mt-2 grid gap-6 sm:grid-cols-2">
-      {people.map((p) => (
-        <div data-person={p.id} class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
-          <div class="flex items-center gap-4">
-            <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-indigo-700 text-xl font-bold text-white">{initials(p.name)}</span>
-            <h1 class="text-2xl font-bold sm:text-3xl">{p.name}</h1>
-          </div>
-          <p class="mt-3 text-lg text-slate-700 dark:text-slate-300">{tr(p.title, lang)}</p>
-          <p class="mt-3 max-w-xl text-slate-700 dark:text-slate-300">{tr(p.bio, lang)}</p>
-          <div class="mt-6 flex flex-wrap gap-3">
-            <a href="#projects" class="rounded-lg bg-indigo-700 px-5 py-2 font-semibold text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-indigo-800 hover:shadow-md">{t(lang, "hero.cta")}</a>
-            <a href="#contact" class="rounded-lg border border-slate-300 px-5 py-2 font-semibold transition-colors hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800">{t(lang, "hero.contact")}</a>
+    <div class="mt-4 grid gap-6">
+      {people.map((p) => {
+        const accent = p.id === "mateo" ? "indigo" : "pink";
+        return (
+        <div data-person={p.id} class={`relative overflow-hidden rounded-2xl border bg-white/90 shadow-sm backdrop-blur-sm transition-shadow hover:shadow-md dark:bg-slate-900/90 ${accent === "indigo" ? "border-indigo-100 dark:border-indigo-900/60" : "border-pink-100 dark:border-pink-900/60"}`}>
+          <div class={`h-1.5 w-full ${accent === "indigo" ? "bg-indigo-600" : "bg-pink-500"}`} aria-hidden="true"></div>
+          <div class="flex flex-col gap-6 p-6 md:flex-row md:items-center">
+            <div class="flex shrink-0 items-center gap-4 md:w-72">
+              <span class={`flex h-16 w-16 shrink-0 items-center justify-center rounded-full text-xl font-bold text-white ${accent === "indigo" ? "bg-indigo-700" : "bg-pink-600"}`}>{initials(p.name)}</span>
+              <div>
+                <h1 class="text-xl font-bold sm:text-2xl">{p.name}</h1>
+                <p class={`mt-1 text-sm font-medium ${accent === "indigo" ? "text-indigo-700 dark:text-indigo-300" : "text-pink-700 dark:text-pink-300"}`}>{tr(p.title, lang)}</p>
+              </div>
+            </div>
+            <div class="flex-1 md:border-l md:border-slate-100 md:pl-6 dark:md:border-slate-800">
+              <p class="text-slate-700 dark:text-slate-300">{tr(p.bio, lang)}</p>
+              <div class="mt-4 flex flex-wrap gap-3">
+                <a href="#projects" class={`rounded-lg px-5 py-2 font-semibold text-white shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md ${accent === "indigo" ? "bg-indigo-700 hover:bg-indigo-800" : "bg-pink-600 hover:bg-pink-700"}`}>{t(lang, "hero.cta")}</a>
+                <a href="#contact" class="rounded-lg border border-slate-300 px-5 py-2 font-semibold transition-colors hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800">{t(lang, "hero.contact")}</a>
+              </div>
+            </div>
           </div>
         </div>
-      ))}
+      )})}
     </div>
   </div>
 </section>
