@@ -36,10 +36,18 @@ const personIds = (people as any[]).map((p) => p.id);
     <script>
       const io = new IntersectionObserver((entries) => {
         entries.forEach((e) => {
-          if (e.isIntersecting) { e.target.classList.add("visible"); io.unobserve(e.target); }
+          if (!e.isIntersecting) return;
+          const el = e.target as HTMLElement;
+          if (el.hasAttribute("data-stagger")) {
+            Array.from(el.children).forEach((child, i) => {
+              (child as HTMLElement).style.transitionDelay = `${i * 80}ms`;
+            });
+          }
+          el.classList.add("visible");
+          io.unobserve(el);
         });
       }, { threshold: 0.1 });
-      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+      document.querySelectorAll(".reveal, [data-stagger]").forEach((el) => io.observe(el));
     </script>
   </body>
 </html>

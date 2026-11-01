@@ -18,7 +18,7 @@ const initialsOf = (title: string) =>
       <button type="button" data-filter={tech} aria-pressed="false" class="rounded-full border border-slate-300 px-3 py-1 text-sm transition-colors hover:bg-slate-100 aria-pressed:border-[var(--accent)] aria-pressed:bg-[var(--accent)] aria-pressed:text-white dark:border-slate-700 dark:hover:bg-slate-800">{tech}</button>
     ))}
   </div>
-  <ul class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" id="project-grid">
+  <ul class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" id="project-grid" data-stagger>
     {(projects as any[]).map((p) => {
       const barClass = p.authors.length > 1 ? "bg-gradient-to-r from-indigo-600 to-pink-500" : p.authors[0] === "rhizlene" ? "bg-pink-500" : "bg-indigo-600";
       return (

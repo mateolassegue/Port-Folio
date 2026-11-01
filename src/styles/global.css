@@ -9,6 +9,41 @@ html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
 .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
 .reveal.visible { opacity: 1; transform: none; }
 
+/* Staggered reveal: direct children of a [data-stagger] container fade/slide in one after another
+   instead of all at once, used for card grids (projects, journey, skills) to feel more alive. */
+[data-stagger] > * { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+[data-stagger].visible > * { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  [data-stagger] > * { transition: none !important; opacity: 1 !important; transform: none !important; }
+}
+
+/* First-paint entrance animation for the hero: plays immediately on load (not scroll-triggered)
+   so the page feels alive the instant a visitor lands, encouraging them to keep exploring. */
+@keyframes hero-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.hero-in { animation: hero-in .7s ease both; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-in { animation: none !important; opacity: 1 !important; transform: none !important; }
+}
+
+/* Gentle bouncing scroll cue inviting the visitor further down the page. */
+@keyframes bounce-cue { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+.scroll-cue { animation: bounce-cue 2s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .scroll-cue { animation: none !important; }
+}
+
+/* Silent "look here" cue around each person's avatar: a soft expanding ring that plays a few
+   times on load, then settles — purely visual, no sound, decorative (aria-hidden) so it never
+   affects screen-reader users and always degrades gracefully with reduced motion. */
+@keyframes avatar-pulse { 0% { transform: scale(1); opacity: .55; } 100% { transform: scale(1.55); opacity: 0; } }
+.avatar-pulse::after {
+  content: ""; position: absolute; inset: 0; border-radius: 9999px;
+  background: currentColor; animation: avatar-pulse 1.8s cubic-bezier(0,0,.2,1) 3;
+}
+@media (prefers-reduced-motion: reduce) {
+  .avatar-pulse::after { animation: none !important; display: none; }
+}
+
 /* Site-wide accent colour: tracks the active person filter so buttons, links and highlights
    across every section "recall" the same colour as the selected profile (indigo = Mateo,
    pink = Rhizlène, indigo = neutral default when both are shown). */

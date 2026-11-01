@@ -7,7 +7,7 @@ const { lang } = Astro.props as { lang: Lang };
 <section id="timeline" class="mx-auto max-w-6xl px-4 py-16 reveal">
   <p class="eyebrow">{t(lang, "timeline.eyebrow")}</p>
   <h2 class="mt-1 text-3xl font-bold">{t(lang, "timeline.title")}</h2>
-  <div class="mt-8 grid gap-6">
+  <div class="mt-8 grid gap-6" data-stagger>
     {people.map((p) => {
       const accent = p.id === "mateo" ? "indigo" : "pink";
       return (
