@@ -19,7 +19,7 @@ const { lang } = Astro.props as { lang: Lang };
   {people.map((p) => {
     const side = p.id === "mateo" ? "left" : "right";
     return (
-    <div class={`absolute top-6 hidden w-52 flex-col items-center gap-3 2xl:flex ${side === "left" ? "left-4" : "right-4"} ${side === "left" ? "text-indigo-400" : "text-rose-400"}`}>
+    <div data-person={p.id} class={`absolute top-6 hidden w-52 flex-col items-center gap-3 2xl:flex ${side === "left" ? "left-4" : "right-4"} ${side === "left" ? "text-indigo-400" : "text-rose-400"}`}>
       <div class="brief-panel w-full text-sm font-medium text-slate-800 dark:text-slate-100">
         <p class="brief-panel-label"><span class="brief-panel-dot" aria-hidden="true"></span>{p.name}</p>
         <span class="sr-only">{tr(p.brief, lang)}</span>
