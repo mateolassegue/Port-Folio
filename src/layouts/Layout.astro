@@ -6,6 +6,7 @@ import { t, type Lang } from "../i18n/utils";
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const personIds = (people as any[]).map((p) => p.id);
+const personNames = Object.fromEntries((people as any[]).map((p) => [p.id, p.name.split(" ")[0]]));
 ---
 
 <!doctype html>
@@ -18,7 +19,7 @@ const personIds = (people as any[]).map((p) => p.id);
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lexend:wght@600;700;800&display=swap" rel="stylesheet" />
-    <script is:inline define:vars={{ personIds }}>
+    <script is:inline define:vars={{ personIds, personNames }}>
       (function () {
         var s = localStorage.getItem("theme");
         var dark = s ? s === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
@@ -29,6 +30,10 @@ const personIds = (people as any[]).map((p) => p.id);
         var person = validUrlPerson ? urlPerson : localStorage.getItem("person") || "all";
         document.documentElement.dataset.person = person;
         if (validUrlPerson) localStorage.setItem("person", person);
+        // Remember the page's default title so the switcher can restore it when back on "all".
+        window.__baseTitle = document.title;
+        window.__personNames = personNames;
+        if (person !== "all") document.title = "Port-Folio " + (personNames[person] || "");
       })();
     </script>
   </head>

@@ -134,7 +134,7 @@
       },
       {
         "category": { "fr": "Management & Travail d'équipe", "en": "Management & Teamwork" },
-        "items": ["Leadership", "Gestion d'équipe", "Communication", "Gestion de projet"]
+        "items": ["Leadership", "Gestion d'équipe", "Gestion de planning", "Communication", "Gestion de projet"]
       }
     ],
     "qualities": { "cad": 2, "embedded": 4, "programming": 5, "ai": 5, "tools": 4, "management": 5 },
