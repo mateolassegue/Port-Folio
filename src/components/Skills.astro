@@ -12,7 +12,8 @@ const qualitiesByPerson = Object.fromEntries((people as any[]).map((p) => [p.id,
 
 <section id="skills" class="reveal bg-slate-50/60 py-16 dark:bg-slate-900/40">
   <div class="mx-auto max-w-6xl px-4">
-  <h2 class="text-3xl font-bold">{t(lang, "skills.title")}</h2>
+  <p class="eyebrow">{t(lang, "skills.eyebrow")}</p>
+  <h2 class="mt-1 text-3xl font-bold">{t(lang, "skills.title")}</h2>
   <p class="mt-2 max-w-3xl text-slate-700 dark:text-slate-300">{t(lang, "skills.intro")}</p>
 
   <h3 class="sr-only">{t(lang, "skills.core")}</h3>
@@ -21,16 +22,16 @@ const qualitiesByPerson = Object.fromEntries((people as any[]).map((p) => [p.id,
       const accent = p.id === "mateo" ? "indigo" : "pink";
       return (
       <div data-person={p.id} class={`group relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-md dark:border-slate-800 dark:bg-slate-900`}>
-        <div class={`h-1.5 w-full ${accent === "indigo" ? "bg-indigo-600" : "bg-pink-500"}`} aria-hidden="true"></div>
+        <div class={`h-1.5 w-full ${accent === "indigo" ? "bg-indigo-800" : "bg-rose-900"}`} aria-hidden="true"></div>
         <div class="grid gap-6 p-6 lg:grid-cols-[18rem_1fr] lg:gap-10">
           <div>
             <div class="flex items-center gap-4">
-              <div class={`flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-lg font-bold text-white ${accent === "indigo" ? "bg-indigo-700" : "bg-pink-600"}`} aria-hidden="true">
+              <div class={`flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-lg font-bold text-white ${accent === "indigo" ? "bg-indigo-800" : "bg-rose-900"}`} aria-hidden="true">
                 {p.name.split(" ").map((w: string) => w[0]).join("").slice(0, 2)}
               </div>
               <div>
                 <p class="text-lg font-bold">{p.name}</p>
-                <p class={`text-sm font-medium ${accent === "indigo" ? "text-indigo-700 dark:text-indigo-300" : "text-pink-700 dark:text-pink-300"}`}>{tr(p.title, lang)}</p>
+                <p class={`text-sm font-medium ${accent === "indigo" ? "text-indigo-800 dark:text-indigo-300" : "text-rose-900 dark:text-rose-300"}`}>{tr(p.title, lang)}</p>
               </div>
             </div>
 
@@ -38,7 +39,7 @@ const qualitiesByPerson = Object.fromEntries((people as any[]).map((p) => [p.id,
               <ul class="mt-5 space-y-2">
                 {p.highlights.map((h: any) => (
                   <li class="flex gap-2 text-sm text-slate-700 dark:text-slate-300">
-                    <svg class={`mt-0.5 h-4 w-4 shrink-0 ${accent === "indigo" ? "text-indigo-600" : "text-pink-500"}`} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"></path></svg>
+                    <svg class={`mt-0.5 h-4 w-4 shrink-0 ${accent === "indigo" ? "text-indigo-800" : "text-rose-900"}`} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"></path></svg>
                     <span>{tr(h, lang)}</span>
                   </li>
                 ))}
@@ -52,7 +53,7 @@ const qualitiesByPerson = Object.fromEntries((people as any[]).map((p) => [p.id,
                 <p class="text-xs font-semibold tracking-wide text-slate-500 uppercase dark:text-slate-400">{tr(group.category, lang)}</p>
                 <ul class="mt-1.5 flex flex-wrap gap-1.5 text-xs">
                   {group.items.map((item: string) => (
-                    <li class={`rounded-full px-2.5 py-1 font-medium ${accent === "indigo" ? "bg-indigo-100 text-indigo-900 dark:bg-indigo-900/60 dark:text-indigo-100" : "bg-pink-100 text-pink-900 dark:bg-pink-900/50 dark:text-pink-100"}`}>{item}</li>
+                    <li class={`rounded-full px-2.5 py-1 font-medium ${accent === "indigo" ? "bg-indigo-100 text-indigo-900 dark:bg-indigo-900/60 dark:text-indigo-100" : "bg-rose-100 text-rose-950 dark:bg-rose-900/50 dark:text-rose-100"}`}>{item}</li>
                   ))}
                 </ul>
               </div>
@@ -96,7 +97,7 @@ const qualitiesByPerson = Object.fromEntries((people as any[]).map((p) => [p.id,
   const axisLabels: Record<string, string> = JSON.parse(qCanvas.dataset.axes!);
   const qPeopleNames: Record<string, string> = JSON.parse(qCanvas.dataset.people!);
   const levelLabel = qCanvas.dataset.levelLabel!;
-  const qPersonColors: Record<string, string> = { mateo: "#6366f1", rhizlene: "#ec4899" };
+  const qPersonColors: Record<string, string> = { mateo: "#3730a3", rhizlene: "#9d174d" };
   const qBarsList = document.getElementById("skills-quality-bars")!;
   let qChart: Chart | null = null;
 

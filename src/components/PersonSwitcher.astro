@@ -18,8 +18,11 @@ const { lang } = Astro.props as { lang: Lang };
   function applyStyles(value: string) {
     buttons.forEach((b) => {
       const active = b.dataset.personOption === value;
+      const opt = b.dataset.personOption;
+      const activeBg = opt === "rhizlene" ? "bg-rose-900" : opt === "mateo" ? "bg-indigo-800" : "bg-slate-800 dark:bg-slate-700";
       b.setAttribute("aria-pressed", String(active));
-      b.classList.toggle("bg-indigo-700", active);
+        ["bg-rose-900", "bg-indigo-800", "bg-slate-800", "dark:bg-slate-700"].forEach((c) => b.classList.remove(c));
+      if (active) activeBg.split(" ").forEach((c) => b.classList.add(c));
       b.classList.toggle("text-white", active);
       b.classList.toggle("border", !active);
       b.classList.toggle("border-slate-400", !active);

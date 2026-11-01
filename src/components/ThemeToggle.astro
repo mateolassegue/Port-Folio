@@ -3,14 +3,29 @@ import { t, type Lang } from "../i18n/utils";
 const { lang } = Astro.props as { lang: Lang };
 ---
 
-<button type="button" id="theme-toggle" aria-label={t(lang, "theme.toggle")} class="rounded border border-slate-400 px-2 py-1 text-sm hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-indigo-600 dark:hover:bg-slate-800">
-  <span class="dark:hidden" aria-hidden="true">🌙</span>
-  <span class="hidden dark:inline" aria-hidden="true">☀️</span>
+<button type="button" id="theme-toggle" aria-label={t(lang, "theme.toggle")} class="flex h-8 w-8 items-center justify-center rounded-full text-slate-600 transition-colors hover:bg-slate-100 hover:text-[var(--accent)] focus-visible:outline-2 focus-visible:outline-[var(--accent)] dark:text-slate-300 dark:hover:bg-slate-800">
+  <svg class="h-4 w-4 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="4"></circle>
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+  </svg>
+  <svg class="hidden h-4 w-4 dark:block" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
+  </svg>
 </button>
 
 <script>
+  const root = document.documentElement;
+  const media = matchMedia("(prefers-color-scheme: dark)");
+
+  function applySystemTheme() {
+    // Only follow the browser/OS preference live when the visitor hasn't explicitly
+    // overridden it via the toggle button for this device.
+    if (!localStorage.getItem("theme")) root.classList.toggle("dark", media.matches);
+  }
+  media.addEventListener("change", applySystemTheme);
+
   document.getElementById("theme-toggle")?.addEventListener("click", () => {
-    const dark = document.documentElement.classList.toggle("dark");
+    const dark = root.classList.toggle("dark");
     localStorage.setItem("theme", dark ? "dark" : "light");
   });
 </script>

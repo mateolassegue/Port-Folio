@@ -9,6 +9,26 @@ html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
 .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
 .reveal.visible { opacity: 1; transform: none; }
 
+/* Site-wide accent colour: tracks the active person filter so buttons, links and highlights
+   across every section "recall" the same colour as the selected profile (indigo = Mateo,
+   pink = Rhizlène, indigo = neutral default when both are shown). */
+:root, html[data-person="mateo"], html[data-person="all"] {
+  --accent: #3730a3;
+  --accent-dark: #27225c;
+  --accent-soft: #eef2ff;
+}
+html[data-person="rhizlene"] {
+  --accent: #9d174d;
+  --accent-dark: #6b1037;
+  --accent-soft: #fdf2f8;
+}
+html.dark { --accent-soft: rgba(79, 70, 229, 0.16); }
+html.dark[data-person="rhizlene"] { --accent-soft: rgba(157, 23, 77, 0.2); }
+* { transition: background-color .25s ease, border-color .25s ease, color .25s ease; }
+
+/* Small uppercase kicker labels used above section headings for an editorial feel. */
+.eyebrow { font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+
 /* Person filter: hide the other person's blocks, and projects they didn't contribute to. */
 html[data-person="mateo"] [data-person="rhizlene"] { display: none; }
 html[data-person="rhizlene"] [data-person="mateo"] { display: none; }
@@ -18,12 +38,13 @@ html[data-person="rhizlene"] [data-authors]:not([data-authors~="rhizlene"]) { di
 /* Subtle engineering blueprint grid used as a page-wide backdrop. */
 .bg-grid-pattern {
   background-image:
-    linear-gradient(to right, rgba(99, 102, 241, 0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(99, 102, 241, 0.08) 1px, transparent 1px);
+    linear-gradient(to right, rgba(55, 48, 163, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(55, 48, 163, 0.07) 1px, transparent 1px);
   background-size: 36px 36px;
 }
 .dark .bg-grid-pattern {
   background-image:
-    linear-gradient(to right, rgba(129, 140, 248, 0.1) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(129, 140, 248, 0.1) 1px, transparent 1px);
+    linear-gradient(to right, rgba(129, 140, 248, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(129, 140, 248, 0.08) 1px, transparent 1px);
 }
+
