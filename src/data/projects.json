@@ -81,8 +81,8 @@
       "en": "Custom MIDI controller and embedded software for Digital Audio Workstation (DAW) control."
     },
     "context": {
-      "fr": "MRS vise à concevoir une console numérique inspirée des M32 de Behringer, mais modulable et appuyée sur des logiciels DAW comme Ableton Live, capables de rivaliser avec les meilleures consoles du marché en matière de modulation des pistes (FX, Send, Automation).",
-      "en": "MRS aims to design a digital console inspired by Behringer's M32, but modular and built on DAW software like Ableton Live, capable of rivalling the best consoles on the market for track modulation (FX, Send, Automation)."
+      "fr": "MRS vise à concevoir une console numérique inspirée des M32 de Behringer, mais modulable et appuyée sur des logiciels DAW comme Ableton Live, capables de rivaliser avec les meilleures consoles du marché en matière de modulation des pistes (FX, Send, Automation). Le projet part d'un constat personnel : avec une formation d'ingénieur du son, je devais tout piloter à la souris, ce qui ralentit le travail et fait perdre le geste d'une vraie console. L'objectif est de construire un contrôleur MIDI physique qui retrouve ces sensations, avec un ESP32 qui communique en MIDI avec Ableton ou un autre DAW, y compris propriétaire.y compris propriétaire.",
+      "en": "MRS aims to design a digital console inspired by Behringer's M32, but modular and built on DAW software like Ableton Live, capable of rivalling the best consoles on the market for track modulation (FX, Send, Automation). The project starts from a personal observation: with a sound engineering background, I had to control everything with the mouse, which slows the work and loses the feel of a real console. The goal is a physical MIDI controller that brings that feel back, with an ESP32 talking MIDI to Ableton or another DAW, including proprietary ones."
     },
     "problem": {
       "fr": "Utiliser un PC comme console nécessite une interface Homme-Machine reproduisant les sensations d'une console physique ; les contrôleurs MIDI du marché ne s'adaptent généralement qu'à un seul usage (le studio).",
@@ -206,8 +206,8 @@
       "en": "AI-assisted news video creation automated with Power Automate."
     },
     "context": {
-      "fr": "Projet expérimental mené avec Rhizlène pendant la période d'essai gratuite de Power Automate, pour tester la création automatisée de vidéos basées sur l'actualité (initialement Wikipédia, d'où le nom de la chaîne de test WikiWhiz News).",
-      "en": "Experimental project run with Rhizlène during Power Automate's free trial, testing automated news-based video creation (initially from Wikipedia, hence the test channel name WikiWhiz News)."
+      "fr": "Projet expérimental mené avec Rhizlène pendant la période d'essai gratuite de Power Automate, pour tester la création automatisée de vidéos basées sur l'actualité (initialement Wikipédia, d'où le nom de la chaîne de test WikiWhiz News). L'objectif était avant tout d'apprendre à enchaîner des services d'IA et d'automatisation. Le flux récupère le contenu d'une page Wikipédia, envoie ce contexte à un générateur de vidéo IA, récupère la vidéo, puis l'envoie dans un logiciel de montage pour ajouter les sous-titres et la voix avant publication sur YouTube.",
+      "en": "Experimental project run with Rhizlène during Power Automate's free trial, testing automated news-based video creation (initially from Wikipedia, hence the test channel name WikiWhiz News). The main goal was to learn how to chain AI and automation services. The flow pulls the content of a Wikipedia page, sends that context to an AI video generator, retrieves the video, then sends it to an editing tool to add subtitles and voice-over before publishing on YouTube."
     },
     "problem": {
       "fr": "Produire des vidéos d'actualité de façon autonome et à faible coût, sans moyens pour un serveur dédié à l'analyse et à la génération en continu.",
@@ -238,8 +238,8 @@
       "en": "Thermo-mechanical data acquisition system and CoreXY CNC plotter for a composite parts manufacturer."
     },
     "context": {
-      "fr": "Stage technique chez CMP Composites (fév.–mai 2026) : développement d'un banc de mesure pour la caractérisation d'éprouvettes composites et d'une machine de traçage automatisée pour le fibre-kitting (découpe/traçage de renforts avant drapage).",
-      "en": "Technical internship at CMP Composites (Feb–May 2026): developed a measurement rig for characterising composite test coupons and an automated tracing machine for fibre-kitting (tracing reinforcement shapes before lay-up)."
+      "fr": "Stage technique chez CMP Composites : développement d'un banc de mesure pour la caractérisation d'éprouvettes composites et d'une machine de traçage automatisée pour le fibre-kitting (découpe/traçage de renforts avant drapage). J'ai pris en charge l'ensemble du projet, de la conception à la réalisation, en couvrant l'électronique, le logiciel et la mécanique.",
+      "en": "Technical internship at CMP Composites: developed a measurement rig for characterising composite test coupons and an automated tracing machine for fibre-kitting (tracing reinforcement shapes before lay-up). I was in charge of the whole project, from design to build, covering electronics, software and mechanics."
     },
     "problem": {
       "fr": "L'entreprise avait besoin d'un système fiable pour mesurer des grandeurs thermo-mécaniques (jauges de contrainte, thermocouples) sur des éprouvettes, et d'automatiser le traçage de formes de renfort sur tissu, jusqu'alors fait manuellement à partir de fichiers DXF.",
