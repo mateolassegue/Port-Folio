@@ -19,8 +19,8 @@
       "en": "Co-led the technical development of the platform: designed and built a no-code scenario editor to create and customise interactive event flows, and maintain the platform's core infrastructure."
     },
     "result": {
-      "fr": "TODO : résultat/metrics à compléter (nombre d'évènements, retours clients, etc.).",
-      "en": "TODO: outcome/metrics to complete (number of events run, client feedback, etc.)."
+      "fr": "Projet toujours en développement : aucun évènement réalisé pour le moment, pas encore de retours clients.",
+      "en": "Still in development: no events run yet and no client feedback so far."
     },
     "stack": ["TypeScript"],
     "languages": { "TypeScript": 99.5 },
@@ -51,8 +51,8 @@
       "en": "Pivoted to a dedicated VS Code extension: engineered the full-stack codebase (frontend and backend) for seamless UI integration and local cluster communication, as a two-person team."
     },
     "result": {
-      "fr": "TODO : résultat/retours à compléter.",
-      "en": "TODO: outcome/feedback to complete."
+      "fr": "Projet actuellement en pause.",
+      "en": "Currently on hold."
     },
     "stack": ["JavaScript", "TypeScript"],
     "languages": { "JavaScript": 97.1, "TypeScript": 1.8 },
@@ -64,8 +64,8 @@
     "authors": ["mateo", "rhizlene"],
     "contributions": {
       "mateo": {
-        "fr": "TODO : décris ta contribution sur Nexus Workspace (ex. partie backend, communication cluster, intégration spécifique).",
-        "en": "TODO: describe your contribution to Nexus Workspace (e.g. backend side, cluster communication, specific integration)."
+        "fr": "Conception du schéma de fonctionnement et de la gestion des multi-agents, ainsi que l'intégration de l'extension dans VS Code.",
+        "en": "Designed the operating scheme and multi-agent management, and integrated the extension into VS Code."
       },
       "rhizlene": {
         "fr": "Initiatrice du projet et de son architecture, j'ai fait pivoter une application autonome vers une extension VS Code dédiée. J'ai développé l'ensemble du code de l'extension (frontend et backend) pour une intégration UI fluide et la communication avec le cluster local, en co-gérant la répartition des tâches avec Mateo.",
@@ -140,8 +140,8 @@
       "en": "Built a website in HTML/CSS/JavaScript with a dedicated visual identity, a pre-saved shopping list, and a mock but functional database of users and farmers."
     },
     "result": {
-      "fr": "TODO : les captures d'écran du site ont été perdues ; photos et détails supplémentaires à venir.",
-      "en": "TODO: screenshots of the site were lost; photos and extra details to come."
+      "fr": "Test de lancement du projet, réalisé sans la partie administrative. Captures d'écran perdues.",
+      "en": "Launch test of the project, carried out without the administrative side. Screenshots were lost."
     },
     "stack": ["HTML", "CSS", "JavaScript"],
     "languages": {},
@@ -172,8 +172,8 @@
       "en": "Developed the autonomous robot and its robotic arm: rapid prototyping, mechanical/electronic troubleshooting, system integration and trajectory control, working as a duo with Rhizlène."
     },
     "result": {
-      "fr": "TODO : résultat/classement à compléter une fois la compétition passée.",
-      "en": "TODO: outcome/ranking to complete once the competition has taken place."
+      "fr": "En préparation pour la Coupe de France de robotique 2027 ; résultat à venir après la compétition.",
+      "en": "In preparation for the 2027 French Robotics Cup; outcome to come after the competition."
     },
     "stack": ["SolidWorks", "C/C++", "Python", "Control Systems"],
     "stackByPerson": {
@@ -189,8 +189,8 @@
     "authors": ["mateo", "rhizlene"],
     "contributions": {
       "mateo": {
-        "fr": "Responsable de la partie hardware : conception mécanique du robot et du bras robotique, électronique et assemblage.",
-        "en": "Leads the hardware side: mechanical design of the robot and the robotic arm, electronics and assembly."
+        "fr": "Développement du bras robotique avec vision par IA, et participation à la fabrication du robot de compétition.",
+        "en": "Developed the robotic arm with AI vision, and took part in building the competition robot."
       },
       "rhizlene": {
         "fr": "Responsable de la partie software/IA : logique de navigation autonome et intelligence embarquée du robot.",
