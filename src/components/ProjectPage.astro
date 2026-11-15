@@ -20,7 +20,7 @@ const initialsOf = (title: string) =>
   {p.image ? (
     <div class="relative mt-6 h-[28rem] w-full overflow-hidden rounded-lg">
       <img src={url(p.image)} aria-hidden="true" class="absolute inset-0 h-full w-full scale-125 object-cover opacity-50 blur-2xl" />
-      <img src={url(p.image)} alt="" class="relative h-full w-full object-contain" />
+      <img src={url(p.image)} alt={tr(p.title, lang)} class="relative h-full w-full object-contain" />
     </div>
   ) : (
     <div class="bg-grid-pattern mt-6 flex h-56 flex-col items-center justify-center gap-2 rounded-lg bg-gradient-to-br from-indigo-600 to-indigo-900">
@@ -31,10 +31,10 @@ const initialsOf = (title: string) =>
 
   {p.gallery && p.gallery.length > 0 && (
     <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
-      {p.gallery.map((src: string) => (
+      {p.gallery.map((src: string, i: number) => (
         <div class="relative aspect-[4/3] overflow-hidden rounded-lg">
           <img src={url(src)} aria-hidden="true" class="absolute inset-0 h-full w-full scale-125 object-cover opacity-50 blur-xl" />
-          <img src={url(src)} alt="" loading="lazy" class="relative h-full w-full object-contain" />
+          <img src={url(src)} alt={`${tr(p.title, lang)} — ${i + 1}`} loading="lazy" class="relative h-full w-full object-contain" />
         </div>
       ))}
     </div>

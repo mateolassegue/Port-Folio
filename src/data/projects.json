@@ -3,16 +3,16 @@
     "id": "litepro-studio",
     "title": { "fr": "litepro-studio", "en": "litepro-studio" },
     "description": {
-      "fr": "Plateforme interactive de team building avec éditeur de scénarios no-code.",
-      "en": "Interactive team-building platform with a no-code scenario editor."
+      "fr": "Application de création de scénarios de serious games pour des journées d'entreprise, destinée pour l'instant aux établissements scolaires.",
+      "en": "Scenario-creation app for serious games used in company days, currently aimed at schools."
     },
     "context": {
-      "fr": "LitePro est une plateforme interactive destinée à l'organisation d'évènements de team building, pensée pour être prise en main par des utilisateurs non techniques.",
-      "en": "LitePro is an interactive platform for running team-building events, designed to be usable by non-technical organisers."
+      "fr": "LitePro est une application de création de scénarios de serious games pour des journées d'entreprise. Son public actuel est celui des établissements scolaires, et elle est pensée pour être prise en main par des utilisateurs non techniques.",
+      "en": "LitePro is an app for creating serious-game scenarios for company days. Its current audience is schools, and it is designed to be usable by non-technical organisers."
     },
     "problem": {
-      "fr": "Les animateurs d'évènements avaient besoin de créer et personnaliser des scénarios interactifs sans dépendre d'une équipe technique à chaque évolution.",
-      "en": "Event facilitators needed to create and customise interactive scenarios without depending on a technical team for every change."
+      "fr": "Les animateurs d'évènements avaient besoin de créer et personnaliser des scénarios de serious game sans dépendre d'une équipe technique à chaque évolution.",
+      "en": "Event facilitators needed to create and customise serious-game scenarios without depending on a technical team for every change."
     },
     "solution": {
       "fr": "Co-direction technique de la plateforme : conception et développement d'un éditeur de scénarios no-code permettant de créer et personnaliser des déroulés d'évènements interactifs, et maintenance de l'infrastructure cœur de la plateforme.",
@@ -29,7 +29,17 @@
     "repo": "https://github.com/mateolassegue/litepro-studio",
     "showRepoLink": false,
     "status": "wip",
-    "authors": ["mateo", "rhizlene"]
+    "authors": ["mateo", "rhizlene"],
+    "contributions": {
+      "mateo": {
+        "fr": "Organisation du projet, idée initiale et premier choix des technologies indispensables. Développement de la majeure partie du code de l'application, puis tests des versions bêta et peaufinage des premières versions.",
+        "en": "Project organisation, original idea and first selection of the essential technologies. Wrote most of the application code, then tested the beta versions and polished the first releases."
+      },
+      "rhizlene": {
+        "fr": "Co-développement de l'application avec Mateo.",
+        "en": "Co-developed the application with Mateo."
+      }
+    }
   },
   {
     "id": "nexus-workspace",
@@ -51,8 +61,8 @@
       "en": "Pivoted to a dedicated VS Code extension: engineered the full-stack codebase (frontend and backend) for seamless UI integration and local cluster communication, as a two-person team."
     },
     "result": {
-      "fr": "Projet actuellement en pause.",
-      "en": "Currently on hold."
+      "fr": "Architecture de l'extension conçue (frontend et backend). L'extension est en pause, mais le projet reste un fil conducteur pour me former sur l'IA locale : il me met en contact avec des entreprises exploitant des clusters et intéressées par cette technologie, que je conseille.",
+      "en": "Extension architecture designed (frontend and backend). The extension is on hold, but the project remains a thread for keeping up with local AI: it puts me in touch with companies running clusters and interested in this technology, whom I advise."
     },
     "stack": ["JavaScript", "TypeScript"],
     "languages": { "JavaScript": 97.1, "TypeScript": 1.8 },
@@ -81,7 +91,7 @@
       "en": "Custom MIDI controller and embedded software for Digital Audio Workstation (DAW) control."
     },
     "context": {
-      "fr": "MRS vise à concevoir une console numérique inspirée des M32 de Behringer, mais modulable et appuyée sur des logiciels DAW comme Ableton Live, capables de rivaliser avec les meilleures consoles du marché en matière de modulation des pistes (FX, Send, Automation). Le projet part d'un constat personnel : avec une formation d'ingénieur du son, je devais tout piloter à la souris, ce qui ralentit le travail et fait perdre le geste d'une vraie console. L'objectif est de construire un contrôleur MIDI physique qui retrouve ces sensations, avec un ESP32 qui communique en MIDI avec Ableton ou un autre DAW, y compris propriétaire.y compris propriétaire.",
+      "fr": "MRS vise à concevoir une console numérique inspirée des M32 de Behringer, mais modulable et appuyée sur des logiciels DAW comme Ableton Live, capables de rivaliser avec les meilleures consoles du marché en matière de modulation des pistes (FX, Send, Automation). Le projet part d'un constat personnel : avec une formation d'ingénieur du son, je devais tout piloter à la souris, ce qui ralentit le travail et fait perdre le geste d'une vraie console. L'objectif est de construire un contrôleur MIDI physique qui retrouve ces sensations, avec un ESP32 qui communique en MIDI avec Ableton ou un autre DAW, y compris propriétaire.",
       "en": "MRS aims to design a digital console inspired by Behringer's M32, but modular and built on DAW software like Ableton Live, capable of rivalling the best consoles on the market for track modulation (FX, Send, Automation). The project starts from a personal observation: with a sound engineering background, I had to control everything with the mouse, which slows the work and loses the feel of a real console. The goal is a physical MIDI controller that brings that feel back, with an ESP32 talking MIDI to Ableton or another DAW, including proprietary ones."
     },
     "problem": {
@@ -93,8 +103,8 @@
       "en": "Developed a custom driver and MIDI controller with Visual Studio (C, C++, C#, XAML), a companion website with VS Code, and hardware/enclosure design in FreeCAD (open-source). Project organised with Microsoft Loop, working as a duo with Rhizlène, who brings rigorous project tracking."
     },
     "result": {
-      "fr": "Finalisation du driver en cours, avec des tests logiciels plus ou moins avancés ; premiers prototypes matériels réalisés.",
-      "en": "Driver finalisation in progress, with software tests at varying stages of completion; first hardware prototypes built."
+      "fr": "Première console finalisée à environ 90 % : le dernier module est en standby, faute de carte mère fonctionnelle (toutes celles reçues jusqu'ici sont arrivées cassées). Finalisation du driver en cours, avec des tests logiciels plus ou moins avancés.",
+      "en": "First console about 90% complete: the last module is on hold for lack of a working mainboard (every one received so far arrived broken). Driver finalisation in progress, with software tests at varying stages of completion."
     },
     "stack": ["C", "C++", "C#", "XAML", "FreeCAD"],
     "stackByPerson": {
@@ -140,8 +150,8 @@
       "en": "Built a website in HTML/CSS/JavaScript with a dedicated visual identity, a pre-saved shopping list, and a mock but functional database of users and farmers."
     },
     "result": {
-      "fr": "Test de lancement du projet, réalisé sans la partie administrative. Captures d'écran perdues.",
-      "en": "Launch test of the project, carried out without the administrative side. Screenshots were lost."
+      "fr": "Un test de lancement a été réalisé avec une liste de courses et une base de données fonctionnelle (factice) d'utilisateurs et de producteurs. La partie administrative n'a pas été développée.",
+      "en": "A launch test was carried out with a shopping list and a working (mock) database of users and producers. The administrative side was not built."
     },
     "stack": ["HTML", "CSS", "JavaScript"],
     "languages": {},
@@ -150,7 +160,17 @@
     "repo": "",
     "showRepoLink": false,
     "status": "done",
-    "authors": ["mateo", "rhizlene"]
+    "authors": ["mateo", "rhizlene"],
+    "contributions": {
+      "mateo": {
+        "fr": "Réalisation complète du projet : site, charte graphique, liste de courses et base de données factice.",
+        "en": "Built the whole project: website, visual identity, shopping list and mock database."
+      },
+      "rhizlene": {
+        "fr": "Esprit critique sur le concept et le projet, avec des retours qui ont orienté les choix.",
+        "en": "Critical eye on the concept and the project, with feedback that guided the choices."
+      }
+    }
   },
   {
     "id": "crubs",
@@ -172,8 +192,8 @@
       "en": "Developed the autonomous robot and its robotic arm: rapid prototyping, mechanical/electronic troubleshooting, system integration and trajectory control, working as a duo with Rhizlène."
     },
     "result": {
-      "fr": "En préparation pour la Coupe de France de robotique 2027 ; résultat à venir après la compétition.",
-      "en": "In preparation for the 2027 French Robotics Cup; outcome to come after the competition."
+      "fr": "Composants achetés ; une Jetson (8 Go de RAM, 114 TOPS) est déjà en place et utilisée avec la caméra par Rhizlène. Côté bras robotique, en attente de la livraison des moteurs. En préparation pour la Coupe de France de robotique 2027 ; résultat à venir après la compétition.",
+      "en": "Components purchased; a Jetson (8 GB RAM, 114 TOPS) is already in place and used with the camera by Rhizlène. On the robotic arm side, waiting for the motors to be delivered. In preparation for the 2027 French Robotics Cup; outcome to come after the competition."
     },
     "stack": ["SolidWorks", "C/C++", "Python", "Control Systems"],
     "stackByPerson": {
@@ -189,12 +209,12 @@
     "authors": ["mateo", "rhizlene"],
     "contributions": {
       "mateo": {
-        "fr": "Développement du bras robotique avec vision par IA, et participation à la fabrication du robot de compétition.",
-        "en": "Developed the robotic arm with AI vision, and took part in building the competition robot."
+        "fr": "Responsable de toute la partie hardware : conception mécanique, bras robotique et fabrication du robot de compétition. Chargé des relations avec les projets extérieurs au sein du club CRUBS.",
+        "en": "Lead on the entire hardware side: mechanical design, the robotic arm and building the competition robot. In charge of relations with external projects within the CRUBS club."
       },
       "rhizlene": {
-        "fr": "Responsable de la partie software/IA : logique de navigation autonome et intelligence embarquée du robot.",
-        "en": "Leads the software/AI side: autonomous navigation logic and the robot's embedded intelligence."
+        "fr": "Responsable de la partie software/IA : logique de navigation autonome, intelligence embarquée du robot et vision par caméra sur la Jetson. Vice-présidente du CRUBS.",
+        "en": "Leads the software/AI side: autonomous navigation logic, the robot's embedded intelligence and camera vision on the Jetson. Vice-president of CRUBS."
       }
     }
   },
@@ -218,8 +238,8 @@
       "en": "Set up automation flows with Power Automate to generate videos from news sources, published as tests on a YouTube and TikTok channel (WikiWhiz News)."
     },
     "result": {
-      "fr": "Quelques vidéos publiées avec succès avant l'expiration de la période d'essai gratuite ; faute de budget pour un serveur dédié, le projet n'a pas été poussé plus loin, mais l'expérience a été enrichissante.",
-      "en": "A few videos were successfully published before the free trial expired; without budget for a dedicated server the project wasn't taken further, but it was a valuable experience."
+      "fr": "Le flux complet (page Wikipédia → vidéo IA → montage → publication) a fonctionné : quelques vidéos ont été publiées sur YouTube et TikTok pendant la période d'essai gratuite. Un passage à l'échelle aurait demandé un serveur dédié, hors budget ; le projet s'est donc arrêté au stade de preuve de concept, qui nous a appris à enchaîner services d'IA et automatisation.",
+      "en": "The full pipeline (Wikipedia page → AI video → editing → publishing) worked: a few videos were published on YouTube and TikTok during the free trial. Scaling up would have required a dedicated server, beyond our budget, so the project stopped at proof-of-concept stage, teaching us how to chain AI and automation services."
     },
     "stack": ["Power Automate"],
     "languages": {},
@@ -228,7 +248,17 @@
     "repo": "",
     "showRepoLink": false,
     "status": "done",
-    "authors": ["mateo", "rhizlene"]
+    "authors": ["mateo", "rhizlene"],
+    "contributions": {
+      "mateo": {
+        "fr": "Conception du flux complet d'automatisation.",
+        "en": "Designed the complete automation flow."
+      },
+      "rhizlene": {
+        "fr": "Génération des vidéos et maintenance des flux Power Automate.",
+        "en": "Video generation and maintenance of the Power Automate flows."
+      }
+    }
   },
   {
     "id": "cmp-composites",
@@ -250,24 +280,21 @@
       "en": "Designed a dual-ESP32 acquisition system in C/C++ with ESP-NOW wireless links and SPI/I²C sensor multiplexing, driven by an LVGL touchscreen interface. Designed and assembled a CoreXY CNC plotter from repurposed 3D-printer parts, and built a C++ application converting DXF files to G-code to automate reinforcement tracing."
     },
     "result": {
-      "fr": "Banc de mesure et plotter CNC fonctionnels, utilisés pour la caractérisation d'éprouvettes et l'automatisation du traçage de renforts en fin de stage.",
-      "en": "Working measurement rig and CNC plotter, used for coupon characterisation and automated reinforcement tracing by the end of the internship."
+      "fr": "Validation sur une éprouvette de résine (cycle thermique de −15 °C à +80 °C) : coefficients de dilatation mesurés de 114,4 et 133,5 µdef/°C, à +4,0 % et +2,7 % de la courbe de référence de la littérature. Plotter CNC fonctionnel, démontré en fin de stage ; l'équipe n'a pas encore été formée à son utilisation.",
+      "en": "Validated on a resin coupon (thermal cycle from −15 °C to +80 °C): measured expansion coefficients of 114.4 and 133.5 µstrain/°C, within +4.0% and +2.7% of the literature reference curve. Working CNC plotter, demonstrated at the end of the internship; the team has not yet been trained to use it."
     },
-    "stack": ["ESP32", "C/C++", "ESP-NOW", "LVGL", "SolidWorks"],
+    "stack": ["ESP32", "C/C++", "ESP-NOW", "LVGL", "SquareLine Studio", "I²C / SPI", "Marlin", "SolidWorks"],
     "languages": {},
     "image": "images/cmp-composites/daq-cnc-illustration.png",
     "gallery": [
       "images/cmp-composites/daq-rig-touchscreen.jpg",
-      "images/cmp-composites/daq-ui-electronics.jpg",
-      "images/cmp-composites/esp32-s3-board.jpg",
-      "images/cmp-composites/strain-gauge-board.jpg",
+      "images/cmp-composites/load-cell-disc.jpg",
       "images/cmp-composites/strain-gauge-triple.jpg",
+      "images/cmp-composites/daq-ui-electronics.jpg",
+      "images/cmp-composites/workbench-overview.jpg",
       "images/cmp-composites/corexy-frame.jpg",
       "images/cmp-composites/corexy-assembled.jpg",
-      "images/cmp-composites/plotter-tracing.jpg",
-      "images/cmp-composites/workbench-overview.jpg",
-      "images/cmp-composites/fdm-coupons-printing.jpg",
-      "images/cmp-composites/isel-cnc-machine.jpg"
+      "images/cmp-composites/plotter-tracing.jpg"
     ],
     "demo": "",
     "repo": "",

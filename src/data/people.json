@@ -12,7 +12,7 @@
     },
     "links": {
       "github": "https://github.com/mateolassegue",
-      "linkedin": "",
+      "linkedin": "https://www.linkedin.com/in/mat%C3%A9o-lass%C3%A8gue-839a9b254/",
       "email": "mateo.lassegue@gmail.com"
     },
     "skills": [
@@ -22,7 +22,7 @@
       },
       {
         "category": { "fr": "Systèmes embarqués", "en": "Embedded & Software" },
-        "items": ["C/C++", "Python", "Linux (Ubuntu)", "Control Systems"]
+        "items": ["C/C++", "ESP32 / ESP-NOW", "I²C / SPI", "LVGL", "Python", "Linux (Ubuntu)", "Control Systems"]
       },
       {
         "category": { "fr": "Outils & DevOps", "en": "Tools & DevOps" },
@@ -112,7 +112,7 @@
     },
     "links": {
       "github": "https://github.com/Sempra56",
-      "linkedin": "https://www.linkedin.com/in/rhizlène-russo",
+      "linkedin": "https://www.linkedin.com/in/rhizl%C3%A8ne-russo",
       "email": "rhizlenerusso@gmail.com"
     },
     "skills": [

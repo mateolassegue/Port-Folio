@@ -2,6 +2,7 @@
 import people from "../data/people.json";
 import { t, type Lang } from "../i18n/utils";
 const { lang } = Astro.props as { lang: Lang };
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <section id="contact" class="mx-auto max-w-6xl border-t border-slate-200 px-4 py-16 reveal dark:border-slate-800">
@@ -17,6 +18,7 @@ const { lang } = Astro.props as { lang: Lang };
         <ul class="flex flex-wrap gap-2">
           {p.links.github && <li><a class={`rounded-full border border-slate-300 px-3 py-1 text-sm font-medium transition-colors dark:border-slate-700 ${accent === "indigo" ? "hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-800 dark:hover:bg-indigo-900/30 dark:hover:text-indigo-300" : "hover:border-rose-300 hover:bg-rose-50 hover:text-rose-900 dark:hover:bg-rose-900/30 dark:hover:text-rose-300"}`} href={p.links.github} rel="noopener noreferrer">{t(lang, "contact.github")} ↗</a></li>}
           {p.links.linkedin && <li><a class={`rounded-full border border-slate-300 px-3 py-1 text-sm font-medium transition-colors dark:border-slate-700 ${accent === "indigo" ? "hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-800 dark:hover:bg-indigo-900/30 dark:hover:text-indigo-300" : "hover:border-rose-300 hover:bg-rose-50 hover:text-rose-900 dark:hover:bg-rose-900/30 dark:hover:text-rose-300"}`} href={p.links.linkedin} rel="noopener noreferrer">{t(lang, "contact.linkedin")} ↗</a></li>}
+          <li><a class={`rounded-full border border-slate-300 px-3 py-1 text-sm font-medium transition-colors dark:border-slate-700 ${accent === "indigo" ? "hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-800 dark:hover:bg-indigo-900/30 dark:hover:text-indigo-300" : "hover:border-rose-300 hover:bg-rose-50 hover:text-rose-900 dark:hover:bg-rose-900/30 dark:hover:text-rose-300"}`} href={`${base}/cv/${p.id === "mateo" ? "Mateo-Lassegue" : "Rhizlene-Russo"}-CV-${lang.toUpperCase()}.pdf`} download>{t(lang, "contact.cv")}</a></li>
           {p.links.email && <li><a class={`rounded-full border border-slate-300 px-3 py-1 text-sm font-medium transition-colors dark:border-slate-700 ${accent === "indigo" ? "hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-800 dark:hover:bg-indigo-900/30 dark:hover:text-indigo-300" : "hover:border-rose-300 hover:bg-rose-50 hover:text-rose-900 dark:hover:bg-rose-900/30 dark:hover:text-rose-300"}`} href={`mailto:${p.links.email}`}>{t(lang, "contact.email")}</a></li>}
         </ul>
       </div>
